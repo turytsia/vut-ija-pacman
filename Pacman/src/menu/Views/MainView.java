@@ -1,0 +1,91 @@
+package menu.Views;
+
+import java.awt.GridLayout;
+import java.awt.LayoutManager;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import menu.Background;
+import menu.Button;
+
+public class MainView extends View {
+    private ArrayList<Button> buttons = new ArrayList<Button>();
+    private int activeButton = 0;
+
+    public MainView() {
+        super(null);
+        LayoutManager gridLayout = new GridLayout(4, 1);
+        JPanel buttonContainer = new JPanel(gridLayout);
+        buttonContainer.setBounds(config.getWidth() - 20 - 200 - 16, 20, 200, 4 * 50);
+        buttonContainer.setOpaque(false);
+
+        Button buttonStart = new Button("Start");
+        Button buttonLoad = new Button("Load");
+        Button buttonSettings = new Button("Settings");
+        Button buttonExit = new Button("Exit");
+
+        buttonStart.addActionListener(e -> {
+            menu.pushView(new StartGameView());
+        });
+
+        buttons.add(buttonStart);
+        buttons.add(buttonLoad);
+        buttons.add(buttonSettings);
+        buttons.add(buttonExit);
+
+        for (Button button : buttons) {
+            buttonContainer.add(button);
+        }
+
+        buttons.get(activeButton).setSelect(true);
+
+        add(buttonContainer);
+        add(new Background("data/assets/sprites/menu/bg-menu.jpg"));
+    }
+
+    private void selectNext() {
+        buttons.get(activeButton).setSelect(false);
+
+        activeButton = (activeButton + 1) % buttons.size();
+        buttons.get(activeButton).setSelect(true);
+    }
+
+    private void selectPrev() {
+        buttons.get(activeButton).setSelect(false);
+
+        activeButton = --activeButton < 0 ? buttons.size() - 1 : activeButton;
+        buttons.get(activeButton).setSelect(true);
+    }
+
+    @Override
+    protected void KeyArrowLeft() {
+    }
+
+    @Override
+    protected void KeyArrowUp() {
+        selectPrev();
+        menu.update();
+    }
+
+    @Override
+    protected void KeyArrowRight() {
+    }
+
+    @Override
+    protected void KeyArrowDown() {
+        selectNext();
+        menu.update();
+    }
+
+    @Override
+    protected void KeyEscape() {
+    }
+
+    @Override
+    protected void KeyEnter() {
+        buttons.get(activeButton).doClick();
+    }
+}
