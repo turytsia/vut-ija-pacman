@@ -1,9 +1,9 @@
 package game.objects;
 
-import game.common.CommonField;
+import game.common.AbstractObservableField;
 import game.common.CommonMazeObject;
 
-public abstract class Field implements CommonField {
+public abstract class Field extends AbstractObservableField {
 
     protected Maze maze;
     protected int x;

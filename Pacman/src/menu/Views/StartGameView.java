@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.LayoutManager;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
@@ -14,7 +15,10 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import game.MazeConfigure;
+import game.objects.GhostObject;
 import game.objects.Maze;
+import game.objects.PathField;
+import game.objects.WallField;
 import menu.Button;
 import menu.Gradient;
 import menu.Label;
@@ -23,6 +27,7 @@ import menu.MazeOverview;
 public class StartGameView extends View {
     private ArrayList<Button> buttons = new ArrayList<Button>();
     private int activeButton = 0;
+    private Maze maze;
 
     public StartGameView() {
         super(new BorderLayout(2, 2));
@@ -38,6 +43,7 @@ public class StartGameView extends View {
         Button buttonNext = new Button("Next");
         Button buttonPrev = new Button("Previous");
         Button buttonPlay = new Button("Play");
+    
 
         buttonNext.setPreferredSize(new Dimension(100, 50));
         buttonPrev.setPreferredSize(new Dimension(100, 50));
@@ -83,7 +89,13 @@ public class StartGameView extends View {
         map.setOpaque(false);
 
         MazeConfigure mazeConfig = new MazeConfigure("data/maps/map1.txt");
-        MazeOverview maze = new MazeOverview(mazeConfig.getMaze());
+        maze = mazeConfig.getMaze();
+        JPanel mazePanel = new MazeOverview(maze);
+
+        buttonPlay.addActionListener(e -> {
+            menu.pushView(new GameView(maze));
+        });
+        
 
         JPanel mapInfo = new JPanel(new GridLayout(3, 1));
         mapInfo.setOpaque(false);
@@ -108,7 +120,7 @@ public class StartGameView extends View {
         mapInfo.add(story);
 
         panel.add(mapInfo);
-        panel.add(maze);
+        panel.add(mazePanel);
         panel.setPreferredSize(new Dimension(config.getWidth(), 20));
 
         add(panel, BorderLayout.CENTER);
@@ -157,5 +169,6 @@ public class StartGameView extends View {
 
     @Override
     protected void KeyEnter() {
+        buttons.get(activeButton).doClick();
     }
 }

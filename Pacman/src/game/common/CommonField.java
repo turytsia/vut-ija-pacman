@@ -1,6 +1,6 @@
 package game.common;
 
-public interface CommonField {
+public interface CommonField extends Observable {
 
     public static enum Direction {
         L,

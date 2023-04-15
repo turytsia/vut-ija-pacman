@@ -1,28 +1,26 @@
 package menu;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.JPanel;
 
 import game.common.CommonField;
 import game.objects.Maze;
-import game.objects.WallField;
-import menu.game.WallView;
+import game.view.FieldView;
+import game.view.PointView;
+import game.view.WallView;
 
 public class MazeOverview extends JPanel {
     public MazeOverview(Maze maze) {
         setLayout(new GridLayout(maze.numRows(), maze.numCols()));
         setOpaque(false);
-        for (int x = 0; x < maze.numRows(); x++) {
-            for (int y = 0; y < maze.numCols(); y++) {
-                CommonField field = maze.getField(x, y);
-                JPanel t = new JPanel();
-                if (field instanceof WallField) {
-                    add(new WallView());
+        for (int i = 0; i < maze.numRows(); ++i) {
+            for (int j = 0; j < maze.numCols(); ++j) {
+                CommonField field = maze.getField(i, j);
+                if (field.canMove()) {
+                    add(new FieldView(maze.getField(i, j)));
                 } else {
-                    t.setBackground(Color.GREEN);
-                    add(t);
+                    add(new WallView());
                 }
             }
         }

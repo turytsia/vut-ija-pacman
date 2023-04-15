@@ -1,7 +1,11 @@
 package game.objects;
 
+import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JPanel;
 
 import exceptions.MazeRowOutOfBoundsException;
 import exceptions.UnknownMazeObjectException;
@@ -13,8 +17,8 @@ public class Maze implements CommonMaze {
     
     private int cols;
     private int rows;
-    List<List<CommonField>> fields = new ArrayList<>();
-    List<CommonMazeObject> ghosts = new ArrayList<>();
+    private List<List<CommonField>> fields = new ArrayList<>();
+    private List<CommonMazeObject> ghosts = new ArrayList<>();
 
     public Maze(int cols, int rows) {
         this.cols = cols;
@@ -49,6 +53,13 @@ public class Maze implements CommonMaze {
         return field;
     }
 
+    private PathField createPoint(int x, int y) {
+        PathField field = new PathField(this, x, y);
+        field.put(new PointObject(field));
+
+        return field;
+    }
+
     @Override
     public void parseLine(String line) {
         ArrayList<CommonField> row = new ArrayList<>();
@@ -74,10 +85,10 @@ public class Maze implements CommonMaze {
                         row.add(createFinish(x, y));
                         break;
                     case 'S':
-                        row.add(createKey(x, y));
+                        row.add(createPacman(x, y));
                         break;
                     case '.':
-                        row.add(createPacman(x, y));
+                        row.add(createPoint(x, y));
                         break;
                     default:
                         throw new UnknownMazeObjectException("Object " + c + " is not valid");
