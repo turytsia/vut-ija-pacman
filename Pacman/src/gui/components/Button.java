@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import common.Config;
+import gui.views.LoadGameView;
 
 public class Button extends JButton {
     private static Config config = new Config();
@@ -26,8 +27,6 @@ public class Button extends JButton {
     
     public void setSelect(boolean hasSelect) {
         setBorderPainted(hasSelect);
-        if (hasSelect) {
-            setBorder(BorderFactory.createLineBorder(Color.WHITE, 2, false));
-        }
+        setBorder(BorderFactory.createLineBorder(Color.WHITE, 2, false));
     }
 }

@@ -32,6 +32,10 @@ public class MainView extends View {
             game.pushView(new StartGameView(game));
         });
 
+        buttonLoad.addActionListener(e -> {
+            game.pushView(new LoadGameView(game));
+        });
+
         buttons.add(buttonStart);
         buttons.add(buttonLoad);
         buttons.add(buttonSettings);

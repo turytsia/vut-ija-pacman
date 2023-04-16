@@ -1,58 +1,140 @@
 package gui.views;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.LayoutManager;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 import gui.Game;
+import gui.components.Button;
+import gui.components.Label;
 
 public class LoadGameView extends View {
 
-    
+    private final ArrayList<Button> buttons = new ArrayList<Button>();
+    private int activeButton;
+    private int pageIndex;
+    private JPanel asidePanel = new JPanel();
 
-    public LoadGameView(LayoutManager layout, Game game) {
+    JPanel gameList;
+
+    public LoadGameView(Game game) {
         super("Load game", game);
-        
+
+        setBackground(Color.BLACK);
+
+        JPanel listFooter = new JPanel();
+        gameList = new JPanel(new GridLayout(8, 1));
+
+        gameList.setOpaque(false);
+        listFooter.setOpaque(false);
+
+        container.add(gameList);
+        add(listFooter, BorderLayout.SOUTH);
+
+        List<File> files = config.getFiles("data/replays");
+
+        //meta data
+        // asidePanel.setPreferredSize(new Dimension(config.getWidth() / 4, container.getHeight()));
+
+        // add(asidePanel, BorderLayout.EAST);
+
+        try {
+
+            for (File file : files) {
+
+                BasicFileAttributes attr = Files.readAttributes(Path.of(file.getPath()), BasicFileAttributes.class);
+
+                Button fileInfoButton = new Button(file.getName());
+                Label dateText = new Label(attr.creationTime().toString());
+                Label scoreText = new Label("Score: 0");
+                Label isWinnerText = new Label("Winner: No");
+                
+            
+                fileInfoButton.setLayout(new BorderLayout(10, 10));
+                System.out.println(container.getX());
+                fileInfoButton.setPreferredSize(new Dimension( 200, 50));
+                fileInfoButton.setOpaque(false);
+
+
+
+                // scoreText.setPreferredSize(new Dimension(20, 20));
+
+
+                // fileInfoButton.add(new Label("Map01.txt"), BorderLayout.NORTH);
+                // fileInfoButton.add(dateText, BorderLayout.WEST);
+                // fileInfoButton.add(scoreText, BorderLayout.CENTER);
+                // fileInfoButton.add(isWinnerText, BorderLayout.EAST);
+
+                gameList.add(fileInfoButton);
+                buttons.add(fileInfoButton);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        buttons.get(activeButton).setSelect(true);
+
+    }
+
+    private void selectNext() {
+        buttons.get(activeButton).setSelect(false);
+
+        activeButton = (activeButton + 1) % buttons.size();
+        buttons.get(activeButton).setSelect(true);
+    }
+
+    private void selectPrev() {
+        buttons.get(activeButton).setSelect(false);
+
+        activeButton = --activeButton < 0 ? buttons.size() - 1 : activeButton;
+        buttons.get(activeButton).setSelect(true);
     }
 
     @Override
     protected void KeyArrowLeft() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'KeyArrowLeft'");
     }
 
     @Override
     protected void KeyArrowUp() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'KeyArrowUp'");
+        selectPrev();
+        game.update();
     }
 
     @Override
     protected void KeyArrowRight() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'KeyArrowRight'");
     }
 
     @Override
     protected void KeyArrowDown() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'KeyArrowDown'");
+        selectNext();
+        game.update();
     }
 
     @Override
     protected void KeyEscape() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'KeyEscape'");
+        game.popView();
     }
 
     @Override
     protected void KeyEnter() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'KeyEnter'");
     }
 
     @Override
     protected void AnyKey() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'AnyKey'");
     }
-    
+
 }

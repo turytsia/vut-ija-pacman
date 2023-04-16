@@ -36,7 +36,6 @@ public abstract class View extends JPanel implements KeyListener {
             add(this.title, BorderLayout.NORTH);
         }
 
-
         add(container, BorderLayout.CENTER);
     }
 

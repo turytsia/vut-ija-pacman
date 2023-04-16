@@ -49,8 +49,13 @@ public class Config {
     }
 
     public List<File> getFiles(String dir) {
-        return Stream.of(new File(dir).listFiles())
+        try{
+            return Stream.of(new File(dir).listFiles())
                 .filter(file -> !file.isDirectory())
                 .collect(Collectors.toList());
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
