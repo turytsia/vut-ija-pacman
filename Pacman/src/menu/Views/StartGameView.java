@@ -4,53 +4,49 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.LayoutManager;
-import java.sql.Time;
+import java.io.File;
 import java.util.ArrayList;
-
-import javax.swing.BoxLayout;
+import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
 import game.MazeConfigure;
-import game.objects.GhostObject;
 import game.objects.Maze;
-import game.objects.PathField;
-import game.objects.WallField;
 import game.view.MazeView;
 import menu.Button;
-import menu.Gradient;
 import menu.Label;
 
 public class StartGameView extends View {
-    private ArrayList<Button> buttons = new ArrayList<Button>();
+    private final ArrayList<Button> buttons = new ArrayList<Button>();
+    private final List<File> maps;
+    private int mapIndex = 0;
     private int activeButton = 0;
     private Maze maze;
+
+    private JPanel mapContent = new JPanel();
+    private JLabel mapCounter = new JLabel();
 
     public StartGameView() {
         super(new BorderLayout(2, 2));
 
         setBackground(Color.BLACK);
 
+        maps = config.getFiles("data/maps");
+
         LayoutManager gridLayout = new GridLayout(1, 6, 5, 5);
 
         JPanel buttonContainer = new JPanel(gridLayout);
-        // buttonContainer.setBounds(config.getWidth() - 20 - 200 - 16, 20, 200, 50);
         buttonContainer.setOpaque(false);
 
         Button buttonNext = new Button("Next");
         Button buttonPrev = new Button("Previous");
         Button buttonPlay = new Button("Play");
-    
 
         buttonNext.setPreferredSize(new Dimension(100, 50));
         buttonPrev.setPreferredSize(new Dimension(100, 50));
         buttonPlay.setPreferredSize(new Dimension(100, 50));
-
-        // buttonNext.setMargin(new Insets(10, 10, 10, 10));
-        // buttonPrev.setMargin(new Insets(10, 10, 10, 10));
 
         buttons.add(buttonPrev);
         buttons.add(buttonNext);
@@ -59,43 +55,76 @@ public class StartGameView extends View {
         for (Button button : buttons) {
             buttonContainer.add(button);
         }
+
+        mapCounter.setText((mapIndex + 1) + "/" + maps.size());
+        mapCounter.setForeground(Color.WHITE);
+        mapCounter.setFont(config.getFont(10f));
+
         buttonContainer.add(new JLabel());
-        buttonContainer.add(new Label("0/0"));
+        buttonContainer.add(mapCounter);
         buttonContainer.add(new JLabel());
         buttonContainer.add(buttonPlay);
 
         buttons.get(activeButton).setSelect(true);
 
-        add(buttonContainer, BorderLayout.NORTH);
-
         JLabel leftBorder = new JLabel();
-        leftBorder.setPreferredSize(new Dimension(20, 20));
-        add(leftBorder, BorderLayout.WEST);
-
         JLabel rightBorder = new JLabel();
-        rightBorder.setPreferredSize(new Dimension(20, 20));
-        add(rightBorder, BorderLayout.EAST);
-
         JLabel bottomPanel = new JLabel();
+
+        leftBorder.setPreferredSize(new Dimension(20, 20));
+        rightBorder.setPreferredSize(new Dimension(20, 20));
         bottomPanel.setPreferredSize(new Dimension(20, 60));
-        add(bottomPanel, BorderLayout.SOUTH);
-
-        JPanel panel = new JPanel();
-        panel.setOpaque(false);
-        panel.setBackground(new Color(0, 0, 0, 0));
-        panel.setLayout(new GridLayout(1, 2, 10, 10));
-
-        JPanel map = new JPanel();
-        map.setOpaque(false);
-
-        MazeConfigure mazeConfig = new MazeConfigure("data/maps/map1.txt");
-        maze = mazeConfig.getMaze();
-        JPanel mazePanel = new MazeView(maze);
 
         buttonPlay.addActionListener(e -> {
             menu.pushView(new GameView(maze));
         });
+
+        buttonNext.addActionListener(e -> {
+            getNextMap();
+            menu.update();
+        });
+
+        buttonPrev.addActionListener(e -> {
+            getPrevMap();
+            menu.update();
+        });
+
+        updateMapContent(maps.get(mapIndex));
+
+
+        add(buttonContainer, BorderLayout.NORTH);
+        add(leftBorder, BorderLayout.WEST);
+        add(rightBorder, BorderLayout.EAST);
+        add(bottomPanel, BorderLayout.SOUTH);
+        add(mapContent, BorderLayout.CENTER);
+
+    }
+
+    private void getNextMap() {
+        mapIndex = (mapIndex + 1) % maps.size();
+        updateMapContent(maps.get(mapIndex));
+    }
+    
+    private void getPrevMap() {
+        mapIndex = (mapIndex-- > 0 ? mapIndex : maps.size() - 1);
+        updateMapContent(maps.get(mapIndex));
+    }
+
+    private void updateMapContent(File mapFile) {
+
+        mapCounter.setText((mapIndex + 1) + "/" + maps.size());
         
+        mapContent.removeAll();
+        mapContent.setOpaque(false);
+        mapContent.setBackground(new Color(0, 0, 0, 0));
+        mapContent.setLayout(new GridLayout(1, 2, 10, 10));
+
+        JPanel map = new JPanel();
+        map.setOpaque(false);
+
+        MazeConfigure mazeConfig = new MazeConfigure(mapFile);
+        maze = mazeConfig.getMaze();
+        JPanel mazePanel = new MazeView(maze);
 
         JPanel mapInfo = new JPanel(new GridLayout(3, 1));
         mapInfo.setOpaque(false);
@@ -119,13 +148,9 @@ public class StartGameView extends View {
 
         mapInfo.add(story);
 
-        panel.add(mapInfo);
-        panel.add(mazePanel);
-        panel.setPreferredSize(new Dimension(config.getWidth(), 20));
-
-        add(panel, BorderLayout.CENTER);
-
-        // add(new Gradient());
+        mapContent.add(mapInfo);
+        mapContent.add(mazePanel);
+        mapContent.setPreferredSize(new Dimension(config.getWidth(), 20));
     }
 
     private void selectNext() {

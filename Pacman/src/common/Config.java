@@ -6,7 +6,11 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Config {
     private int width;
@@ -42,5 +46,11 @@ public class Config {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public List<File> getFiles(String dir) {
+        return Stream.of(new File(dir).listFiles())
+                .filter(file -> !file.isDirectory())
+                .collect(Collectors.toList());
     }
 }

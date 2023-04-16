@@ -62,6 +62,21 @@ public class Menu extends JFrame {
         return getCurrentView() instanceof MainView;
     }
 
+    public void swapView(View view) {
+        View current = getCurrentView();
+
+        view.setMenu(this);
+
+        views.remove(current);
+        views.add(view);
+
+        current.cleanup();
+        remove(current);
+        add(view);
+
+        update();
+    }
+
     public void pushView(View view) {
         View current = getCurrentView();
         views.add(view);

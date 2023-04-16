@@ -17,9 +17,8 @@ public class MazeConfigure {
     private int rows;
     private Maze maze;
 
-    public MazeConfigure(String filename) {
+    public MazeConfigure(File file) {
         try {
-            File file = new File(filename);
             Scanner reader = new Scanner(file);
 
             if (processHeader(reader.nextLine())) {
