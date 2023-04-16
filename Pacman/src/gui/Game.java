@@ -1,34 +1,21 @@
-package menu;
+package gui;
 
 import common.Config;
-import menu.Views.MainView;
-import menu.Views.View;
-
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.io.File;
-import java.io.IOException;
+import gui.views.MainView;
+import gui.views.View;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 /**
  * Class creates menu
  */
-public class Menu extends JFrame {
+public class Game extends JFrame {
     private Config config = new Config();
     private ArrayList<View> views = new ArrayList<>();
 
-    public Menu(View defaultView) {
+    public Game() {
         super("Pacman");
 
         setVisible(true); //make window visible
@@ -39,9 +26,10 @@ public class Menu extends JFrame {
 
         ImageIcon ic = new ImageIcon("data/assets/sprites/icon.png"); //logo in window
         setIconImage(ic.getImage());
-        
+    }
 
-        defaultView.setMenu(this);
+    public void launch(View defaultView) {
+        defaultView.setGame(this);
 
         views.add(defaultView);
         add(defaultView);
@@ -65,7 +53,7 @@ public class Menu extends JFrame {
     public void swapView(View view) {
         View current = getCurrentView();
 
-        view.setMenu(this);
+        view.setGame(this);
 
         views.remove(current);
         views.add(view);
@@ -81,7 +69,7 @@ public class Menu extends JFrame {
         View current = getCurrentView();
         views.add(view);
 
-        view.setMenu(this);
+        view.setGame(this);
 
         current.cleanup();
         remove(current);    

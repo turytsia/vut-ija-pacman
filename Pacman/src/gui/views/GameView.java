@@ -1,4 +1,4 @@
-package menu.Views;
+package gui.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -19,18 +19,20 @@ import javax.swing.Timer;
 import game.common.CommonField;
 import game.objects.Maze;
 import game.view.MazeView;
+import gui.Game;
 
 public class GameView extends View {
 
     private Maze maze;
 
-    public GameView(Maze maze) {
-        super(new BorderLayout());
+    public GameView(Maze maze, Game game) {
+        super(new BorderLayout(), game);
         
         this.maze = maze;
 
         setBackground(Color.BLACK);
-        MazeView mazePanel = new MazeView(maze);
+        System.out.println(game);
+        MazeView mazePanel = new MazeView(maze, game);
         mazePanel.setPreferredSize(new Dimension(600, 600));
 
         JPanel center = new JPanel();
@@ -66,7 +68,7 @@ public class GameView extends View {
         topRight.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
 
 
-        infoContainerTop.add(new menu.Label("Score: 0.00"));
+        infoContainerTop.add(new gui.components.Label("Score: 0.00"));
         infoContainerTop.add(new JLabel());
         infoContainerTop.add(new JLabel());
         infoContainerTop.add(healthContainer);
@@ -95,7 +97,6 @@ public class GameView extends View {
     protected void KeyArrowLeft() {
         System.out.println("Move pacman left");
         maze.getPacman().move(CommonField.Direction.L);
-        menu.update();
     }
         
         
@@ -104,26 +105,23 @@ public class GameView extends View {
     protected void KeyArrowUp() {
         System.out.println("Move pacman up");
         maze.getPacman().move(CommonField.Direction.U);
-        menu.update();
     }
 
     @Override
     protected void KeyArrowRight() {
         System.out.println("Move pacman right");
         maze.getPacman().move(CommonField.Direction.R);
-        menu.update();
     }
 
     @Override
     protected void KeyArrowDown() {
         System.out.println("Move pacman down");
         maze.getPacman().move(CommonField.Direction.D);
-        menu.update();
     }
 
     @Override
     protected void KeyEscape() {
-        menu.popView();
+        game.popView();
     }
 
     @Override

@@ -12,16 +12,20 @@ import game.objects.FinishObject;
 import game.objects.GhostObject;
 import game.objects.KeyObject;
 import game.objects.PointObject;
+import gui.Game;
 
 import java.awt.Graphics;
 
 public class FieldView extends JPanel implements Observable.Observer {
     private final List<ComponentView> objects = new ArrayList<>();
     private CommonField field;
+    private Game game;
 
-    public FieldView(CommonField field) {
+    public FieldView(CommonField field, Game game) {
         this.field = field;
-        field.addObserver(this);
+        this.game = game;
+        
+        this.field.addObserver(this);
         setOpaque(false);
         updateView();
     }
@@ -58,6 +62,7 @@ public class FieldView extends JPanel implements Observable.Observer {
     @Override
     public void update(Observable f) {
         updateView();
+        game.update();
     }
     
 }

@@ -1,4 +1,4 @@
-package menu.Views;
+package gui.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -15,8 +15,9 @@ import javax.swing.JPanel;
 import game.MazeConfigure;
 import game.objects.Maze;
 import game.view.MazeView;
-import menu.Button;
-import menu.Label;
+import gui.Game;
+import gui.components.Button;
+import gui.components.Label;
 
 public class StartGameView extends View {
     private final ArrayList<Button> buttons = new ArrayList<Button>();
@@ -28,8 +29,8 @@ public class StartGameView extends View {
     private JPanel mapContent = new JPanel();
     private JLabel mapCounter = new JLabel();
 
-    public StartGameView() {
-        super(new BorderLayout(2, 2));
+    public StartGameView(Game game) {
+        super(new BorderLayout(2, 2), game);
 
         setBackground(Color.BLACK);
 
@@ -76,17 +77,17 @@ public class StartGameView extends View {
         bottomPanel.setPreferredSize(new Dimension(20, 60));
 
         buttonPlay.addActionListener(e -> {
-            menu.pushView(new GameView(maze));
+            game.pushView(new GameView(maze, game));
         });
 
         buttonNext.addActionListener(e -> {
             getNextMap();
-            menu.update();
+            game.update();
         });
 
         buttonPrev.addActionListener(e -> {
             getPrevMap();
-            menu.update();
+            game.update();
         });
 
         updateMapContent(maps.get(mapIndex));
@@ -124,7 +125,7 @@ public class StartGameView extends View {
 
         MazeConfigure mazeConfig = new MazeConfigure(mapFile);
         maze = mazeConfig.getMaze();
-        JPanel mazePanel = new MazeView(maze);
+        JPanel mazePanel = new MazeView(maze, game);
 
         JPanel mapInfo = new JPanel(new GridLayout(3, 1));
         mapInfo.setOpaque(false);
@@ -169,7 +170,7 @@ public class StartGameView extends View {
     @Override
     protected void KeyArrowLeft() {
         selectPrev();
-        menu.update();
+        game.update();
     }
 
     @Override
@@ -179,7 +180,7 @@ public class StartGameView extends View {
     @Override
     protected void KeyArrowRight() {
         selectNext();
-        menu.update();
+        game.update();
     }
 
     @Override
@@ -188,7 +189,7 @@ public class StartGameView extends View {
 
     @Override
     protected void KeyEscape() {
-        menu.popView();
+        game.popView();
     }
 
     @Override

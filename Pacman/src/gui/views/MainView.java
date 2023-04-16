@@ -1,4 +1,4 @@
-package menu.Views;
+package gui.views;
 
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
@@ -8,15 +8,16 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import menu.Background;
-import menu.Button;
+import gui.Game;
+import gui.components.Background;
+import gui.components.Button;
 
 public class MainView extends View {
     private ArrayList<Button> buttons = new ArrayList<Button>();
     private int activeButton = 0;
 
-    public MainView() {
-        super(null);
+    public MainView(Game game) {
+        super(null, game);
         LayoutManager gridLayout = new GridLayout(4, 1);
         JPanel buttonContainer = new JPanel(gridLayout);
         buttonContainer.setBounds(config.getWidth() - 20 - 200 - 16, 20, 200, 4 * 50);
@@ -28,7 +29,7 @@ public class MainView extends View {
         Button buttonExit = new Button("Exit");
 
         buttonStart.addActionListener(e -> {
-            menu.pushView(new StartGameView());
+            game.pushView(new StartGameView(game));
         });
 
         buttons.add(buttonStart);
@@ -67,7 +68,7 @@ public class MainView extends View {
     @Override
     protected void KeyArrowUp() {
         selectPrev();
-        menu.update();
+        game.update();
     }
 
     @Override
@@ -77,7 +78,7 @@ public class MainView extends View {
     @Override
     protected void KeyArrowDown() {
         selectNext();
-        menu.update();
+        game.update();
     }
 
     @Override
