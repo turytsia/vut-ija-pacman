@@ -8,14 +8,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import game.objects.Maze;
-import menu.MazeOverview;
+import game.view.MazeView;
 
 public class GameView extends View {
 
     public GameView(Maze maze) {
         super(new BorderLayout());
         setBackground(Color.BLACK);
-        MazeOverview mazePanel = new MazeOverview(maze);
+        MazeView mazePanel = new MazeView(maze);
         mazePanel.setPreferredSize(new Dimension(600, 600));
 
         JPanel center = new JPanel();
@@ -41,21 +41,22 @@ public class GameView extends View {
 
     @Override
     protected void KeyArrowLeft() {
+        System.out.println("Move pacman left");
     }
 
     @Override
     protected void KeyArrowUp() {
-        
+        System.out.println("Move pacman up");
     }
 
     @Override
     protected void KeyArrowRight() {
-
+        System.out.println("Move pacman right");
     }
 
     @Override
     protected void KeyArrowDown() {
-
+        System.out.println("Move pacman down");
     }
 
     @Override

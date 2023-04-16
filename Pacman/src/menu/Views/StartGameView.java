@@ -19,10 +19,10 @@ import game.objects.GhostObject;
 import game.objects.Maze;
 import game.objects.PathField;
 import game.objects.WallField;
+import game.view.MazeView;
 import menu.Button;
 import menu.Gradient;
 import menu.Label;
-import menu.MazeOverview;
 
 public class StartGameView extends View {
     private ArrayList<Button> buttons = new ArrayList<Button>();
@@ -90,7 +90,7 @@ public class StartGameView extends View {
 
         MazeConfigure mazeConfig = new MazeConfigure("data/maps/map1.txt");
         maze = mazeConfig.getMaze();
-        JPanel mazePanel = new MazeOverview(maze);
+        JPanel mazePanel = new MazeView(maze);
 
         buttonPlay.addActionListener(e -> {
             menu.pushView(new GameView(maze));

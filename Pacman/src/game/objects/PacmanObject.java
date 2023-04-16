@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 import game.common.CommonField;
 
-public class PacmanObject extends MazeObject implements KeyListener {
+public class PacmanObject extends MazeObject {
 
     private int lives = 3;
 
@@ -21,21 +21,6 @@ public class PacmanObject extends MazeObject implements KeyListener {
     @Override
     public int getLives() {
         return lives;
-    }
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-        
-    }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        System.out.println("123");
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-        
     }
     
 }

@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 import exceptions.HeaderNotFoundException;
 import exceptions.InvalidRowException;
 import game.objects.Maze;
-import menu.MazeOverview;
+import game.view.MazeView;
 
 
 

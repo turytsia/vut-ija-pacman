@@ -25,4 +25,5 @@ public class PacmanView implements ComponentView {
     public void paintComponent(Graphics g) {
         g.drawImage(sprite, 0, 0, field.getWidth(), field.getHeight(), field);
     }
+
 }
