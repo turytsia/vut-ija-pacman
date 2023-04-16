@@ -13,6 +13,7 @@ public class PacmanObject extends MazeObject {
     private boolean has_key;
     private int lives;
     private int score = 0;
+    private CommonField.Direction last_dir;
 
     public PacmanObject(CommonField field) {
         super(field);
@@ -39,6 +40,13 @@ public class PacmanObject extends MazeObject {
     public int getScore(){
         return this.score;
     }
+    public void setDir(CommonField.Direction dir){
+        this.last_dir = dir;
+    }
+
+    public CommonField.Direction getDir(){
+        return this.last_dir;
+    }
 
      @Override
      public boolean move(CommonField.Direction dir){
@@ -50,7 +58,9 @@ public class PacmanObject extends MazeObject {
         this.field.unbindObj();
         this.setField(nextField);
 
-         this.eatPoint(nextField);
+        this.setDir(dir);
+
+        this.eatPoint(nextField);
 
         nextField.put(this);
 
