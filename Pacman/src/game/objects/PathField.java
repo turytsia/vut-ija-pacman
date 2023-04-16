@@ -19,7 +19,7 @@ public class PathField extends Field {
         switch (dir) {
             case L:
                 return maze.getField(x - 1, y);
-            case T:
+            case U:
                 return maze.getField(x, y - 1);
             case R:
                 return maze.getField(x + 1, y);

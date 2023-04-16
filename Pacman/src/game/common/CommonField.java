@@ -4,7 +4,7 @@ public interface CommonField extends Observable {
 
     public static enum Direction {
         L,
-        T,
+        U,
         R,
         D
     }

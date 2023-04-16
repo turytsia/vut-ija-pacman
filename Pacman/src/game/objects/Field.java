@@ -18,8 +18,9 @@ public abstract class Field extends AbstractObservableField {
     }
 
     @Override
-    public void unbindObj(){
+    public void unbindObj() {
         this.object = null;
+        this.notifyObservers();
     }
 
     public int getX(){return this.x;}

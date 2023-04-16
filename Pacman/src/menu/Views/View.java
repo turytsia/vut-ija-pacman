@@ -65,6 +65,7 @@ public abstract class View extends JPanel implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
+        
     }
 
     protected abstract void KeyArrowLeft();
