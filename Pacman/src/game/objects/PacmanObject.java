@@ -36,6 +36,10 @@ public class PacmanObject extends MazeObject {
         }
      }
 
+    public int getScore(){
+        return this.score;
+    }
+
      @Override
      public boolean move(CommonField.Direction dir){
         if (!this.canMove(dir)){
