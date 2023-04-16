@@ -1,5 +1,7 @@
 package game.common;
 
+import game.objects.GhostObject;
+
 import java.util.List;
 
 public interface CommonMaze {
@@ -9,7 +11,7 @@ public interface CommonMaze {
 
     public int numCols();
 
-    public List<CommonMazeObject> ghosts();
+    public List<GhostObject> ghosts();
 
     public void parseLine(String line);
 }

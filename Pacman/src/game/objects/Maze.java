@@ -18,7 +18,7 @@ public class Maze implements CommonMaze {
     private int cols;
     private int rows;
     private final List<List<CommonField>> fields = new ArrayList<>();
-    private final List<CommonMazeObject> ghosts = new ArrayList<>();
+    private final List<GhostObject> ghosts = new ArrayList<>();
     private PacmanObject pacman;
 
     public Maze(int cols, int rows) {
@@ -28,7 +28,9 @@ public class Maze implements CommonMaze {
 
     private PathField createGhost(int x, int y) {
         PathField field = new PathField(this, x, y);
-        field.put(new GhostObject(field));
+        GhostObject ghost =  new GhostObject(field);
+        ghosts.add(ghost);
+        field.put(ghost);
 
         return field;
     }
@@ -129,8 +131,8 @@ public class Maze implements CommonMaze {
     }
 
     @Override
-    public List<CommonMazeObject> ghosts() {
-        return new ArrayList<CommonMazeObject>(this.ghosts);
+    public List<GhostObject> ghosts() {
+        return this.ghosts;
     }
     
 }
