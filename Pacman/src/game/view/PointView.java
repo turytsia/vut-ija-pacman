@@ -1,5 +1,6 @@
 package game.view;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -17,6 +18,7 @@ public class PointView implements ComponentView {
         this.obj = obj;
         this.field = field;
         sprite = new ImageIcon("data/assets/sprites/game/points.png").getImage();
+        field.setPreferredSize(new Dimension(20, 20));
     }
 
     @Override

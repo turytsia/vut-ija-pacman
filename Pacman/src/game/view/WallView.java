@@ -1,6 +1,7 @@
 package game.view;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
@@ -12,6 +13,7 @@ public class WallView extends JPanel {
 
     public WallView() {
         setOpaque(false);
+        setPreferredSize(new Dimension(20, 20));
         sprite = new ImageIcon("data/assets/sprites/game/wall.png").getImage();
     }
     

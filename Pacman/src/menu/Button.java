@@ -3,6 +3,7 @@ package menu;
 import java.awt.Color;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import common.Config;
@@ -20,11 +21,11 @@ public class Button extends JButton {
         setFocusPainted(false);
         setBorderPainted(false);
         setFocusable(false);
+        // setIcon(new ImageIcon("data/assets/sprites/game/ghost.png"));
     }
     
     public void setSelect(boolean hasSelect) {
         setBorderPainted(hasSelect);
-
         if (hasSelect) {
             setBorder(BorderFactory.createLineBorder(Color.WHITE, 2, false));
         }

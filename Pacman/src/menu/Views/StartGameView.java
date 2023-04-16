@@ -128,10 +128,9 @@ public class StartGameView extends View {
 
         JPanel mapInfo = new JPanel(new GridLayout(3, 1));
         mapInfo.setOpaque(false);
-        JPanel mapInfoStats = new JPanel(new GridLayout(2, 1));
+        JPanel mapInfoStats = new JPanel(new GridLayout(1, 2));
         mapInfoStats.setOpaque(false);
         mapInfoStats.add(new Label("Score: 0.00"));
-        mapInfoStats.add(new Label("Time: 00:00:00"));
         mapInfoStats.add(new Label("Difficulty: 0"));
         mapInfo.add(mapInfoStats);
         String[] data = { "Pac-Man was exploring a new maze,",
