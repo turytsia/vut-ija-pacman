@@ -1,4 +1,4 @@
-package menu.Views;
+package gui.views;
 
 import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
@@ -7,15 +7,18 @@ import java.awt.event.KeyListener;
 import javax.swing.JPanel;
 
 import common.Config;
+import gui.Game;
 
 public abstract class View extends JPanel implements KeyListener {
     protected static Config config = new Config();
-    protected menu.Menu menu;
+    protected Game game;
 
-    public View(LayoutManager layout) {
+    public View(LayoutManager layout, Game game) {
         setSize(config.getWidth()-16, config.getHeight());
         setLayout(layout);
         setVisible(true);
+        
+        this.game = game;
     }
 
     @Override
@@ -27,8 +30,8 @@ public abstract class View extends JPanel implements KeyListener {
         requestFocusInWindow();
     }
 
-    public void setMenu(menu.Menu menu) {
-        this.menu = menu;
+    public void setGame(gui.Game game) {
+        this.game = game;
     }
 
     public void cleanup() {
