@@ -12,8 +12,13 @@ import game.view.MazeView;
 
 public class GameView extends View {
 
+    private Maze maze;
+
     public GameView(Maze maze) {
         super(new BorderLayout());
+        
+        this.maze = maze;
+
         setBackground(Color.BLACK);
         MazeView mazePanel = new MazeView(maze);
         mazePanel.setPreferredSize(new Dimension(600, 600));
