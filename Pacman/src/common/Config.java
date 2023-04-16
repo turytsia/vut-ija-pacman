@@ -39,9 +39,9 @@ public class Config {
         return height;
     }
 
-    public Font getFont(float size) {
+    public Font getFont(String font, float size) {
         try {
-            return Font.createFont(Font.TRUETYPE_FONT, new File("data/assets/fonts/emulogic.ttf")).deriveFont(size);
+            return Font.createFont(Font.TRUETYPE_FONT, new File("data/assets/fonts/" + font)).deriveFont(size);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
             return null;

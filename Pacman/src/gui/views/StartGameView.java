@@ -11,6 +11,9 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 
 import game.MazeConfigure;
 import game.objects.Maze;
@@ -30,9 +33,11 @@ public class StartGameView extends View {
     private JLabel mapCounter = new JLabel();
 
     public StartGameView(Game game) {
-        super(new BorderLayout(2, 2), game);
+        super("Start game", game);
 
         setBackground(Color.BLACK);
+
+        container.setLayout(new BorderLayout(2, 2));
 
         maps = config.getFiles("data/maps");
 
@@ -40,6 +45,10 @@ public class StartGameView extends View {
 
         JPanel buttonContainer = new JPanel(gridLayout);
         buttonContainer.setOpaque(false);
+
+        Border buttonContainerBorder = getBorder();
+        Border buttonContainerMargin = new EmptyBorder(0, 0, 40, 0);
+        buttonContainer.setBorder(new CompoundBorder(buttonContainerBorder, buttonContainerMargin));
 
         Button buttonNext = new Button("Next");
         Button buttonPrev = new Button("Previous");
@@ -59,7 +68,7 @@ public class StartGameView extends View {
 
         mapCounter.setText((mapIndex + 1) + "/" + maps.size());
         mapCounter.setForeground(Color.WHITE);
-        mapCounter.setFont(config.getFont(10f));
+        mapCounter.setFont(config.getFont("emulogic.ttf",10f));
 
         buttonContainer.add(new JLabel());
         buttonContainer.add(mapCounter);
@@ -74,7 +83,6 @@ public class StartGameView extends View {
 
         leftBorder.setPreferredSize(new Dimension(20, 20));
         rightBorder.setPreferredSize(new Dimension(20, 20));
-        bottomPanel.setPreferredSize(new Dimension(20, 60));
 
         buttonPlay.addActionListener(e -> {
             game.pushView(new GameView(maze, game));
@@ -93,11 +101,11 @@ public class StartGameView extends View {
         updateMapContent(maps.get(mapIndex));
 
 
-        add(buttonContainer, BorderLayout.NORTH);
-        add(leftBorder, BorderLayout.WEST);
-        add(rightBorder, BorderLayout.EAST);
-        add(bottomPanel, BorderLayout.SOUTH);
-        add(mapContent, BorderLayout.CENTER);
+        container.add(buttonContainer, BorderLayout.SOUTH);
+        container.add(leftBorder, BorderLayout.WEST);
+        container.add(rightBorder, BorderLayout.EAST);
+        container.add(bottomPanel, BorderLayout.NORTH);
+        container.add(mapContent, BorderLayout.CENTER);
 
     }
 
@@ -195,5 +203,9 @@ public class StartGameView extends View {
     @Override
     protected void KeyEnter() {
         buttons.get(activeButton).doClick();
+    }
+
+    @Override
+    protected void AnyKey() {
     }
 }

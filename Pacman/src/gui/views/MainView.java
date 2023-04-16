@@ -89,4 +89,7 @@ public class MainView extends View {
     protected void KeyEnter() {
         buttons.get(activeButton).doClick();
     }
+
+    @Override
+    protected void AnyKey(){}
 }

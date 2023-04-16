@@ -14,7 +14,7 @@ public class Button extends JButton {
     public Button(String text) {
         super(text);
 
-        setFont(config.getFont(10f));
+        setFont(config.getFont("emulogic.ttf",10f));
         setForeground(Color.WHITE);
         setOpaque(false);
         setContentAreaFilled(false);

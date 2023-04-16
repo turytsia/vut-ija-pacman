@@ -5,7 +5,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Image;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -20,20 +19,27 @@ import game.common.CommonField;
 import game.objects.Maze;
 import game.view.MazeView;
 import gui.Game;
+import gui.components.Label;
 
 public class GameView extends View {
 
     private Maze maze;
+    private Label scoreText;
+    private JPanel healthContainer;
 
     public GameView(Maze maze, Game game) {
-        super(new BorderLayout(), game);
-        
+        super("Pacman", game);
+
         this.maze = maze;
 
+        container = new JPanel(new BorderLayout());
+
         setBackground(Color.BLACK);
+
+
         System.out.println(game);
         MazeView mazePanel = new MazeView(maze, game);
-        mazePanel.setPreferredSize(new Dimension(600, 600));
+        mazePanel.setPreferredSize(new Dimension(550, 550));
 
         JPanel center = new JPanel();
         JPanel top = new JPanel(new BorderLayout());
@@ -41,16 +47,13 @@ public class GameView extends View {
         JPanel left = new JPanel();
         JPanel right = new JPanel();
 
-        JPanel infoContainerTop = new JPanel(new GridLayout(1,4));
-        JPanel healthContainer = new JPanel(new GridLayout(1, 3));
+        JPanel infoContainerTop = new JPanel(new GridLayout(1, 4));
+        healthContainer = new JPanel(new GridLayout(1, 3));
+        healthContainer.setOpaque(false);
         // healthContainer.setPreferredSize(new Dimension(90, 40));
 
-        for (int i = 0; i < maze.getPacman().getLives(); i++) {
-            Image heartImage = new ImageIcon("data/assets/sprites/game/heart.png").getImage();
-            JLabel heart = new JLabel(new ImageIcon(heartImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
-            healthContainer.add(heart);
-        }
-        
+        updateHealth();
+
         // top.add(new JLabel());
         // top.add(new JLabel());
         // top.add(new JLabel());
@@ -61,14 +64,14 @@ public class GameView extends View {
         top.setOpaque(false);
         topLeft.setOpaque(false);
         topRight.setOpaque(false);
-        healthContainer.setOpaque(false);
         infoContainerTop.setOpaque(false);
 
         topLeft.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
         topRight.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
 
+        scoreText = new Label("Score: 0");
 
-        infoContainerTop.add(new gui.components.Label("Score: 0.00"));
+        infoContainerTop.add(scoreText);
         infoContainerTop.add(new JLabel());
         infoContainerTop.add(new JLabel());
         infoContainerTop.add(healthContainer);
@@ -83,14 +86,30 @@ public class GameView extends View {
         left.setOpaque(false);
         right.setOpaque(false);
 
-
         center.add(mazePanel);
 
-        add(center, BorderLayout.CENTER);
-        add(top, BorderLayout.NORTH);
-        add(bottom, BorderLayout.SOUTH);
-        add(left, BorderLayout.WEST);
-        add(right, BorderLayout.EAST);
+        container.add(center, BorderLayout.CENTER);
+        container.add(top, BorderLayout.NORTH);
+        container.add(bottom, BorderLayout.SOUTH);
+        container.add(left, BorderLayout.WEST);
+        container.add(right, BorderLayout.EAST);
+
+        container.setBackground(Color.black);
+
+        add(container, BorderLayout.CENTER);
+    }
+    
+    private void updateHealth() {
+        healthContainer.removeAll();
+        for (int i = 0; i < maze.getPacman().getLives(); i++) {
+            Image heartImage = new ImageIcon("data/assets/sprites/game/heart.png").getImage();
+            JLabel heart = new JLabel(new ImageIcon(heartImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+            healthContainer.add(heart);
+        }
+    }
+
+    private void updateScore() {
+        scoreText.setText("Score: "+maze.getPacman().getScore());
     }
 
     @Override
@@ -127,6 +146,12 @@ public class GameView extends View {
     @Override
     protected void KeyEnter() {
 
+    }
+
+    @Override
+    protected void AnyKey() {
+        updateHealth();
+        updateScore();
     }
     
 }
