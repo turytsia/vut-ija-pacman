@@ -13,9 +13,14 @@ public interface CommonField extends Observable {
 
     public boolean isEmpty();
 
+    public void unbindObj();
+
     public CommonMazeObject get();
 
     public  boolean canMove();
+
+    public int getX();
+    public int getY();
 
     public boolean contains(CommonMazeObject obj);
 

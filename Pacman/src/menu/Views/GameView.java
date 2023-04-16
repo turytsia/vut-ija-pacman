@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import game.common.CommonField;
 import game.objects.Maze;
 import game.view.MazeView;
 
@@ -46,8 +47,7 @@ public class GameView extends View {
 
     @Override
     protected void KeyArrowLeft() {
-        System.out.println("Move pacman left");
-    }
+        System.out.println("Move pacman left");}
 
     @Override
     protected void KeyArrowUp() {
@@ -57,6 +57,7 @@ public class GameView extends View {
     @Override
     protected void KeyArrowRight() {
         System.out.println("Move pacman right");
+        maze.getPacman().move(CommonField.Direction.R);
     }
 
     @Override

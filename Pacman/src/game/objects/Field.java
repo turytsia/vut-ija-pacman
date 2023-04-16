@@ -17,7 +17,13 @@ public abstract class Field extends AbstractObservableField {
         this.y = y;
     }
 
+    @Override
+    public void unbindObj(){
+        this.object = null;
+    }
 
+    public int getX(){return this.x;}
+    public int getY(){return this.y;}
     @Override
     public CommonMazeObject get() {
         return object;

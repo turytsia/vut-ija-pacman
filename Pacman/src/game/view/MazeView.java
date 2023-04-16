@@ -15,7 +15,7 @@ public class MazeView extends JPanel {
         setOpaque(false);
         for (int i = 0; i < maze.numRows(); ++i) {
             for (int j = 0; j < maze.numCols(); ++j) {
-                CommonField field = maze.getField(i, j);
+                CommonField field = maze.getField(j, i);
                 
                 if (field.canMove()) {
                     add(new FieldView(field));

@@ -18,6 +18,9 @@ public abstract class MazeObject implements CommonMazeObject {
         throw new UnsupportedOperationException("Unimplemented method 'canMove'");
     }
 
+    public int getX(){ return ((Field)field).getX();}
+    public int getY(){ return ((Field)field).getY();}
+
     @Override
     public boolean move(Direction dir) {
         // TODO Auto-generated method stub

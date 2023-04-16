@@ -75,8 +75,8 @@ public class Maze implements CommonMaze {
             }
 
             for (char c : line.toCharArray()) {
-                int x = fields.size();
-                int y = row.size();
+                int y = fields.size();
+                int x = row.size();
                 switch (c) {
                     case 'X':
                         row.add(new WallField(this, x, y));
@@ -111,7 +111,7 @@ public class Maze implements CommonMaze {
     @Override
     public CommonField getField(int x, int y) {
         try{
-            return fields.get(x).get(y);
+            return fields.get(y).get(x);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
             return null;
