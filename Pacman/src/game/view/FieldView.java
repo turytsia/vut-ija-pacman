@@ -40,10 +40,8 @@ public class FieldView extends JPanel implements Observable.Observer {
     }
 
     private void updateView() {
-        if (field.isEmpty()) {
-            objects.clear();
-        } else {
-            CommonMazeObject obj = field.get();
+        objects.clear();
+        for(CommonMazeObject obj: field.get()){
             if (obj.isPacman()) {
                 this.objects.add(new PacmanView(this, obj));
             } else if (obj instanceof GhostObject) {
@@ -58,6 +56,7 @@ public class FieldView extends JPanel implements Observable.Observer {
                 System.out.println("Something is wrong...");
             }
         }
+
     }
     
     @Override

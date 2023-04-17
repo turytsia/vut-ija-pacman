@@ -1,5 +1,7 @@
 package game.common;
 
+import java.util.List;
+
 public interface CommonField extends Observable {
 
     public static enum Direction {
@@ -15,7 +17,7 @@ public interface CommonField extends Observable {
 
     public void unbindObj();
 
-    public CommonMazeObject get();
+    public List<CommonMazeObject> get();
 
     public  boolean canMove();
 

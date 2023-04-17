@@ -11,14 +11,18 @@ import javax.tools.Diagnostic;
 
 public class PacmanObject extends MazeObject {
     private boolean has_key;
+    private boolean finished;
     private int lives;
     private int score = 0;
     private CommonField.Direction last_dir;
+    private FinishObject finish_pos;
+
 
     public PacmanObject(CommonField field) {
         super(field);
         this.has_key = false;
         this.lives = 3;
+        this.finished = false;
     }
 
     @Override
@@ -32,8 +36,11 @@ public class PacmanObject extends MazeObject {
      }
 
      public void eatPoint(PathField field){
-        if (field.object instanceof PointObject){
-            this.score += 5;
+        if (!field.objects.isEmpty()){
+            if (field.objects.get(0) instanceof PointObject){
+                this.score += 5;
+                field.unbindObj();
+            }
         }
      }
 
@@ -48,6 +55,38 @@ public class PacmanObject extends MazeObject {
         return this.last_dir;
     }
 
+    public void findKey(PathField field){
+        if (!field.objects.isEmpty()) {
+            if (field.objects.get(0) instanceof KeyObject) {
+                this.has_key = true;
+                field.unbindObj();
+            }
+        }
+    }
+
+    public boolean getFinished(){
+        return this.finished;
+    }
+
+    public void passGates(PathField field){
+        if (!field.objects.isEmpty()) {
+            if(field.objects.get(0) instanceof FinishObject){
+                if (this.has_key){
+                    System.out.println("CONGRATULATIONS!!!");
+                    this.finished = true;
+                }
+            }
+        }
+    }
+
+    public void meetGHost(PathField field){
+        if (!field.objects.isEmpty()) {
+            if(field.objects.get(0) instanceof GhostObject){
+               this.lives -= 1;
+            }
+        }
+    }
+
      @Override
      public boolean move(CommonField.Direction dir){
         if (!this.canMove(dir)){
@@ -56,16 +95,19 @@ public class PacmanObject extends MazeObject {
         PathField nextField = (PathField)this.field.nextField(dir);
 
         this.field.unbindObj();
-        this.setField(nextField);
-
-        this.setDir(dir);
 
         this.eatPoint(nextField);
+        this.findKey(nextField);
+        this.passGates(nextField);
+        this.meetGHost(nextField);
+
+        this.setField(nextField);
+        this.setDir(dir);
+
 
         nextField.put(this);
-
-        System.out.println("Actual score: " + this.score);
         this.field.notifyObservers();
+
         return true;
      }
 

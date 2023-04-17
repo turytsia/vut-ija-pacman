@@ -8,7 +8,7 @@ public interface CommonMazeObject {
     public boolean isPacman();
 
     public CommonField getField();
-
+    public void unbindField();
     public int getLives();
 
     public void setField(CommonField field);

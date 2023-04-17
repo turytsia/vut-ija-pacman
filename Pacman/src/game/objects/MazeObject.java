@@ -22,6 +22,10 @@ public abstract class MazeObject implements CommonMazeObject {
     public int getY(){ return ((Field)field).getY();}
 
     @Override
+    public void unbindField(){
+        this.field = null;
+    }
+    @Override
     public boolean move(Direction dir) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'move'");

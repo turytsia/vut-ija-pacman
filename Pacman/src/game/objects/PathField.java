@@ -11,7 +11,7 @@ public class PathField extends Field {
 
     @Override
     public boolean isEmpty() {
-        return object == null;
+        return objects.isEmpty();
     }
 
     @Override
@@ -36,12 +36,12 @@ public class PathField extends Field {
 
     @Override
     public boolean contains(CommonMazeObject obj) {
-        return object == obj;
+        return objects.contains(obj);
     }
 
     @Override
     public void put(CommonMazeObject obj) {
-        object = obj;
+        objects.add(obj);
     }
     
 }
