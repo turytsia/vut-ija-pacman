@@ -2,6 +2,7 @@ package game.common;
 
 import java.util.List;
 
+import game.objects.GhostObject;
 import game.objects.Maze;
 
 public interface CommonField extends Observable {
@@ -17,7 +18,7 @@ public interface CommonField extends Observable {
 
     public boolean isEmpty();
 
-    public void unbindObj();
+    public void unbindObj(CommonMazeObject obj);
 
     public List<CommonMazeObject> get();
 

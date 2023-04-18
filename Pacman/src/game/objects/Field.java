@@ -20,27 +20,15 @@ public abstract class Field extends AbstractObservableField {
         this.y = y;
     }
 
-
-    public boolean leaveObjOnField(int listSize){
-        CommonMazeObject obj = this.objects.get(0);
-        return listSize == 1 &&
-                (obj instanceof GhostObject || obj instanceof FinishObject);
-    }
-
     @Override
-    public void unbindObj() {
+    public void unbindObj(CommonMazeObject obj) {
         if (!this.objects.isEmpty()) {
-
-            int listSize = this.objects.size();
-            if (!leaveObjOnField(listSize)){
-//                System.out.println("Unbound: "+ this.objects.get(listSize-1).getClass().getName());
-                this.objects.get(listSize-1).unbindField();
-                this.objects.remove(listSize-1);
-            }
-
+            obj.unbindField();
+            this.objects.remove(obj);
+            this.notifyObservers();
         }
-        this.notifyObservers();
     }
+
 
     public int getX(){return this.x;}
 

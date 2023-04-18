@@ -6,6 +6,7 @@ import java.nio.file.Path;
 
 import com.sun.jdi.PathSearchingVirtualMachine;
 import game.common.CommonField;
+import game.common.CommonMazeObject;
 
 import javax.tools.Diagnostic;
 
@@ -15,8 +16,6 @@ public class PacmanObject extends MazeObject {
     private int lives;
     private int score = 0;
     private CommonField.Direction dir;
-    private FinishObject finish_pos;
-
 
     public PacmanObject(CommonField field) {
         super(field);
@@ -37,9 +36,10 @@ public class PacmanObject extends MazeObject {
 
      public void eatPoint(PathField field){
         if (!field.objects.isEmpty()){
-            if (field.objects.get(0) instanceof PointObject){
+            CommonMazeObject point = field.objects.get(0);
+            if (point instanceof PointObject){
                 this.score += 5;
-                field.unbindObj();
+                field.unbindObj(point);
             }
         }
      }
@@ -57,9 +57,10 @@ public class PacmanObject extends MazeObject {
 
     public void findKey(PathField field){
         if (!field.objects.isEmpty()) {
-            if (field.objects.get(0) instanceof KeyObject) {
+            CommonMazeObject key = field.objects.get(0);
+            if (key instanceof KeyObject) {
                 this.has_key = true;
-                field.unbindObj();
+                field.unbindObj(key);
             }
         }
     }
@@ -79,10 +80,14 @@ public class PacmanObject extends MazeObject {
         }
     }
 
+    public void gotHit(){
+        this.lives -= 1;
+    }
+
     public void meetGHost(PathField field){
         if (!field.objects.isEmpty()) {
             if(field.objects.get(0) instanceof GhostObject){
-               this.lives -= 1;
+               this.gotHit();
             }
         }
     }
@@ -94,7 +99,7 @@ public class PacmanObject extends MazeObject {
         }
         PathField nextField = (PathField)this.field.nextField(dir);
 
-        this.field.unbindObj();
+        this.field.unbindObj(this);
 
         this.eatPoint(nextField);
         this.findKey(nextField);

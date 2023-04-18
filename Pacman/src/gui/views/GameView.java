@@ -15,7 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.Timer;
 
+import common.GhostThread;
 import game.common.CommonField;
+import game.objects.GhostObject;
 import game.objects.Maze;
 import game.view.MazeView;
 import gui.Game;
@@ -91,6 +93,10 @@ public class GameView extends View {
         container.setBackground(Color.black);
 
         add(container, BorderLayout.CENTER);
+        for(GhostObject ghost : maze.ghosts()){
+            GhostThread thread = new GhostThread(ghost);
+            thread.start();
+        }
     }
     
     // private void updateHealth() {
