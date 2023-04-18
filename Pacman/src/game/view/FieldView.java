@@ -11,8 +11,11 @@ import game.common.Observable;
 import game.objects.FinishObject;
 import game.objects.GhostObject;
 import game.objects.KeyObject;
+import game.objects.PacmanObject;
 import game.objects.PointObject;
 import gui.Game;
+import gui.views.LoserView;
+import gui.views.WinnerView;
 
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -71,6 +74,14 @@ public class FieldView extends JPanel implements Observable.Observer {
     public void update(Observable f) {
         updateView();
         game.update();
+
+        PacmanObject pacman = field.getMaze().getPacman();
+
+        if (pacman.getLives() <= 0) {
+            game.swapView(new LoserView(game, field.getMaze()));
+        } else if (pacman.getFinished()) {
+            game.swapView(new WinnerView(game, field.getMaze()));
+        }
     }
     
 }

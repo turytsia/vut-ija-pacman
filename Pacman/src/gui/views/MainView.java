@@ -13,8 +13,6 @@ import gui.components.Background;
 import gui.components.Button;
 
 public class MainView extends View {
-    private ArrayList<Button> buttons = new ArrayList<Button>();
-    private int activeButton = 0;
 
     public MainView(Game game) {
         super(null, game);
@@ -51,27 +49,13 @@ public class MainView extends View {
         add(new Background("data/assets/sprites/menu/bg-menu.jpg"));
     }
 
-    private void selectNext() {
-        buttons.get(activeButton).setSelect(false);
-
-        activeButton = (activeButton + 1) % buttons.size();
-        buttons.get(activeButton).setSelect(true);
-    }
-
-    private void selectPrev() {
-        buttons.get(activeButton).setSelect(false);
-
-        activeButton = --activeButton < 0 ? buttons.size() - 1 : activeButton;
-        buttons.get(activeButton).setSelect(true);
-    }
-
     @Override
     protected void KeyArrowLeft() {
     }
 
     @Override
     protected void KeyArrowUp() {
-        selectPrev();
+        selectPrevButton();
         game.update();
     }
 
@@ -81,7 +65,7 @@ public class MainView extends View {
 
     @Override
     protected void KeyArrowDown() {
-        selectNext();
+        selectNextButton();
         game.update();
     }
 

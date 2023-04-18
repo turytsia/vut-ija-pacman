@@ -26,7 +26,7 @@ public class MazeConfigure {
                 throw new HeaderNotFoundException("Header is not valid");
             }
 
-            maze = new Maze(cols, rows);
+            maze = new Maze(cols, rows, file);
 
             while (reader.hasNextLine()) {
                 processLine(reader.nextLine());

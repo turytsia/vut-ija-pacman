@@ -2,33 +2,91 @@ package game.objects;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.Image;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import exceptions.MazeRowOutOfBoundsException;
 import exceptions.UnknownMazeObjectException;
+import game.MazeConfigure;
 import game.common.CommonField;
 import game.common.CommonMaze;
 import game.common.CommonMazeObject;
+import gui.components.Label;
 
 public class Maze implements CommonMaze {
-    
+
     private int cols;
     private int rows;
-    private final List<List<CommonField>> fields = new ArrayList<>();
+    private List<List<CommonField>> fields = new ArrayList<>();
     private final List<GhostObject> ghosts = new ArrayList<>();
     private PacmanObject pacman;
 
-    public Maze(int cols, int rows) {
+    private Label scoreText;
+    private JPanel healthContainer;
+    private File mazeFile;
+
+    public Maze(int cols, int rows, File mazeFile) {
         this.cols = cols;
         this.rows = rows;
+        this.mazeFile = mazeFile;
+
+        scoreText = new Label("Score: 0");
+        healthContainer = new JPanel(new GridLayout(1, 3));
+        healthContainer.setOpaque(false);
+    }
+
+    public void updateScore() {
+        scoreText.setText("Score: " + getPacman().getScore());
+    }
+
+    public void updateHealth() {
+
+        for (int i = healthContainer.getComponentCount(); i > getPacman().getLives() && i > 0; i--) {
+            healthContainer.remove(i - 1);
+        }
+    }
+
+    private void createHealthContainer() {
+        for (int i = 0; i < getPacman().getLives(); i++) {
+            Image heartImage = new ImageIcon("data/assets/sprites/game/heart.png").getImage();
+            JLabel heart = new JLabel(new ImageIcon(heartImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+            healthContainer.add(heart);
+        }
+    }
+
+    public Label getScoreText() {
+        return this.scoreText;
+    }
+
+    public JPanel getHealthContainer() {
+        return this.healthContainer;
+    }
+
+    public String getMazeName() {
+        Pattern pattern = Pattern.compile("(.*)\\.");
+        Matcher matcher = pattern.matcher(mazeFile.getName());
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+        return "Maze";
+    }
+
+    public File getMazeFile() {
+        return this.mazeFile;
     }
 
     private PathField createGhost(int x, int y) {
         PathField field = new PathField(this, x, y);
-        GhostObject ghost =  new GhostObject(field);
+        GhostObject ghost = new GhostObject(field);
         ghosts.add(ghost);
         field.put(ghost);
 
@@ -53,6 +111,8 @@ public class Maze implements CommonMaze {
         PathField field = new PathField(this, x, y);
         pacman = new PacmanObject(field);
         field.put(pacman);
+
+        createHealthContainer();
 
         return field;
     }
@@ -112,7 +172,7 @@ public class Maze implements CommonMaze {
 
     @Override
     public CommonField getField(int x, int y) {
-        try{
+        try {
             return fields.get(y).get(x);
         } catch (IndexOutOfBoundsException e) {
             e.printStackTrace();
@@ -134,5 +194,5 @@ public class Maze implements CommonMaze {
     public List<GhostObject> ghosts() {
         return this.ghosts;
     }
-    
+
 }

@@ -23,23 +23,23 @@ import gui.components.Button;
 import gui.components.Label;
 
 public class StartGameView extends View {
-    private final ArrayList<Button> buttons = new ArrayList<Button>();
-    private final List<File> maps;
+    // private final ArrayList<Button> buttons = new ArrayList<Button>();
+    // private List<File> maps;
     private int mapIndex = 0;
-    private int activeButton = 0;
+    // private int activeButton = 0;
     private Maze maze;
 
     private JPanel mapContent = new JPanel();
     private JLabel mapCounter = new JLabel();
 
-    public StartGameView(Game game) {
+    public StartGameView(Game game, int mapIndex) {
         super("Start game", game);
 
+        this.mapIndex = mapIndex;
+        
         setBackground(Color.BLACK);
 
         container.setLayout(new BorderLayout(2, 2));
-
-        maps = config.getFiles("data/maps");
 
         LayoutManager gridLayout = new GridLayout(1, 6, 5, 5);
 
@@ -66,16 +66,16 @@ public class StartGameView extends View {
             buttonContainer.add(button);
         }
 
-        mapCounter.setText((mapIndex + 1) + "/" + maps.size());
+        mapCounter.setText((mapIndex + 1) + "/" + game.getMapFiles().size());
         mapCounter.setForeground(Color.WHITE);
-        mapCounter.setFont(config.getFont("emulogic.ttf",10f));
+        mapCounter.setFont(config.getFont("emulogic.ttf", 10f));
 
         buttonContainer.add(new JLabel());
         buttonContainer.add(mapCounter);
         buttonContainer.add(new JLabel());
         buttonContainer.add(buttonPlay);
 
-        buttons.get(activeButton).setSelect(true);
+        selectButton(buttons.size() - 1);
 
         JLabel leftBorder = new JLabel();
         JLabel rightBorder = new JLabel();
@@ -83,6 +83,8 @@ public class StartGameView extends View {
 
         leftBorder.setPreferredSize(new Dimension(20, 20));
         rightBorder.setPreferredSize(new Dimension(20, 20));
+
+        updateMapContent(game.getMapFiles().get(mapIndex));
 
         buttonPlay.addActionListener(e -> {
             game.pushView(new GameView(maze, game));
@@ -98,30 +100,30 @@ public class StartGameView extends View {
             game.update();
         });
 
-        updateMapContent(maps.get(mapIndex));
-
-
         container.add(buttonContainer, BorderLayout.SOUTH);
         container.add(leftBorder, BorderLayout.WEST);
         container.add(rightBorder, BorderLayout.EAST);
         container.add(bottomPanel, BorderLayout.NORTH);
         container.add(mapContent, BorderLayout.CENTER);
+    }
 
+    public StartGameView(Game game) {
+        this(game, 0);
     }
 
     private void getNextMap() {
-        mapIndex = (mapIndex + 1) % maps.size();
-        updateMapContent(maps.get(mapIndex));
+        mapIndex = (mapIndex + 1) % game.getMapFiles().size();
+        updateMapContent(game.getMapFiles().get(mapIndex));
     }
     
     private void getPrevMap() {
-        mapIndex = (mapIndex-- > 0 ? mapIndex : maps.size() - 1);
-        updateMapContent(maps.get(mapIndex));
+        mapIndex = (mapIndex-- > 0 ? mapIndex : game.getMapFiles().size() - 1);
+        updateMapContent(game.getMapFiles().get(mapIndex));
     }
 
     private void updateMapContent(File mapFile) {
 
-        mapCounter.setText((mapIndex + 1) + "/" + maps.size());
+        mapCounter.setText((mapIndex + 1) + "/" + game.getMapFiles().size());
         
         mapContent.removeAll();
         mapContent.setOpaque(false);
@@ -161,23 +163,9 @@ public class StartGameView extends View {
         mapContent.setPreferredSize(new Dimension(config.getWidth(), 20));
     }
 
-    private void selectNext() {
-        buttons.get(activeButton).setSelect(false);
-
-        activeButton = (activeButton + 1) % buttons.size();
-        buttons.get(activeButton).setSelect(true);
-    }
-
-    private void selectPrev() {
-        buttons.get(activeButton).setSelect(false);
-
-        activeButton = --activeButton < 0 ? buttons.size() - 1 : activeButton;
-        buttons.get(activeButton).setSelect(true);
-    }
-
     @Override
     protected void KeyArrowLeft() {
-        selectPrev();
+        selectPrevButton();
         game.update();
     }
 
@@ -187,7 +175,7 @@ public class StartGameView extends View {
 
     @Override
     protected void KeyArrowRight() {
-        selectNext();
+        selectNextButton();
         game.update();
     }
 

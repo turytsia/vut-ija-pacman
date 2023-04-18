@@ -14,7 +14,7 @@ public class PacmanObject extends MazeObject {
     private boolean finished;
     private int lives;
     private int score = 0;
-    private CommonField.Direction last_dir;
+    private CommonField.Direction dir;
     private FinishObject finish_pos;
 
 
@@ -48,11 +48,11 @@ public class PacmanObject extends MazeObject {
         return this.score;
     }
     public void setDir(CommonField.Direction dir){
-        this.last_dir = dir;
+        this.dir = dir;
     }
 
     public CommonField.Direction getDir(){
-        return this.last_dir;
+        return this.dir;
     }
 
     public void findKey(PathField field){
@@ -106,6 +106,10 @@ public class PacmanObject extends MazeObject {
 
 
         nextField.put(this);
+
+        this.field.getMaze().updateHealth();
+        this.field.getMaze().updateScore();
+
         this.field.notifyObservers();
 
         return true;

@@ -24,8 +24,6 @@ import gui.components.Label;
 
 public class LoadGameView extends View {
 
-    private final ArrayList<Button> buttons = new ArrayList<Button>();
-    private int activeButton;
     private int pageIndex;
     private JPanel asidePanel = new JPanel();
 
@@ -90,27 +88,13 @@ public class LoadGameView extends View {
 
     }
 
-    private void selectNext() {
-        buttons.get(activeButton).setSelect(false);
-
-        activeButton = (activeButton + 1) % buttons.size();
-        buttons.get(activeButton).setSelect(true);
-    }
-
-    private void selectPrev() {
-        buttons.get(activeButton).setSelect(false);
-
-        activeButton = --activeButton < 0 ? buttons.size() - 1 : activeButton;
-        buttons.get(activeButton).setSelect(true);
-    }
-
     @Override
     protected void KeyArrowLeft() {
     }
 
     @Override
     protected void KeyArrowUp() {
-        selectPrev();
+        selectPrevButton();
         game.update();
     }
 
@@ -120,7 +104,7 @@ public class LoadGameView extends View {
 
     @Override
     protected void KeyArrowDown() {
-        selectNext();
+        selectNextButton();
         game.update();
     }
 

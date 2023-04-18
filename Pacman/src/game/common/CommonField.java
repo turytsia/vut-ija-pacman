@@ -2,6 +2,8 @@ package game.common;
 
 import java.util.List;
 
+import game.objects.Maze;
+
 public interface CommonField extends Observable {
 
     public static enum Direction {
@@ -27,4 +29,6 @@ public interface CommonField extends Observable {
     public boolean contains(CommonMazeObject obj);
 
     public void put(CommonMazeObject obj);
+
+    public Maze getMaze();
 }

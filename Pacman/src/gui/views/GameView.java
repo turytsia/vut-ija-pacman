@@ -24,11 +24,11 @@ import gui.components.Label;
 public class GameView extends View {
 
     private Maze maze;
-    private Label scoreText;
-    private JPanel healthContainer;
+    // private Label scoreText;
+    // private JPanel healthContainer;
 
     public GameView(Maze maze, Game game) {
-        super("Pacman", game);
+        super(maze.getMazeName(), game);
 
         this.maze = maze;
 
@@ -48,15 +48,6 @@ public class GameView extends View {
         JPanel right = new JPanel();
 
         JPanel infoContainerTop = new JPanel(new GridLayout(1, 4));
-        healthContainer = new JPanel(new GridLayout(1, 3));
-        healthContainer.setOpaque(false);
-        // healthContainer.setPreferredSize(new Dimension(90, 40));
-
-        updateHealth();
-
-        // top.add(new JLabel());
-        // top.add(new JLabel());
-        // top.add(new JLabel());
 
         JPanel topLeft = new JPanel();
         JPanel topRight = new JPanel();
@@ -69,12 +60,15 @@ public class GameView extends View {
         topLeft.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
         topRight.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
 
-        scoreText = new Label("Score: 0");
+        // scoreText = new Label("Score: 0");
+
+        Label scoreText = maze.getScoreText();
+        scoreText.setHorizontalAlignment(SwingConstants.CENTER);
 
         infoContainerTop.add(scoreText);
         infoContainerTop.add(new JLabel());
         infoContainerTop.add(new JLabel());
-        infoContainerTop.add(healthContainer);
+        infoContainerTop.add(maze.getHealthContainer());
 
         top.add(topLeft, BorderLayout.WEST);
         top.add(topRight, BorderLayout.EAST);
@@ -99,18 +93,18 @@ public class GameView extends View {
         add(container, BorderLayout.CENTER);
     }
     
-    private void updateHealth() {
-        healthContainer.removeAll();
-        for (int i = 0; i < maze.getPacman().getLives(); i++) {
-            Image heartImage = new ImageIcon("data/assets/sprites/game/heart.png").getImage();
-            JLabel heart = new JLabel(new ImageIcon(heartImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
-            healthContainer.add(heart);
-        }
-    }
+    // private void updateHealth() {
+    //     healthContainer.removeAll();
+    //     for (int i = 0; i < maze.getPacman().getLives(); i++) {
+    //         Image heartImage = new ImageIcon("data/assets/sprites/game/heart.png").getImage();
+    //         JLabel heart = new JLabel(new ImageIcon(heartImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+    //         healthContainer.add(heart);
+    //     }
+    // }
 
-    private void updateScore() {
-        scoreText.setText("Score: "+maze.getPacman().getScore());
-    }
+    // private void updateScore() {
+    //     scoreText.setText("Score: "+maze.getPacman().getScore());
+    // }
 
     @Override
     protected void KeyArrowLeft() {
@@ -150,8 +144,8 @@ public class GameView extends View {
 
     @Override
     protected void AnyKey() {
-        updateHealth();
-        updateScore();
+        // updateHealth();
+        // updateScore();
     }
     
 }

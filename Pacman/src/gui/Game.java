@@ -3,7 +3,10 @@ package gui;
 import common.Config;
 import gui.views.MainView;
 import gui.views.View;
+
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -14,9 +17,12 @@ import javax.swing.JFrame;
 public class Game extends JFrame {
     private Config config = new Config();
     private ArrayList<View> views = new ArrayList<>();
+    private List<File> maps;
 
     public Game() {
         super("Pacman");
+
+        this.maps = config.getFiles("data/maps");
 
         setVisible(true); //make window visible
         setSize(config.getWidth(), config.getHeight()); //set window size
@@ -26,6 +32,10 @@ public class Game extends JFrame {
 
         ImageIcon ic = new ImageIcon("data/assets/sprites/icon.png"); //logo in window
         setIconImage(ic.getImage());
+    }
+
+    public List<File> getMapFiles() {
+        return this.maps;
     }
 
     public void launch(View defaultView) {

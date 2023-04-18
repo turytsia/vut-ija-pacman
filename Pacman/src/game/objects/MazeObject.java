@@ -41,5 +41,4 @@ public abstract class MazeObject implements CommonMazeObject {
         this.field = field;
     }
     
-    
 }
