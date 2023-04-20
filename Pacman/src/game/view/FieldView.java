@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import common.AStar;
 import game.common.CommonField;
 import game.common.CommonMazeObject;
 import game.common.Observable;
@@ -37,7 +38,14 @@ public class FieldView extends JPanel implements Observable.Observer {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                AStar algorithm = new AStar(field);
                 System.out.println("Mouse clicked at x=" + field.getX() + ", y=" + field.getY());
+
+                try{ algorithm.startAStar(); }
+                catch(InterruptedException|IllegalArgumentException ee ){
+                    ee.printStackTrace();
+                }
+
             }
         });
     }

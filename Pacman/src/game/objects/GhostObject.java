@@ -33,8 +33,9 @@ public class GhostObject extends MazeObject {
         List<CommonField.Direction> directions = Arrays.asList(CommonField.Direction.R, CommonField.Direction.L,
                 CommonField.Direction.U, CommonField.Direction.D);
         Random rand_ind = new Random();
+        CommonField.Direction dir;
         while(true) {
-            CommonField.Direction dir = directions.get(rand_ind.nextInt(directions.size()));
+            dir = directions.get(rand_ind.nextInt(directions.size()));
             if (!this.canMove(dir)) {
                 continue;
             }
