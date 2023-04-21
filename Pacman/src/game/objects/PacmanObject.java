@@ -5,6 +5,7 @@ import java.awt.event.KeyListener;
 import java.nio.file.Path;
 
 import com.sun.jdi.PathSearchingVirtualMachine;
+import common.Logger;
 import game.common.CommonField;
 import game.common.CommonMazeObject;
 
@@ -16,12 +17,14 @@ public class PacmanObject extends MazeObject {
     private int lives;
     private int score = 0;
     private CommonField.Direction dir;
+    private Logger logger;
 
     public PacmanObject(CommonField field) {
         super(field);
         this.has_key = false;
         this.lives = 3;
         this.finished = false;
+        this.logger = new Logger(this);
     }
 
     @Override
@@ -110,6 +113,8 @@ public class PacmanObject extends MazeObject {
         this.setDir(dir);
 
 
+        this.logger.log(dir);
+
         nextField.put(this);
 
         this.field.getMaze().updateHealth();
@@ -120,6 +125,10 @@ public class PacmanObject extends MazeObject {
         return true;
      }
 
+
+     public Logger getLogger(){
+        return logger;
+     }
     @Override
     public int getLives() {
         return lives;
