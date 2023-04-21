@@ -3,6 +3,7 @@ package game.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
 import common.AStar;
@@ -20,6 +21,7 @@ import gui.Game;
 import gui.views.LoserView;
 import gui.views.WinnerView;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -35,21 +37,25 @@ public class FieldView extends JPanel implements Observable.Observer {
         
         this.field.addObserver(this);
         setOpaque(false);
+
         updateView();
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // System.out.println("Mouse clicked at x=" + field.getX() + ", y=" + field.getY());
-
+                // TODO remove last thread
                 PacmanThread thread = new PacmanThread(field);
                 thread.start();
+            }
 
-                // try{ algorithm.startAStar(); }
-                // catch(InterruptedException|IllegalArgumentException ee ){
-                //     ee.printStackTrace();
-                // }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setBorder(BorderFactory.createLineBorder(Color.WHITE));
+            }
 
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setBorder(null);
             }
         });
     }

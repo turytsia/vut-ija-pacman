@@ -41,6 +41,7 @@ public class Maze implements CommonMaze {
         this.cols = cols;
         this.rows = rows;
         this.mazeFile = mazeFile;
+        setPause(true);
 
         scoreText = new Label("Score: 0");
         healthContainer = new JPanel(new GridLayout(1, 3));
