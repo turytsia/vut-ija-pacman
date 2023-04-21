@@ -63,9 +63,13 @@ public class LoadGameView extends View {
                 
             
                 fileInfoButton.setLayout(new BorderLayout(10, 10));
-                System.out.println(container.getX());
                 fileInfoButton.setPreferredSize(new Dimension( 200, 50));
                 fileInfoButton.setOpaque(false);
+
+
+                fileInfoButton.addActionListener(e -> {
+                    game.pushView(new GameViewer(game, file));
+                });
 
 
 
@@ -84,7 +88,7 @@ public class LoadGameView extends View {
             e.printStackTrace();
         }
 
-        buttons.get(activeButton).setSelect(true);
+        selectButton(activeButton);
 
     }
 
@@ -115,6 +119,7 @@ public class LoadGameView extends View {
 
     @Override
     protected void KeyEnter() {
+        buttons.get(activeButton).doClick();
     }
 
     @Override

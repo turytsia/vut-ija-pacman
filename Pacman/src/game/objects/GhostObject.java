@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.TimeZone;
 
 import common.Logger;
 
@@ -20,7 +21,7 @@ public class GhostObject extends MazeObject {
     }
 
     @Override
-    public boolean canMove(CommonField.Direction dir){
+    public boolean canMove(CommonField.Direction dir) {
         return field.nextField(dir) instanceof PathField;
     }
 

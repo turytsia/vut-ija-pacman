@@ -26,7 +26,6 @@ public class Maze implements CommonMaze {
     private boolean isPause;
 
     private final List<GhostObject> ghosts = new ArrayList<>();
-    private final List<Thread> threads = new ArrayList<>();
     private final List<List<CommonField>> fields = new ArrayList<>();
 
 
@@ -101,7 +100,6 @@ public class Maze implements CommonMaze {
         PathField field = new PathField(this, x, y);
         GhostObject ghost = new GhostObject(field);
         ghosts.add(ghost);
-        threads.add(new GhostThread(ghost));
         field.put(ghost);
 
         return field;
