@@ -34,8 +34,14 @@ public class GhostObject extends MazeObject {
                 CommonField.Direction.U, CommonField.Direction.D);
         Random rand_ind = new Random();
         CommonField.Direction dir;
+        PacmanObject pacman = this.field.getMaze().getPacman();
         while(true) {
             dir = directions.get(rand_ind.nextInt(directions.size()));
+
+            if (pacman.getFinished() || pacman.getLives() <= 0) {
+                break;
+            }
+
             if (!this.canMove(dir)) {
                 continue;
             }

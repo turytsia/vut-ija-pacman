@@ -93,10 +93,6 @@ public class GameView extends View {
         container.setBackground(Color.black);
 
         add(container, BorderLayout.CENTER);
-        for(GhostObject ghost : maze.ghosts()){
-            GhostThread thread = new GhostThread(ghost);
-            thread.start();
-        }
     }
     
     // private void updateHealth() {

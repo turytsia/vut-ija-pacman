@@ -29,13 +29,14 @@ public abstract class Field extends AbstractObservableField {
         }
     }
 
-
-    public int getX(){return this.x;}
+    public int getX() {
+        return this.x;
+    }
 
     public int getY() {
         return this.y;
     }
-    
+
     @Override
     public List<CommonMazeObject> get() {
         return objects;
@@ -45,5 +46,5 @@ public abstract class Field extends AbstractObservableField {
     public Maze getMaze() {
         return this.maze;
     }
-    
+
 }

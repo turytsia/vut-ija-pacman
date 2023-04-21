@@ -15,7 +15,9 @@ import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+import common.GhostThread;
 import game.MazeConfigure;
+import game.objects.GhostObject;
 import game.objects.Maze;
 import game.view.MazeView;
 import gui.Game;
@@ -88,6 +90,10 @@ public class StartGameView extends View {
 
         buttonPlay.addActionListener(e -> {
             game.pushView(new GameView(maze, game));
+            for (GhostObject ghost : maze.ghosts()) {
+                GhostThread thread = new GhostThread(ghost);
+                thread.start();
+            }
         });
 
         buttonNext.addActionListener(e -> {
