@@ -8,10 +8,15 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import common.Logger;
+
 public class GhostObject extends MazeObject {
+    private Logger logger;
 
     public GhostObject(CommonField field) {
         super(field);
+
+        logger = new Logger(this);
     }
 
     @Override

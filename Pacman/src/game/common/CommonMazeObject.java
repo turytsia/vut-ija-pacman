@@ -12,4 +12,6 @@ public interface CommonMazeObject {
     public int getLives();
 
     public void setField(CommonField field);
+
+    public int getId();
 }
