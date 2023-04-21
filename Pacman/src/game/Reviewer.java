@@ -23,8 +23,6 @@ public class Reviewer {
             String filename = scanner.nextLine();
             Optional<File> mapResult = maps.stream().filter(map -> map.getName().equals(filename)).findFirst();
 
-            
-
             if (!mapResult.isPresent()) {
                 scanner.close();
                 throw new FileNotFoundException("Unknown map name");
@@ -34,7 +32,10 @@ public class Reviewer {
             MazeConfigure cfg = new MazeConfigure(mapResult.get());
             this.maze = cfg.getMaze();
 
-            scanner.forEachRemaining(instructions::add);
+            // scanner.forEachRemaining(instructions::add);
+            while (scanner.hasNext())
+                instructions.add(scanner.nextLine());
+                
             scanner.close();
 
         } catch (FileNotFoundException e) {

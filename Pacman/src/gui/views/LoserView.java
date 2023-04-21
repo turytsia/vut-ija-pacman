@@ -25,8 +25,8 @@ public class LoserView extends View {
         super(game, maze, "YOU LOSE!!!");
 
         System.out.println(maze.getMazeName());
-        maze.getPacman().getLogger().print_logs(maze.getMazeName() + ".txt");
-        maze.getPacman().getLogger().logs_clear();
+        // maze.getPacman().getLogger().logs_clear();
+        // maze.getPacman().getLogger().print_logs(maze.getMazeName() + ".txt");
 
         container.setLayout(new BorderLayout());
 

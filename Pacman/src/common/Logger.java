@@ -23,6 +23,7 @@ public class Logger {
     private MazeObject obj;
     private Maze maze;
     private static boolean isFileHeader = false;
+    private static boolean isFileLogs = false;
     private static List<String> logs = new ArrayList<>();
 
     public Logger(MazeObject obj) {
@@ -32,28 +33,26 @@ public class Logger {
 
     public void log(CommonField.Direction dir) {
 
-        if (this.obj instanceof PacmanObject){
-        logs.add("PACMAN " + dir);
-        }
-        else if (this.obj instanceof GhostObject) {
+        if (this.obj instanceof PacmanObject) {
+            logs.add("PACMAN " + dir);
+        } else if (this.obj instanceof GhostObject) {
             logs.add("GHOST" + obj.getId() + " " + dir);
         }
     }
 
     public void print_logs(String fileName) {
-
-        if (!isFileHeader){
-            logs.add(0,fileName);
+        if (!isFileLogs) {
+            
+            logs.add(0, fileName);
             isFileHeader = true;
-        }
+
             LocalDateTime now = LocalDateTime.now();
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("-yyyy-MM-dd-HH-mm-ss-");
             String formattedDateTime = now.format(formatter);
 
-            String folderPath = "data/replays/";
-            Path filePath = Paths.get(folderPath,"replay" + formattedDateTime + this.maze.getMazeFile().getName());
+            File file = new File("data/replays/replay" + formattedDateTime + this.maze.getMazeFile().getName());
             try {
-                FileWriter fileWriter = new FileWriter(filePath.toFile());
+                FileWriter fileWriter = new FileWriter(file);
                 BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
                 for (String str : logs) {
@@ -61,13 +60,16 @@ public class Logger {
                     bufferedWriter.newLine();
                 }
                 bufferedWriter.close();
-            }
-            catch (IOException e) {
+                fileWriter.close();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
     }
 
-    public void logs_clear(){
+    public void logs_clear() {
+        isFileLogs = false;
+        isFileHeader = false;
         logs.clear();
     }
 }

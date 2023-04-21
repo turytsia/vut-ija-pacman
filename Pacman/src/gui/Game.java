@@ -48,8 +48,8 @@ public class Game extends JFrame {
     }
     
     public void update(){
-        revalidate();
         repaint();
+        revalidate();
     }
 
     private View getCurrentView() {

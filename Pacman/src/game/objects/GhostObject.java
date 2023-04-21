@@ -29,7 +29,7 @@ public class GhostObject extends MazeObject {
         if (!field.objects.isEmpty()) {
             for(CommonMazeObject obj : field.objects) {
                 if (obj instanceof PacmanObject){
-                    ((PacmanObject) obj).gotHit();
+                    ((PacmanObject) obj).gotHit(field);
                 }
             }
         }
@@ -43,9 +43,7 @@ public class GhostObject extends MazeObject {
         PacmanObject pacman = this.field.getMaze().getPacman();
         while(true) {
             dir = directions.get(rand_ind.nextInt(directions.size()));
-
             if (pacman.getFinished() || pacman.getLives() <= 0 || field.getMaze().getPause()) {
-
                 break;
             }
 
@@ -65,6 +63,7 @@ public class GhostObject extends MazeObject {
             this.field.getMaze().updateHealth();
 
             this.field.notifyObservers();
+            
             Thread.sleep(250);
         }
     }

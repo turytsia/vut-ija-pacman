@@ -78,19 +78,26 @@ public class PacmanObject extends MazeObject {
                 if (this.has_key){
                     System.out.println("CONGRATULATIONS!!!");
                     this.finished = true;
+                    logger.print_logs(field.getMaze().getMazeFile().getName());
+                    logger.logs_clear();
                 }
             }
         }
     }
 
-    public void gotHit(){
+    public void gotHit(CommonField field){
         this.lives -= 1;
+
+        if (lives == 0) {
+            logger.print_logs(field.getMaze().getMazeFile().getName());
+            logger.logs_clear();
+        }
     }
 
-    public void meetGHost(PathField field){
+    public void meetGhost(PathField field){
         if (!field.objects.isEmpty()) {
             if(field.objects.get(0) instanceof GhostObject){
-               this.gotHit();
+               this.gotHit(field);
             }
         }
     }
@@ -103,11 +110,11 @@ public class PacmanObject extends MazeObject {
         PathField nextField = (PathField)this.field.nextField(dir);
 
         this.field.unbindObj(this);
-
+        
         this.eatPoint(nextField);
         this.findKey(nextField);
         this.passGates(nextField);
-        this.meetGHost(nextField);
+        this.meetGhost(nextField);
 
         this.setField(nextField);
         this.setDir(dir);

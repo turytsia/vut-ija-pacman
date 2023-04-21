@@ -91,7 +91,6 @@ public class FieldView extends JPanel implements Observable.Observer {
     @Override
     public void update(Observable f) {
         updateView();
-        game.update();
 
         PacmanObject pacman = field.getMaze().getPacman();
 
@@ -99,6 +98,8 @@ public class FieldView extends JPanel implements Observable.Observer {
             game.swapView(new LoserView(game, field.getMaze()));
         } else if (pacman.getFinished()) {
             game.swapView(new WinnerView(game, field.getMaze()));
+        } else {
+            game.update();
         }
     }
     

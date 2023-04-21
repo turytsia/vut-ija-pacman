@@ -24,7 +24,7 @@ public class WinnerView extends View {
     public WinnerView(Game game, Maze maze) {
         super(game, maze, "CONGRATULATIONS!!!");
 
-        maze.getPacman().getLogger().print_logs(maze.getMazeFile().getName());
+        // maze.getPacman().getLogger().print_logs(maze.getMazeFile().getName());
 
         container.setLayout(new BorderLayout());
 
