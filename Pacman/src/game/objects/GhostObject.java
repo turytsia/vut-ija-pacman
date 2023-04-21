@@ -38,7 +38,7 @@ public class GhostObject extends MazeObject {
         while(true) {
             dir = directions.get(rand_ind.nextInt(directions.size()));
 
-            if (pacman.getFinished() || pacman.getLives() <= 0) {
+            if (pacman.getFinished() || pacman.getLives() <= 0 || field.getMaze().getPause()) {
                 break;
             }
 
@@ -56,7 +56,7 @@ public class GhostObject extends MazeObject {
             this.field.getMaze().updateHealth();
 
             this.field.notifyObservers();
-            Thread.sleep(500);
+            Thread.sleep(250);
         }
     }
 

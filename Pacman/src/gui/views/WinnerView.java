@@ -21,12 +21,8 @@ import gui.components.Label;
 
 public class WinnerView extends View {
 
-    private Maze maze;
-
     public WinnerView(Game game, Maze maze) {
-        super("CONGRATULATIONS!!!", game);
-
-        this.maze = maze;
+        super(game, maze, "CONGRATULATIONS!!!");
 
         container.setLayout(new BorderLayout());
 

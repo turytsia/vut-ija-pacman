@@ -24,20 +24,17 @@ import gui.Game;
 import gui.components.Label;
 
 public class GameView extends View {
-
-    private Maze maze;
     // private Label scoreText;
     // private JPanel healthContainer;
 
     public GameView(Maze maze, Game game) {
-        super(maze.getMazeName(), game);
+        super(game, maze);
 
-        this.maze = maze;
+        this.maze.setPause(false);
 
         container = new JPanel(new BorderLayout());
 
         setBackground(Color.BLACK);
-
 
         System.out.println(game);
         MazeView mazePanel = new MazeView(maze, game);
@@ -136,6 +133,7 @@ public class GameView extends View {
 
     @Override
     protected void KeyEscape() {
+        this.maze.setPause(true);
         game.popView();
     }
 

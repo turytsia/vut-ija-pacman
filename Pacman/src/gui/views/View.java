@@ -2,34 +2,29 @@ package gui.views;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.LayoutManager;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import java.util.List;
-import java.io.File;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 import common.Config;
+import game.objects.Maze;
 import gui.Game;
 import gui.components.Button;
 import gui.components.Title;
 
 public abstract class View extends JPanel implements KeyListener {
     protected final ArrayList<Button> buttons = new ArrayList<Button>();
-    protected static Config config = new Config();
-    protected int activeButton = 0;
+    protected final Config config = new Config();
+    protected Maze maze;
 
+    protected int activeButton = 0;
     protected JPanel container = new JPanel();
     protected Game game;
     private Title title;
 
-    public View(String title, Game game) {
-        this.game = game;
-
+    private View() {
         setSize(config.getWidth() - 16, config.getHeight());
         setVisible(true);
         setLayout(new BorderLayout());
@@ -37,12 +32,35 @@ public abstract class View extends JPanel implements KeyListener {
         container.setOpaque(false);
         container.setBackground(new Color(0, 0, 0, 0));
 
-        if (title != null) {
-            this.title = new Title(title);
-            add(this.title, BorderLayout.NORTH);
-        }
-
         add(container, BorderLayout.CENTER);
+    }
+
+    private View(String title) {
+        this();
+        this.title = new Title(title);
+        add(this.title, BorderLayout.NORTH);
+    }
+
+    public View(Game game, Maze maze, String title) {
+        this(title);
+        this.game = game;
+        this.maze = maze;
+    }
+
+    public View(Game game, Maze maze) {
+        this(maze.getMazeName());
+        this.game = game;
+        this.maze = maze;
+    }
+
+    public View(Game game, String title) {
+        this(title);
+        this.game = game;
+    }
+
+    public View(Game game) {
+        this();
+        this.game = game;
     }
     
     protected void selectNextButton() {

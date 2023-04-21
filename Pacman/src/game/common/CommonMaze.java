@@ -14,4 +14,6 @@ public interface CommonMaze {
     public List<GhostObject> ghosts();
 
     public void parseLine(String line);
+
+    public boolean getPause();
 }

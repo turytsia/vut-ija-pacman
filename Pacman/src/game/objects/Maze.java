@@ -1,6 +1,5 @@
 package game.objects;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.File;
@@ -13,25 +12,30 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import common.GhostThread;
 import exceptions.MazeRowOutOfBoundsException;
 import exceptions.UnknownMazeObjectException;
-import game.MazeConfigure;
 import game.common.CommonField;
 import game.common.CommonMaze;
-import game.common.CommonMazeObject;
 import gui.components.Label;
 
 public class Maze implements CommonMaze {
 
     private int cols;
     private int rows;
-    private List<List<CommonField>> fields = new ArrayList<>();
+    private boolean isPause;
+
     private final List<GhostObject> ghosts = new ArrayList<>();
+    private final List<Thread> threads = new ArrayList<>();
+    private final List<List<CommonField>> fields = new ArrayList<>();
+
+
     private PacmanObject pacman;
 
     private Label scoreText;
     private JPanel healthContainer;
     private File mazeFile;
+
 
     public Maze(int cols, int rows, File mazeFile) {
         this.cols = cols;
@@ -41,6 +45,14 @@ public class Maze implements CommonMaze {
         scoreText = new Label("Score: 0");
         healthContainer = new JPanel(new GridLayout(1, 3));
         healthContainer.setOpaque(false);
+    }
+    
+    public boolean getPause() {
+        return isPause;
+    }
+
+    public void setPause(boolean pause) {
+        isPause = pause;
     }
 
     public void updateScore() {
@@ -88,6 +100,7 @@ public class Maze implements CommonMaze {
         PathField field = new PathField(this, x, y);
         GhostObject ghost = new GhostObject(field);
         ghosts.add(ghost);
+        threads.add(new GhostThread(ghost));
         field.put(ghost);
 
         return field;

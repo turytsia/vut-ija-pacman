@@ -35,7 +35,7 @@ public class StartGameView extends View {
     private JLabel mapCounter = new JLabel();
 
     public StartGameView(Game game, int mapIndex) {
-        super("Start game", game);
+        super(game, "Start game");
 
         this.mapIndex = mapIndex;
         

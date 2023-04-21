@@ -30,7 +30,7 @@ public class LoadGameView extends View {
     JPanel gameList;
 
     public LoadGameView(Game game) {
-        super("Load game", game);
+        super(game, "Load game");
 
         setBackground(Color.BLACK);
 

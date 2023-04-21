@@ -15,7 +15,7 @@ import gui.components.Button;
 public class MainView extends View {
 
     public MainView(Game game) {
-        super(null, game);
+        super(game);
         LayoutManager gridLayout = new GridLayout(4, 1);
         JPanel buttonContainer = new JPanel(gridLayout);
         buttonContainer.setBounds(config.getWidth() - 20 - 200 - 16, 20, 200, 4 * 50);

@@ -20,12 +20,9 @@ import gui.components.Button;
 import gui.components.Label;
 
 public class LoserView extends View {
-    private Maze maze;
 
     public LoserView(Game game, Maze maze) {
-        super("YOU LOSE!!!", game);
-
-        this.maze = maze;
+        super(game, maze, "YOU LOSE!!!");
 
         container.setLayout(new BorderLayout());
 
