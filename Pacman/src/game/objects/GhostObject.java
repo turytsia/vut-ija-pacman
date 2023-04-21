@@ -45,6 +45,7 @@ public class GhostObject extends MazeObject {
             dir = directions.get(rand_ind.nextInt(directions.size()));
 
             if (pacman.getFinished() || pacman.getLives() <= 0 || field.getMaze().getPause()) {
+
                 break;
             }
 
@@ -53,6 +54,8 @@ public class GhostObject extends MazeObject {
             }
             PathField nextField = (PathField)this.field.nextField(dir);
             this.field.unbindObj(this);
+
+            this.logger.log(dir); /////////////////////////////////////////////
 
             this.meetPacman(nextField);
 

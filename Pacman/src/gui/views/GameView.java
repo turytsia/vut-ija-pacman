@@ -107,7 +107,7 @@ public class GameView extends View {
 
     @Override
     protected void KeyArrowLeft() {
-        System.out.println("Move pacman left");
+//        System.out.println("Move pacman left");
         maze.getPacman().move(CommonField.Direction.L);
     }
         
@@ -115,19 +115,19 @@ public class GameView extends View {
 
     @Override
     protected void KeyArrowUp() {
-        System.out.println("Move pacman up");
+//        System.out.println("Move pacman up");
         maze.getPacman().move(CommonField.Direction.U);
     }
 
     @Override
     protected void KeyArrowRight() {
-        System.out.println("Move pacman right");
+//        System.out.println("Move pacman right");
         maze.getPacman().move(CommonField.Direction.R);
     }
 
     @Override
     protected void KeyArrowDown() {
-        System.out.println("Move pacman down");
+//        System.out.println("Move pacman down");
         maze.getPacman().move(CommonField.Direction.D);
     }
 

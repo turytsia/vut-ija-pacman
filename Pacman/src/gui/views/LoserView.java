@@ -24,6 +24,10 @@ public class LoserView extends View {
     public LoserView(Game game, Maze maze) {
         super(game, maze, "YOU LOSE!!!");
 
+        System.out.println(maze.getMazeName());
+        maze.getPacman().getLogger().print_logs(maze.getMazeName() + ".txt");
+        maze.getPacman().getLogger().logs_clear();
+
         container.setLayout(new BorderLayout());
 
         JPanel center = new JPanel(new GridLayout(10, 1));
