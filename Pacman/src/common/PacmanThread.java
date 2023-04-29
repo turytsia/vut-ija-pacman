@@ -20,7 +20,7 @@ public class PacmanThread extends Thread {
             AStar algorithm = new AStar(targetField);
             algorithm.startAStar();
         } catch (InterruptedException | IllegalArgumentException e) {
-            e.printStackTrace();
+            
         }
     }
 }

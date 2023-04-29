@@ -42,6 +42,10 @@ public class MainView extends View {
             game.pushView(new LoadGameView(game));
         });
 
+        buttonExit.addActionListener(e -> {
+            game.dispose();
+        });
+
         buttons.add(buttonStart);
         buttons.add(buttonLoad);
         buttons.add(buttonSettings);

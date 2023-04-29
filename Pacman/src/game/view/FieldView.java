@@ -36,6 +36,8 @@ public class FieldView extends JPanel implements Observable.Observer {
     private CommonField field;
     private Game game;
 
+    private static PacmanThread thread;
+
     public FieldView(CommonField field, Game game) {
         this.field = field;
         this.game = game;
@@ -45,12 +47,22 @@ public class FieldView extends JPanel implements Observable.Observer {
 
         updateView();
 
+       
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // TODO remove last thread
-                PacmanThread thread = new PacmanThread(field);
-                thread.start();
+                if (thread == null) {
+                    thread = new PacmanThread(field);
+                    thread.start();
+                } else {
+                    thread.interrupt();
+                    thread = new PacmanThread(field);
+                    thread.start();
+                }
+
+                
+                
             }
 
             @Override
@@ -70,7 +82,7 @@ public class FieldView extends JPanel implements Observable.Observer {
      */
     private void updateView() {
         objects.clear();
-        for(CommonMazeObject obj: field.get()){
+        for (CommonMazeObject obj : field.get()) {
             if (obj.isPacman()) {
                 this.objects.add(new PacmanView(this, obj));
             } else if (obj instanceof GhostObject) {
@@ -87,7 +99,7 @@ public class FieldView extends JPanel implements Observable.Observer {
         }
 
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -110,5 +122,5 @@ public class FieldView extends JPanel implements Observable.Observer {
             game.update();
         }
     }
-    
+
 }

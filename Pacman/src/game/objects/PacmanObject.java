@@ -137,6 +137,8 @@ public class PacmanObject extends MazeObject {
 
         if (key.getX() == field.getX() && key.getY() == field.getY()) {
             this.field.put(key);
+            this.key = null;
+            field.getMaze().getMazeComponent().updateKey();
             this.field.notifyObservers();
         }
     }
@@ -148,6 +150,15 @@ public class PacmanObject extends MazeObject {
      */
     public boolean getFinished() {
         return this.isFinish;
+    }
+
+    /**
+     * Returns key object if pacman has it
+     * 
+     * @return Returns key object
+     */
+    public KeyObject getKey() {
+        return this.key;
     }
 
     /**

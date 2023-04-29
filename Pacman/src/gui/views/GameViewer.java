@@ -33,7 +33,7 @@ public class GameViewer extends View {
     /* PANELS */
     private final JPanel footerContainer = new JPanel(new GridLayout(1, 5));
     private final JPanel top = new JPanel(new BorderLayout());
-    private final JPanel infoContainerTop = new JPanel(new GridLayout(1, 4));
+    private final JPanel infoContainerTop = new JPanel(new GridLayout(1, 5));
     private final JPanel topLeft = new JPanel();
     private final JPanel topRight = new JPanel();
 
@@ -85,10 +85,14 @@ public class GameViewer extends View {
         });
 
         smoothMode.addActionListener(e -> {
+            smoothMode.setActive(true);
+            gradualMode.setActive(false);
             reviewerThread.setSmoothStepping();
         });
 
         gradualMode.addActionListener(e -> {
+            smoothMode.setActive(false);
+            gradualMode.setActive(true);
             reviewerThread.setGradualStepping();
         });
 
@@ -97,6 +101,7 @@ public class GameViewer extends View {
 
         infoContainerTop.add(scoreText);
         infoContainerTop.add(new JLabel());
+        infoContainerTop.add(maze.getMazeComponent().getKeyContainer());
         infoContainerTop.add(new JLabel());
         infoContainerTop.add(maze.getMazeComponent().getHealthContainer());
 
@@ -121,6 +126,8 @@ public class GameViewer extends View {
         add(top, BorderLayout.NORTH);
 
         add(footerContainer, BorderLayout.SOUTH);
+
+        gradualMode.setActive(true);
 
     }
 

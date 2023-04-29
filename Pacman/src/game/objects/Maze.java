@@ -375,8 +375,13 @@ public class Maze implements CommonMaze {
          * Updated key label
          */
         public void updateKey() {
-            Image icon = new ImageIcon("data/assets/sprites/game/key.png").getImage();
-            keyContainer.setIcon(new ImageIcon(icon.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+
+            if (pacman.getKey() == null) {
+                keyContainer.setIcon(null);
+            } else {
+                Image icon = new ImageIcon("data/assets/sprites/game/key.png").getImage();
+                keyContainer.setIcon(new ImageIcon(icon.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));  
+            }
         }
 
         /**
