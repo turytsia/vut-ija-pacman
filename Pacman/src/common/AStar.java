@@ -1,13 +1,18 @@
 package common;
 
 import game.common.CommonField;
-import game.common.CommonMazeObject;
-import game.objects.GhostObject;
 import game.objects.PacmanObject;
 import game.objects.PathField;
 
 import java.util.*;
 
+/**
+ * A class that calculates algorithm A*.
+ * Each function here is used to properly calculate path to a destination point
+ * 
+ * @autor Kambulat Alakaev (xalaka00)
+ * @version %I%, %G%
+ */
 public class AStar {
     private static class Node {
         CommonField field;

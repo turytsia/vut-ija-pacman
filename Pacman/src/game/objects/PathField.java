@@ -3,6 +3,14 @@ package game.objects;
 import game.common.CommonField;
 import game.common.CommonMazeObject;
 
+/**
+ * Class representing field that can be used as a container for
+ * maze objects. It represents path in maze.
+ * 
+ * @autor Turtysia Oleksandr (xturyt00)
+ * @autor Kambulat Alakaev (xalaka00)
+ * @version %I%, %G%
+ */
 public class PathField extends Field {
 
     public PathField(Maze maze, int x, int y) {

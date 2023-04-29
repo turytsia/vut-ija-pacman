@@ -4,69 +4,90 @@ import common.Config;
 import gui.views.MainView;
 import gui.views.View;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.EmptyStackException;
+import java.util.Stack;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
- * Class creates menu
+ * Class that keeps track of general data of the project
+ * which has to be visible in many places
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
  */
 public class Game extends JFrame {
-    private Config config = new Config();
-    private ArrayList<View> views = new ArrayList<>();
-    private List<File> maps;
+    private final Config config = new Config();
+    private final Stack<View> views = new Stack<>();
+    private final View defaultView = new MainView(this);
 
+    /**
+     * Constructor for class Game.
+     * It configures main JFrame for the game
+     */
     public Game() {
         super("Pacman");
-
-        this.maps = config.getFiles("data/maps");
-
-        setVisible(true); //make window visible
-        setSize(config.getWidth(), config.getHeight()); //set window size
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //close behaviour for window
-        setResizable(false); //resizable
+        setVisible(true);                                 //make window visible
+        setSize(config.getWidth(), config.getHeight());     //set window size
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     //close behaviour for window
+        setResizable(false);                      //resizable
         setLayout(null);
-
-        ImageIcon ic = new ImageIcon("data/assets/sprites/icon.png"); //logo in window
-        setIconImage(ic.getImage());
+        setIconImage(new ImageIcon("data/assets/sprites/icon.png").getImage());
     }
 
-    public List<File> getMapFiles() {
-        return this.maps;
-    }
+    /**
+     * Launches main window with default page in it
+     * 
+     * @param defaultView default page that will be launched
+     */
+    public void launch() {
+        views.push(defaultView);
 
-    public void launch(View defaultView) {
-        defaultView.setGame(this);
-
-        views.add(defaultView);
-        add(defaultView);
+        add(getCurrentView());
 
         update();
     }
     
+    /**
+     * Interface updating method for better user interactions
+     */
     public void update(){
         repaint();
         revalidate();
     }
 
+    /**
+     * Returns latest active view
+     * 
+     * @return latest active view
+     */
     private View getCurrentView() {
-        return views.get(views.size() - 1);
+        try{
+            return views.peek();
+        } catch (EmptyStackException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     
+    /**
+     * Checks whether last view in a list is a default one
+     * 
+     * @return returns true if the first view is a default
+     */
     private boolean isEmpty() {
-        return getCurrentView() instanceof MainView;
+        return getCurrentView().getClass() == defaultView.getClass();
     }
-
+    
+    /**
+     * Swaps last you with a given one
+     * 
+     * @param view new view
+     */
     public void swapView(View view) {
-        View current = getCurrentView();
-
-        view.setGame(this);
-
-        views.remove(current);
-        views.add(view);
+        View current = views.pop();
+        views.push(view);
 
         current.cleanup();
         remove(current);
@@ -75,31 +96,33 @@ public class Game extends JFrame {
         update();
     }
 
+    /**
+     * Opens up new view (Adds it to the stack)
+     * 
+     * @param view new view
+     */
     public void pushView(View view) {
         View current = getCurrentView();
-        views.add(view);
-
-        view.setGame(this);
-
+        views.push(view);
         current.cleanup();
         remove(current);    
-        add(view);
+        add(getCurrentView());
 
         update();
     }
 
+    /**
+     * Pops last view if it's not default one
+     */
     public void popView() {
         if (isEmpty())
             return;
 
-        View current = getCurrentView();
-
-        views.remove(views.size() - 1);
+        View current = views.pop();
         current.cleanup();
         remove(current);
         add(getCurrentView());
 
         update();
     }
-
 }

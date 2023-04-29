@@ -4,52 +4,49 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.Timer;
 
-import common.GhostThread;
 import game.common.CommonField;
-import game.objects.GhostObject;
 import game.objects.Maze;
 import game.view.MazeView;
 import gui.Game;
 import gui.components.Label;
 
+/**
+ * This class represents playable view.
+ * 
+ * Here user can play the game itself. In this view
+ * you can see pacman, maze, ghosts, keys, finish and score.
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
+ */
 public class GameView extends View {
-    // private Label scoreText;
-    // private JPanel healthContainer;
+
+    /* PANELS */
+    private final MazeView mazePanel = new MazeView(maze, game);
+    private final JPanel center = new JPanel();
+    private final JPanel top = new JPanel(new BorderLayout());
+    private final JPanel bottom = new JPanel();
+    private final JPanel left = new JPanel();
+    private final JPanel right = new JPanel();
+    private final JPanel infoContainerTop = new JPanel(new GridLayout(1, 5));
+    private final JPanel topLeft = new JPanel();
+    private final JPanel topRight = new JPanel();
 
     public GameView(Maze maze, Game game) {
         super(game, maze);
 
-        this.maze.setPause(false);
-
-        container = new JPanel(new BorderLayout());
-
         setBackground(Color.BLACK);
 
-        System.out.println(game);
-        MazeView mazePanel = new MazeView(maze, game);
+        this.maze.setPause(false);
+
+        container.setLayout(new BorderLayout());
+
         mazePanel.setPreferredSize(new Dimension(550, 550));
-
-        JPanel center = new JPanel();
-        JPanel top = new JPanel(new BorderLayout());
-        JPanel bottom = new JPanel();
-        JPanel left = new JPanel();
-        JPanel right = new JPanel();
-
-        JPanel infoContainerTop = new JPanel(new GridLayout(1, 4));
-
-        JPanel topLeft = new JPanel();
-        JPanel topRight = new JPanel();
 
         top.setOpaque(false);
         topLeft.setOpaque(false);
@@ -59,15 +56,15 @@ public class GameView extends View {
         topLeft.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
         topRight.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
 
-        // scoreText = new Label("Score: 0");
 
-        Label scoreText = maze.getScoreText();
+        Label scoreText = maze.getMazeComponent().getScoreText();
         scoreText.setHorizontalAlignment(SwingConstants.CENTER);
 
         infoContainerTop.add(scoreText);
         infoContainerTop.add(new JLabel());
+        infoContainerTop.add(maze.getMazeComponent().getKeyContainer());
         infoContainerTop.add(new JLabel());
-        infoContainerTop.add(maze.getHealthContainer());
+        infoContainerTop.add(maze.getMazeComponent().getHealthContainer());
 
         top.add(topLeft, BorderLayout.WEST);
         top.add(topRight, BorderLayout.EAST);
@@ -91,43 +88,24 @@ public class GameView extends View {
 
         add(container, BorderLayout.CENTER);
     }
-    
-    // private void updateHealth() {
-    //     healthContainer.removeAll();
-    //     for (int i = 0; i < maze.getPacman().getLives(); i++) {
-    //         Image heartImage = new ImageIcon("data/assets/sprites/game/heart.png").getImage();
-    //         JLabel heart = new JLabel(new ImageIcon(heartImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
-    //         healthContainer.add(heart);
-    //     }
-    // }
-
-    // private void updateScore() {
-    //     scoreText.setText("Score: "+maze.getPacman().getScore());
-    // }
 
     @Override
     protected void KeyArrowLeft() {
-//        System.out.println("Move pacman left");
         maze.getPacman().move(CommonField.Direction.L);
     }
-        
-        
 
     @Override
     protected void KeyArrowUp() {
-//        System.out.println("Move pacman up");
         maze.getPacman().move(CommonField.Direction.U);
     }
 
     @Override
     protected void KeyArrowRight() {
-//        System.out.println("Move pacman right");
         maze.getPacman().move(CommonField.Direction.R);
     }
 
     @Override
     protected void KeyArrowDown() {
-//        System.out.println("Move pacman down");
         maze.getPacman().move(CommonField.Direction.D);
     }
 
@@ -144,8 +122,6 @@ public class GameView extends View {
 
     @Override
     protected void AnyKey() {
-        // updateHealth();
-        // updateScore();
     }
-    
+
 }

@@ -1,8 +1,13 @@
 package common;
 
 import game.common.CommonField;
-import game.objects.GhostObject;
 
+/**
+ * Class that creates new thread for a pacman (When A* algorithm is used).
+ * 
+ * @autor Kambulat Alakaev (xalaka00)
+ * @version %I%, %G%
+ */
 public class PacmanThread extends Thread {
     private CommonField targetField;
 

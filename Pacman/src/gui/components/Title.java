@@ -9,8 +9,15 @@ import javax.swing.border.EmptyBorder;
 
 import common.Config;
 
+/**
+ * This class is configured JLabel that is used
+ * as Title on each page.
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
+ */
 public class Title extends JLabel {
-    private static Config config = new Config();
+    private static final Config config = new Config();
 
     public Title(String text) {
         super(text);

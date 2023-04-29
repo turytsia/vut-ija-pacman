@@ -1,20 +1,22 @@
 package game.view;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-import game.common.CommonMazeObject;
 
+/**
+ * A class representing the graphic form of a key
+ * 
+ * @autor Turtysia Oleksandr (xturyt00)
+ * @version %I%, %G%
+ */
 public class KeyView implements ComponentView {
-    private CommonMazeObject obj;
     private FieldView field;
     private Image sprite;
 
-    public KeyView(FieldView field, CommonMazeObject obj) {
-        this.obj = obj;
+    public KeyView(FieldView field) {
         this.field = field;
         sprite = new ImageIcon("data/assets/sprites/game/key.png").getImage();
     }

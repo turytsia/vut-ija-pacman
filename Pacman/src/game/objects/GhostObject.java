@@ -1,23 +1,25 @@
 package game.objects;
 
 import game.common.CommonField;
-import game.common.CommonMazeObject;
+import game.common.CommonField.Direction;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.TimeZone;
 
 import common.Logger;
 
+/**
+ * Class representing ghost object
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @autor Kambulat Alakaev (xalaka00)
+ * @version %I%, %G%
+ */
 public class GhostObject extends MazeObject {
-    private Logger logger;
 
     public GhostObject(CommonField field) {
         super(field);
-
-        logger = new Logger(this);
     }
 
     @Override
@@ -25,47 +27,77 @@ public class GhostObject extends MazeObject {
         return field.nextField(dir) instanceof PathField;
     }
 
-    public void meetPacman(PathField field){
-        if (!field.objects.isEmpty()) {
-            for(CommonMazeObject obj : field.objects) {
-                if (obj instanceof PacmanObject){
-                    ((PacmanObject) obj).gotHit(field);
-                }
-            }
-        }
+    /**
+     * Checks if the field, where ghost is, contains
+     * pacman. If so, does damage to him.
+     * 
+     * @param field field that needs to be checked for pacman
+     */
+    public void meetPacman(PathField field) {
+
+        PacmanObject pacman = field.getMaze().getPacman();
+
+        if (!field.objects.contains(pacman))
+            return;
+
+        pacman.gotHit(field);
     }
 
-    public void startMoving() throws InterruptedException {
+    /**
+     * Ghost movement implementation
+     */
+    public void startMoving() {
         List<CommonField.Direction> directions = Arrays.asList(CommonField.Direction.R, CommonField.Direction.L,
                 CommonField.Direction.U, CommonField.Direction.D);
-        Random rand_ind = new Random();
-        CommonField.Direction dir;
+
+        Random random = new Random();
         PacmanObject pacman = this.field.getMaze().getPacman();
-        while(true) {
-            dir = directions.get(rand_ind.nextInt(directions.size()));
-            if (pacman.getFinished() || pacman.getLives() <= 0 || field.getMaze().getPause()) {
-                break;
+
+        try{
+            while (true) {
+                CommonField.Direction dir = directions.get(random.nextInt(directions.size()));
+
+                if (pacman.getFinished() || pacman.getLives() <= 0 || field.getMaze().getPause()) 
+                    break;
+                
+
+                if (!this.canMove(dir)) 
+                    continue;
+                
+
+                this.move(dir);
+
+                Thread.sleep(250);
             }
-
-            if (!this.canMove(dir)) {
-                continue;
-            }
-            PathField nextField = (PathField)this.field.nextField(dir);
-            this.field.unbindObj(this);
-
-            this.logger.log(dir); /////////////////////////////////////////////
-
-            this.meetPacman(nextField);
-
-            this.setField(nextField);
-            nextField.put(this);
-
-            this.field.getMaze().updateHealth();
-
-            this.field.notifyObservers();
+        } catch (InterruptedException e) {
             
-            Thread.sleep(250);
         }
+        
+    }
+
+    @Override
+    public boolean move(Direction dir) {
+        if (!this.canMove(dir)) {
+            return false;
+        }
+
+        Logger.log(dir, this);
+
+        PathField nextField = (PathField) this.field.nextField(dir);
+        
+        this.field.remove(this);
+
+        this.meetPacman(nextField);
+
+        this.setField(nextField);
+
+        nextField.put(this);
+        
+        this.field.getMaze().getMazeComponent().updateHealth();
+
+        this.field.notifyObservers();
+
+        return true;
     }
 
     @Override

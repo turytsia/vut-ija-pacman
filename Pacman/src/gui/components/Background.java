@@ -1,20 +1,22 @@
 package gui.components;
 
-import java.awt.Color;
-import java.awt.GradientPaint;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.RenderingHints;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import common.Config;
 
+/**
+ * This class is configured JLabel that is used
+ * as background with an image.
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
+ */
 public class Background extends JLabel {
 
-    private static Config config = new Config();
+    private final static Config config = new Config();
 
     private Background(Image background) {
         super(new ImageIcon(background));

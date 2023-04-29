@@ -6,6 +6,13 @@ import javax.swing.JLabel;
 
 import common.Config;
 
+/**
+ * This class is configured JLabel that is used
+ * as simple text in the game.
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
+ */
 public class Label extends JLabel {
     private static Config config = new Config();
 

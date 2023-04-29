@@ -5,34 +5,46 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-
-import game.MazeConfigure;
 import game.objects.Maze;
 import gui.Game;
 import gui.components.Button;
 import gui.components.Label;
 
+/**
+ * This class represents view when player wins the game
+ * 
+ * Here player can see his game results, name of the map.
+ * He can also toggle replay of this game right away or just exit the view.
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
+ */
 public class WinnerView extends View {
+    /* PANELS */
+    private final JPanel center = new JPanel(new GridLayout(10, 1));
+    private final JPanel leftMargin = new JPanel();
+    private final JPanel rightMargin = new JPanel();
+    private final JPanel buttonContainer = new JPanel(new GridLayout(1, 2, 10, 10));
+    private final JPanel footer = new JPanel();
+
+    /* BUTTONS */
+    private final Button buttonReplay = new Button("Watch replay");
+    private final Button buttonOkay = new Button("Okay");
+
+    private final List<File> replayFiles = config.getFiles("data/replays");
 
     public WinnerView(Game game, Maze maze) {
         super(game, maze, "CONGRATULATIONS!!!");
 
-        // maze.getPacman().getLogger().print_logs(maze.getMazeFile().getName());
-
         container.setLayout(new BorderLayout());
-
-        JPanel center = new JPanel(new GridLayout(10, 1));
         center.setOpaque(false);
-
-        JPanel leftMargin = new JPanel();
-        JPanel rightMargin = new JPanel();
+        
+        
 
         leftMargin.setPreferredSize(new Dimension(350, 10));
         rightMargin.setPreferredSize(new Dimension(350, 10));
@@ -45,7 +57,7 @@ public class WinnerView extends View {
         
 
         Label titleText = new Label("Winner, winner - chicken dinner!", 15);
-        Label scoreText = maze.getScoreText();
+        Label scoreText = maze.getMazeComponent().getScoreText();
         Label mapText = new Label("Map: "+maze.getMazeName());
 
         titleText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -62,20 +74,21 @@ public class WinnerView extends View {
         center.add(new JLabel());
         center.add(new JLabel());
 
-        JPanel buttonContainer = new JPanel(new GridLayout(1, 2, 10 , 10));
+        
         buttonContainer.setOpaque(false);
 
         center.add(buttonContainer);
 
-        JPanel footer = new JPanel();
+        
         footer.setPreferredSize(new Dimension(10, 100));
         footer.setOpaque(false);
-
+        
         container.add(center, BorderLayout.CENTER);
         container.add(footer, BorderLayout.SOUTH);
 
-        Button buttonReplay = new Button("Watch replay");
-        Button buttonOkay = new Button("Okay");
+        buttonReplay.addActionListener(e -> {
+            game.swapView(new GameViewer(game, replayFiles.get(replayFiles.size() - 1)));
+        });
 
         buttonOkay.addActionListener(e -> {
             KeyEscape();
@@ -116,7 +129,7 @@ public class WinnerView extends View {
     @Override
     protected void KeyEscape() {
         game.popView();
-        game.swapView(new StartGameView(game, game.getMapFiles().indexOf(maze.getMazeFile())));
+        game.swapView(new StartGameView(game, config.getMaps().indexOf(maze.getMazeFile())));
     }
 
     @Override

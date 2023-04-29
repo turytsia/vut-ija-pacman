@@ -8,18 +8,20 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Scanner;
 
+import common.Config;
 import game.objects.Maze;
 import gui.Game;
 
 public class Reviewer {
     private final List<String> instructions = new ArrayList<>();
+    private final Config config = new Config();
 
     private Maze maze;
 
     public Reviewer(Game game, File reviewFile) {
         try {
             Scanner scanner = new Scanner(reviewFile);
-            List<File> maps = game.getMapFiles();
+            List<File> maps = config.getMaps();
             String filename = scanner.nextLine();
             Optional<File> mapResult = maps.stream().filter(map -> map.getName().equals(filename)).findFirst();
 
@@ -29,10 +31,9 @@ public class Reviewer {
             }
 
 
-            MazeConfigure cfg = new MazeConfigure(mapResult.get());
+            MazeConfigure cfg = new MazeConfigure(mapResult.get(), true);
             this.maze = cfg.getMaze();
 
-            // scanner.forEachRemaining(instructions::add);
             while (scanner.hasNext())
                 instructions.add(scanner.nextLine());
                 

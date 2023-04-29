@@ -8,6 +8,12 @@ import game.common.CommonField;
 import game.objects.Maze;
 import gui.Game;
 
+/**
+ * A class representing the graphic form of a maze
+ * 
+ * @autor Turtysia Oleksandr (xturyt00)
+ * @version %I%, %G%
+ */
 public class MazeView extends JPanel {
     public MazeView(Maze maze, Game game) {
         setLayout(new GridLayout(maze.numRows(), maze.numCols()));

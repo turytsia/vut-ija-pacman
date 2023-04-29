@@ -4,38 +4,42 @@ import game.common.CommonField;
 import game.common.CommonField.Direction;
 import game.common.CommonMazeObject;
 
+/**
+ * Abstract class representing all maze objects (their general behaviour)
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @autor Kambulat Alakaev (xalaka00)
+ * @version %I%, %G%
+ */
 public abstract class MazeObject implements CommonMazeObject {
-    private static int ids;
+
     public CommonField field;
+
     private int id;
+    private int x;
+    private int y;
+
 
     public MazeObject(CommonField field) {
         this.field = field;
-        id = ids++;
-    }
-
-    @Override
-    public int getId() {
-        return id;
+        this.x = field.getX();
+        this.y = field.getY();
+        this.id = field.getMaze().nextId();
     }
 
     @Override
     public boolean canMove(Direction dir) {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'canMove'");
     }
 
-    public int getX(){ return ((Field)field).getX();}
-    public int getY(){ return ((Field)field).getY();}
+    @Override
+    public int getX() {
+        return this.x;
+    }
 
     @Override
-    public void unbindField(){
-        this.field = null;
-    }
-    @Override
-    public boolean move(Direction dir) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'move'");
+    public int getY() {
+        return this.y;
     }
 
     @Override
@@ -46,6 +50,11 @@ public abstract class MazeObject implements CommonMazeObject {
     @Override
     public void setField(CommonField field) {
         this.field = field;
+    }
+
+    @Override
+    public int getId() {
+        return this.id;
     }
     
 }

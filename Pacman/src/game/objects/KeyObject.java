@@ -1,7 +1,15 @@
 package game.objects;
 
 import game.common.CommonField;
+import game.common.CommonField.Direction;
 
+/**
+ * Class representing key object
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @autor Kambulat Alakaev (xalaka00)
+ * @version %I%, %G%
+ */
 public class KeyObject extends MazeObject {
 
     public KeyObject(CommonField field) {
@@ -17,5 +25,11 @@ public class KeyObject extends MazeObject {
     public int getLives() {
         throw new UnsupportedOperationException("Unimplemented method 'getLives'");
     }
+
+    @Override
+    public boolean move(Direction dir) {
+        throw new UnsupportedOperationException("Unimplemented method 'move'");
+    }
+    
     
 }

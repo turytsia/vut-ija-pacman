@@ -4,10 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
+import java.awt.Image;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Iterator;
+
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
@@ -24,37 +25,50 @@ import gui.Game;
 import gui.components.Button;
 import gui.components.Label;
 
+/**
+ * This class represents view where player can
+ * choose map from the list of all available maps
+ * in the game.
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
+ */
 public class StartGameView extends View {
-    // private final ArrayList<Button> buttons = new ArrayList<Button>();
-    // private List<File> maps;
-    private int mapIndex = 0;
-    // private int activeButton = 0;
-    private Maze maze;
+    /* PANELS */
+    private final JPanel mapContent = new JPanel();
+    private final JLabel mapBreadcrumbs = new JLabel();
+    private final JPanel buttonContainer = new JPanel(new GridLayout(1, 6, 5, 5));
+    private final JLabel leftBorder = new JLabel();
+    private final JLabel rightBorder = new JLabel();
+    private final JLabel bottomPanel = new JLabel();
+    private final JPanel map = new JPanel();
+    private final JPanel mapInfo = new JPanel(new GridLayout(3, 1));
+    private final JPanel mapInfoStats = new JPanel(new GridLayout(1, 5));
 
-    private JPanel mapContent = new JPanel();
-    private JLabel mapCounter = new JLabel();
+    /* BUTTONS */
+    private final Button buttonNext = new Button("Next");
+    private final Button buttonPrev = new Button("Previous");
+    private final Button buttonPlay = new Button("Play");
+
+    private int mapIndex = 0;
+    private Maze maze;
 
     public StartGameView(Game game, int mapIndex) {
         super(game, "Start game");
 
         this.mapIndex = mapIndex;
-        
+
         setBackground(Color.BLACK);
+
+        mapContent.setOpaque(false);
 
         container.setLayout(new BorderLayout(2, 2));
 
-        LayoutManager gridLayout = new GridLayout(1, 6, 5, 5);
-
-        JPanel buttonContainer = new JPanel(gridLayout);
         buttonContainer.setOpaque(false);
 
         Border buttonContainerBorder = getBorder();
         Border buttonContainerMargin = new EmptyBorder(0, 0, 40, 0);
         buttonContainer.setBorder(new CompoundBorder(buttonContainerBorder, buttonContainerMargin));
-
-        Button buttonNext = new Button("Next");
-        Button buttonPrev = new Button("Previous");
-        Button buttonPlay = new Button("Play");
 
         buttonNext.setPreferredSize(new Dimension(100, 50));
         buttonPrev.setPreferredSize(new Dimension(100, 50));
@@ -68,32 +82,26 @@ public class StartGameView extends View {
             buttonContainer.add(button);
         }
 
-        mapCounter.setText((mapIndex + 1) + "/" + game.getMapFiles().size());
-        mapCounter.setForeground(Color.WHITE);
-        mapCounter.setFont(config.getFont("emulogic.ttf", 10f));
+        mapBreadcrumbs.setText((mapIndex + 1) + "/" + config.getMaps().size());
+        mapBreadcrumbs.setForeground(Color.WHITE);
+        mapBreadcrumbs.setFont(config.getFont("emulogic.ttf", 10f));
 
         buttonContainer.add(new JLabel());
-        buttonContainer.add(mapCounter);
+        buttonContainer.add(mapBreadcrumbs);
         buttonContainer.add(new JLabel());
         buttonContainer.add(buttonPlay);
 
         selectButton(buttons.size() - 1);
 
-        JLabel leftBorder = new JLabel();
-        JLabel rightBorder = new JLabel();
-        JLabel bottomPanel = new JLabel();
-
         leftBorder.setPreferredSize(new Dimension(20, 20));
         rightBorder.setPreferredSize(new Dimension(20, 20));
 
-        updateMapContent(game.getMapFiles().get(mapIndex));
+        updateMapContent(config.getMaps().get(mapIndex));
 
         buttonPlay.addActionListener(e -> {
             game.pushView(new GameView(maze, game));
-            for (GhostObject ghost : maze.ghosts()) {
-                GhostThread thread = new GhostThread(ghost);
-                thread.start();
-            }
+            for (GhostObject ghost : maze.ghosts())
+                new GhostThread(ghost).start();
         });
 
         buttonNext.addActionListener(e -> {
@@ -106,6 +114,14 @@ public class StartGameView extends View {
             game.update();
         });
 
+        mapContent.setBackground(new Color(0, 0, 0, 0));
+        mapContent.setLayout(new GridLayout(1, 2, 10, 10));
+        map.setOpaque(false);
+        mapInfo.setOpaque(false);
+        mapInfoStats.setOpaque(false);
+
+        mapContent.setPreferredSize(new Dimension(config.getWidth(), 20));
+
         container.add(buttonContainer, BorderLayout.SOUTH);
         container.add(leftBorder, BorderLayout.WEST);
         container.add(rightBorder, BorderLayout.EAST);
@@ -113,42 +129,67 @@ public class StartGameView extends View {
         container.add(mapContent, BorderLayout.CENTER);
     }
 
+    /**
+     * Default constructor
+     * 
+     * @param game
+     */
     public StartGameView(Game game) {
         this(game, 0);
     }
 
+    /**
+     * Retrieves next map from the list of maps
+     */
     private void getNextMap() {
-        mapIndex = (mapIndex + 1) % game.getMapFiles().size();
-        updateMapContent(game.getMapFiles().get(mapIndex));
-    }
-    
-    private void getPrevMap() {
-        mapIndex = (mapIndex-- > 0 ? mapIndex : game.getMapFiles().size() - 1);
-        updateMapContent(game.getMapFiles().get(mapIndex));
+        mapIndex = (mapIndex + 1) % config.getMaps().size();
+        updateMapContent(config.getMaps().get(mapIndex));
     }
 
+    /**
+     * Retrieves previous map from the list of maps
+     */
+    private void getPrevMap() {
+        mapIndex = (mapIndex-- > 0 ? mapIndex : config.getMaps().size() - 1);
+        updateMapContent(config.getMaps().get(mapIndex));
+    }
+
+    /**
+     * Updates map content, its description, difficulty and other details
+     * relevant to the map.
+     * 
+     * @param mapFile
+     */
     private void updateMapContent(File mapFile) {
 
-        mapCounter.setText((mapIndex + 1) + "/" + game.getMapFiles().size());
-        
-        mapContent.removeAll();
-        mapContent.setOpaque(false);
-        mapContent.setBackground(new Color(0, 0, 0, 0));
-        mapContent.setLayout(new GridLayout(1, 2, 10, 10));
+        mapBreadcrumbs.setText((mapIndex + 1) + "/" + config.getMaps().size());
 
-        JPanel map = new JPanel();
-        map.setOpaque(false);
-
-        MazeConfigure mazeConfig = new MazeConfigure(mapFile);
+        MazeConfigure mazeConfig = new MazeConfigure(mapFile, false);
         maze = mazeConfig.getMaze();
         JPanel mazePanel = new MazeView(maze, game);
+        
+        mapInfoStats.removeAll();
 
-        JPanel mapInfo = new JPanel(new GridLayout(3, 1));
-        mapInfo.setOpaque(false);
-        JPanel mapInfoStats = new JPanel(new GridLayout(1, 2));
-        mapInfoStats.setOpaque(false);
-        mapInfoStats.add(new Label("Score: 0.00"));
-        mapInfoStats.add(new Label("Difficulty: 0"));
+        JPanel difficultyContainer = new JPanel(new GridLayout(1, 3));
+
+        difficultyContainer.setOpaque(false);
+
+        Iterator<GhostObject> ghostIterator = maze.ghosts().iterator();
+
+        while (ghostIterator.hasNext()) {
+            Image ghostImage = new ImageIcon("data/assets/sprites/game/ghost.png").getImage();
+            JLabel ghostLabel = new JLabel(new ImageIcon(ghostImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+            difficultyContainer.add(ghostLabel);
+            ghostIterator.next();
+        }
+        
+        mapInfoStats.add(new Label("Difficulty:"));
+        mapInfoStats.add(difficultyContainer);
+        mapInfoStats.add(new JLabel());
+        mapInfoStats.add(new JLabel());
+        mapInfoStats.add(new JLabel());
+
+        mapInfo.removeAll();
         mapInfo.add(mapInfoStats);
         String[] data = { "Pac-Man was exploring a new maze,",
                 "feeling confident and ready for anything.",
@@ -164,9 +205,11 @@ public class StartGameView extends View {
 
         mapInfo.add(story);
 
+        mapContent.removeAll();
+
         mapContent.add(mapInfo);
         mapContent.add(mazePanel);
-        mapContent.setPreferredSize(new Dimension(config.getWidth(), 20));
+        
     }
 
     @Override

@@ -2,6 +2,12 @@ package common;
 
 import game.objects.GhostObject;
 
+/**
+ * Class that creates another thread for the ghost.
+ * 
+ * @autor Kambulat Alakaev (xalaka00)
+ * @version %I%, %G%
+ */
 public class GhostThread extends Thread {
     private GhostObject ghost;
 
@@ -12,7 +18,7 @@ public class GhostThread extends Thread {
     public void run() {
         try {
             this.ghost.startMoving();
-        } catch (InterruptedException | IllegalArgumentException e) {
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
     }

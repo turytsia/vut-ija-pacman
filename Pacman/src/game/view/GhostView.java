@@ -1,24 +1,22 @@
 package game.view;
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Rectangle;
-import java.awt.geom.Ellipse2D;
 
 import javax.swing.ImageIcon;
 
-import game.common.CommonMazeObject;
 
+/**
+ * A class representing the graphic form of a ghost
+ * 
+ * @autor Turtysia Oleksandr (xturyt00)
+ * @version %I%, %G%
+ */
 public class GhostView implements ComponentView {
-    private CommonMazeObject obj;
     private FieldView field;
     private Image sprite;
 
-    public GhostView(FieldView field, CommonMazeObject obj) {
-        this.obj = obj;
+    public GhostView(FieldView field) {
         this.field = field;
         sprite = new ImageIcon("data/assets/sprites/game/ghost.png").getImage();
     }

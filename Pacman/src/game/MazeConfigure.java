@@ -8,16 +8,20 @@ import java.util.regex.Pattern;
 import exceptions.HeaderNotFoundException;
 import exceptions.InvalidRowException;
 import game.objects.Maze;
-import game.view.MazeView;
 
-
-
+/**
+ * A class that can build up a maze out of the file.
+ * It contains method in order to parse map file.
+ * 
+ * @autor Turtysia Oleksandr (xturyt00)
+ * @version %I%, %G%
+ */
 public class MazeConfigure {
     private int cols;
     private int rows;
     private Maze maze;
 
-    public MazeConfigure(File file) {
+    public MazeConfigure(File file, boolean isReview) {
         try {
             Scanner reader = new Scanner(file);
 
@@ -26,7 +30,7 @@ public class MazeConfigure {
                 throw new HeaderNotFoundException("Header is not valid");
             }
 
-            maze = new Maze(cols, rows, file);
+            maze = new Maze(cols, rows, file, isReview);
 
             while (reader.hasNextLine()) {
                 processLine(reader.nextLine());
@@ -38,10 +42,20 @@ public class MazeConfigure {
         }
     }
 
+    /**
+     * Returns resulting maze
+     * 
+     * @return maze
+     */
     public Maze getMaze(){
         return this.maze;
     }
 
+    /**
+     * Process one of the lines in maze file
+     * 
+     * @param line line from the maze file
+     */
     private void processLine(String line) {
         try {
             if (line.length() != cols)
@@ -54,6 +68,12 @@ public class MazeConfigure {
 
     }
     
+    /**
+     * Processes very first line of the maze file
+     * 
+     * @param line very first line of the maze file
+     * @return true if it parsed well, otherwise false
+     */
     private boolean processHeader(String line) {
         Pattern headerPattern = Pattern.compile("^\\d.*\\d$");
 

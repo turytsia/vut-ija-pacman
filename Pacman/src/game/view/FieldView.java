@@ -6,12 +6,10 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
-import common.AStar;
 import common.PacmanThread;
 import game.common.CommonField;
 import game.common.CommonMazeObject;
 import game.common.Observable;
-import game.objects.Field;
 import game.objects.FinishObject;
 import game.objects.GhostObject;
 import game.objects.KeyObject;
@@ -26,6 +24,13 @@ import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * A class representing the graphical form of a field. Implements
+ * Observable.Observer, can be notified of a field's state change.
+ * 
+ * @autor Turtysia Oleksandr (xturyt00)
+ * @version %I%, %G%
+ */
 public class FieldView extends JPanel implements Observable.Observer {
     private final List<ComponentView> objects = new ArrayList<>();
     private CommonField field;
@@ -34,7 +39,7 @@ public class FieldView extends JPanel implements Observable.Observer {
     public FieldView(CommonField field, Game game) {
         this.field = field;
         this.game = game;
-        
+
         this.field.addObserver(this);
         setOpaque(false);
 
@@ -60,19 +65,22 @@ public class FieldView extends JPanel implements Observable.Observer {
         });
     }
 
+    /**
+     * Updates specific object that was changed
+     */
     private void updateView() {
         objects.clear();
         for(CommonMazeObject obj: field.get()){
             if (obj.isPacman()) {
                 this.objects.add(new PacmanView(this, obj));
             } else if (obj instanceof GhostObject) {
-                this.objects.add(new GhostView(this, obj));
+                this.objects.add(new GhostView(this));
             } else if (obj instanceof KeyObject) {
-                this.objects.add(new KeyView(this, obj));
+                this.objects.add(new KeyView(this));
             } else if (obj instanceof FinishObject) {
-                this.objects.add(new FinishView(this, obj));
+                this.objects.add(new FinishView(this));
             } else if (obj instanceof PointObject) {
-                this.objects.add(new PointView(this, obj));
+                this.objects.add(new PointView(this));
             } else {
                 System.out.println("Something is wrong...");
             }

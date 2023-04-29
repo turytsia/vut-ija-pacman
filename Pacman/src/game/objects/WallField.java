@@ -3,6 +3,13 @@ package game.objects;
 import game.common.CommonField;
 import game.common.CommonMazeObject;
 
+/**
+ * Class representing wall in maze.
+ * 
+ * @autor Turtysia Oleksandr (xturyt00)
+ * @autor Kambulat Alakaev (xalaka00)
+ * @version %I%, %G%
+ */
 public class WallField extends Field {
 
     public WallField(Maze maze, int x, int y) {

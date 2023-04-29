@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import game.MazeConfigure;
+import common.ReviewThread;
 import game.Reviewer;
 import game.objects.Maze;
 import game.view.MazeView;
@@ -19,28 +19,55 @@ import gui.Game;
 import gui.components.Button;
 import gui.components.Label;
 
+/**
+ * The class that represents view to watch player's
+ * game.
+ * 
+ * Here player can review his last games using buttons to
+ * forward or roll back the frames.
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
+ */
 public class GameViewer extends View {
-    private Maze maze;
+    /* PANELS */
+    private final JPanel footerContainer = new JPanel(new GridLayout(1, 5));
+    private final JPanel top = new JPanel(new BorderLayout());
+    private final JPanel infoContainerTop = new JPanel(new GridLayout(1, 4));
+    private final JPanel topLeft = new JPanel();
+    private final JPanel topRight = new JPanel();
 
-    private int instructionCounter;
-    private final Label instructionCounterLabel = new Label("");
+    /* BUTTONS */
+    private final Button prevInstruction = new Button("Prev");
+    private final Button nextInstruction = new Button("Next");
+    private final Button smoothMode = new Button("Smooth stepping");
+    private final Button gradualMode = new Button("Gradual stepping");
+
+    private Maze maze;
+    private ReviewThread reviewerThread;
 
     public GameViewer(Game game, File file) {
         super(game);
 
         setBackground(Color.BLACK);
         
-        JPanel footerContainer = new JPanel(new GridLayout(1, 5));
         footerContainer.setOpaque(false);
-        footerContainer.setBorder(BorderFactory.createEmptyBorder(0,0,40,0));
+        footerContainer.setBorder(BorderFactory.createEmptyBorder(0, 0, 40, 0));
+        
+        top.setOpaque(false);
+        topLeft.setOpaque(false);
+        topRight.setOpaque(false);
+        infoContainerTop.setOpaque(false);
 
-        Button prevInstruction = new Button("Prev");
-        Button nextInstruction = new Button("Next");
-        Button smothMode = new Button("Smooth stepping");
-        Button gradualMode = new Button("Gradual stepping");
+        topLeft.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
+        topRight.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
 
         Reviewer reviewer = new Reviewer(game, file);
         maze = reviewer.getMaze();
+
+        reviewerThread = new ReviewThread(maze, file);
+
+        reviewerThread.start();
 
         MazeView mazeView = new MazeView(maze, game);
 
@@ -49,21 +76,49 @@ public class GameViewer extends View {
 
         prevInstruction.setPreferredSize(new Dimension(100, 50));
 
+        prevInstruction.addActionListener(e -> {
+            reviewerThread.prev();
+        });
+
+        nextInstruction.addActionListener(e -> {
+            reviewerThread.next();
+        });
+
+        smoothMode.addActionListener(e -> {
+            reviewerThread.setSmoothStepping();
+        });
+
+        gradualMode.addActionListener(e -> {
+            reviewerThread.setGradualStepping();
+        });
+
+        Label scoreText = maze.getMazeComponent().getScoreText();
+        scoreText.setHorizontalAlignment(SwingConstants.CENTER);
+
+        infoContainerTop.add(scoreText);
+        infoContainerTop.add(new JLabel());
+        infoContainerTop.add(new JLabel());
+        infoContainerTop.add(maze.getMazeComponent().getHealthContainer());
+
+        top.add(topLeft, BorderLayout.WEST);
+        top.add(topRight, BorderLayout.EAST);
+        top.add(infoContainerTop, BorderLayout.CENTER);
+
         buttons.add(prevInstruction);
         buttons.add(nextInstruction);
-        buttons.add(smothMode);
+        buttons.add(smoothMode);
         buttons.add(gradualMode);
 
-        instructionCounterLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        instructionCounterLabel.setText((instructionCounter + 1) + "/" + reviewer.getInstructions().size());
 
         footerContainer.add(prevInstruction);
         footerContainer.add(nextInstruction);
-        footerContainer.add(instructionCounterLabel);
-        footerContainer.add(smothMode);
+        footerContainer.add(reviewerThread.getIndexLabel());
+        footerContainer.add(smoothMode);
         footerContainer.add(gradualMode);
 
         selectButton(activeButton);
+
+        add(top, BorderLayout.NORTH);
 
         add(footerContainer, BorderLayout.SOUTH);
 
@@ -77,7 +132,6 @@ public class GameViewer extends View {
 
     @Override
     protected void KeyArrowUp() {
-        // TODO Auto-generated method stub
     }
 
     @Override
@@ -88,22 +142,21 @@ public class GameViewer extends View {
 
     @Override
     protected void KeyArrowDown() {
-        // TODO Auto-generated method stu
     }
 
     @Override
     protected void KeyEscape() {
+        reviewerThread.interrupt();
         game.popView();
     }
 
     @Override
     protected void KeyEnter() {
-        // TODO Auto-generated method stub
+        buttons.get(activeButton).doClick();
     }
 
     @Override
     protected void AnyKey() {
-        // TODO Auto-generated method stub
     }
     
 }

@@ -4,91 +4,69 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.LayoutManager;
+
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 import gui.Game;
 import gui.components.Button;
 import gui.components.Label;
 
+/**
+ * This class represents view that lists
+ * all the player's recent games.
+ * 
+ * In this view user can choose his last game and rewatch it as a video.
+ * He is provided with various handlers and modes in order
+ * to control entire flow of his game.
+ * 
+ * @autor Oleksandr Turytsia (xturyt00)
+ * @version %I%, %G%
+ */
 public class LoadGameView extends View {
 
-    private int pageIndex;
-    private JPanel asidePanel = new JPanel();
+    private final JPanel listFooter = new JPanel();
+    private final List<File> replayFiles = config.getFiles("data/replays");
 
-    JPanel gameList;
+    private final JPanel gameList = new JPanel(new GridLayout(8, 1));
 
     public LoadGameView(Game game) {
         super(game, "Load game");
 
         setBackground(Color.BLACK);
 
-        JPanel listFooter = new JPanel();
-        gameList = new JPanel(new GridLayout(8, 1));
-
         gameList.setOpaque(false);
         listFooter.setOpaque(false);
 
         container.add(gameList);
-        add(listFooter, BorderLayout.SOUTH);
 
-        List<File> files = config.getFiles("data/replays");
+        for (File file : replayFiles) {
 
-        //meta data
-        // asidePanel.setPreferredSize(new Dimension(config.getWidth() / 4, container.getHeight()));
+            Button fileInfoButton = new Button(file.getName());
 
-        // add(asidePanel, BorderLayout.EAST);
+            fileInfoButton.setLayout(new BorderLayout(10, 10));
+            fileInfoButton.setPreferredSize(new Dimension(400, 50));
+            fileInfoButton.setOpaque(false);
 
-        try {
+            fileInfoButton.addActionListener(e -> {
+                game.pushView(new GameViewer(game, file));
+            });
 
-            for (File file : files) {
-
-                BasicFileAttributes attr = Files.readAttributes(Path.of(file.getPath()), BasicFileAttributes.class);
-
-                Button fileInfoButton = new Button(file.getName());
-                Label dateText = new Label(attr.creationTime().toString());
-                Label scoreText = new Label("Score: 0");
-                Label isWinnerText = new Label("Winner: No");
-                
-            
-                fileInfoButton.setLayout(new BorderLayout(10, 10));
-                fileInfoButton.setPreferredSize(new Dimension( 200, 50));
-                fileInfoButton.setOpaque(false);
-
-
-                fileInfoButton.addActionListener(e -> {
-                    game.pushView(new GameViewer(game, file));
-                });
-
-
-
-                // scoreText.setPreferredSize(new Dimension(20, 20));
-
-
-                // fileInfoButton.add(new Label("Map01.txt"), BorderLayout.NORTH);
-                // fileInfoButton.add(dateText, BorderLayout.WEST);
-                // fileInfoButton.add(scoreText, BorderLayout.CENTER);
-                // fileInfoButton.add(isWinnerText, BorderLayout.EAST);
-
-                gameList.add(fileInfoButton);
-                buttons.add(fileInfoButton);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+            gameList.add(fileInfoButton);
+            buttons.add(fileInfoButton);
         }
 
-        selectButton(activeButton);
+        if (replayFiles.size() == 0) {
+            gameList.add(new Label("List of your games is empty for now..."));
+        }
+
+        add(listFooter, BorderLayout.SOUTH);
+
+        if (buttons.size() > 0) {
+            selectButton(activeButton);
+        }
 
     }
 
