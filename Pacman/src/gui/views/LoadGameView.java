@@ -28,7 +28,7 @@ import gui.components.Label;
 public class LoadGameView extends View {
 
     private final JPanel listFooter = new JPanel();
-    private final List<File> replayFiles = config.getFiles("data/replays");
+    private final List<File> replayFiles = config.getFiles("lib/replays");
 
     private final JPanel gameList = new JPanel(new GridLayout(8, 1));
 

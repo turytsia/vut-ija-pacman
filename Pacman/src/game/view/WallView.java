@@ -19,9 +19,9 @@ public class WallView extends JPanel {
     public WallView() {
         setOpaque(false);
         setPreferredSize(new Dimension(20, 20));
-        sprite = new ImageIcon("data/assets/sprites/game/wall.png").getImage();
+        sprite = new ImageIcon("lib/assets/sprites/game/wall.png").getImage();
     }
-    
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -36,15 +36,13 @@ public class WinnerView extends View {
     private final Button buttonReplay = new Button("Watch replay");
     private final Button buttonOkay = new Button("Okay");
 
-    private final List<File> replayFiles = config.getFiles("data/replays");
+    private final List<File> replayFiles = config.getFiles("lib/replays");
 
     public WinnerView(Game game, Maze maze) {
         super(game, maze, "CONGRATULATIONS!!!");
 
         container.setLayout(new BorderLayout());
         center.setOpaque(false);
-        
-        
 
         leftMargin.setPreferredSize(new Dimension(350, 10));
         rightMargin.setPreferredSize(new Dimension(350, 10));
@@ -54,11 +52,10 @@ public class WinnerView extends View {
 
         container.add(leftMargin, BorderLayout.WEST);
         container.add(rightMargin, BorderLayout.EAST);
-        
 
         Label titleText = new Label("Winner, winner - chicken dinner!", 15);
         Label scoreText = maze.getMazeComponent().getScoreText();
-        Label mapText = new Label("Map: "+maze.getMazeName());
+        Label mapText = new Label("Map: " + maze.getMazeName());
 
         titleText.setHorizontalAlignment(SwingConstants.CENTER);
         scoreText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -74,15 +71,13 @@ public class WinnerView extends View {
         center.add(new JLabel());
         center.add(new JLabel());
 
-        
         buttonContainer.setOpaque(false);
 
         center.add(buttonContainer);
 
-        
         footer.setPreferredSize(new Dimension(10, 100));
         footer.setOpaque(false);
-        
+
         container.add(center, BorderLayout.CENTER);
         container.add(footer, BorderLayout.SOUTH);
 
@@ -140,5 +135,5 @@ public class WinnerView extends View {
     @Override
     protected void AnyKey() {
     }
-    
+
 }

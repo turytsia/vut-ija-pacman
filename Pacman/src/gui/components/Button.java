@@ -40,7 +40,7 @@ public class Button extends JButton {
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                if (!hasSelect) {
+                if (!hasSelect && !isActive) {
                     setBorderPainted(true);
                     setBorder(BorderFactory.createDashedBorder(Color.WHITE, 5, 5));
                 }
@@ -48,7 +48,7 @@ public class Button extends JButton {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                if (!hasSelect) {
+                if (!hasSelect && !isActive) {
                     setBorderPainted(true);
                     setBorder(null);
                 }

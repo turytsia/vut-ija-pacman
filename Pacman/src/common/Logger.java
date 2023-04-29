@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
 /**
  * Class that implements logger in the game.
  * 
@@ -50,7 +49,7 @@ public class Logger {
             }
         }
     }
-    
+
     /**
      * When logging is done, this function takes all the logs and
      * puts them into a new file
@@ -69,7 +68,7 @@ public class Logger {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("-yyyy-MM-dd-HH-mm-ss-");
         String formattedDateTime = now.format(formatter);
 
-        File file = new File("data/replays/replay" + formattedDateTime + this.maze.getMazeFile().getName());
+        File file = new File("lib/replays/replay" + formattedDateTime + this.maze.getMazeFile().getName());
         try {
             FileWriter fileWriter = new FileWriter(file);
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);

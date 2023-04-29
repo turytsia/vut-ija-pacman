@@ -18,7 +18,7 @@ public class PointView implements ComponentView {
 
     public PointView(FieldView field) {
         this.field = field;
-        sprite = new ImageIcon("data/assets/sprites/game/points.png").getImage();
+        sprite = new ImageIcon("lib/assets/sprites/game/points.png").getImage();
         field.setPreferredSize(new Dimension(20, 20));
     }
 

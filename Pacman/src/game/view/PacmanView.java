@@ -23,7 +23,7 @@ public class PacmanView implements ComponentView {
     public PacmanView(FieldView field, CommonMazeObject obj) {
         this.obj = obj;
         this.field = field;
-        this.sprite = new ImageIcon("data/assets/sprites/game/pacman-right.png").getImage();
+        this.sprite = new ImageIcon("lib/assets/sprites/game/pacman-right.png").getImage();
     }
 
     @Override
@@ -32,20 +32,20 @@ public class PacmanView implements ComponentView {
 
         g.drawImage(sprite, 0, 0, field.getWidth(), field.getHeight(), field);
     }
-    
+
     private Image getPacmanImage(CommonField.Direction dir) {
         if (dir == null)
             return sprite;
 
         switch (dir) {
             case U:
-                return new ImageIcon("data/assets/sprites/game/pacman-up.png").getImage();
+                return new ImageIcon("lib/assets/sprites/game/pacman-up.png").getImage();
             case L:
-                return new ImageIcon("data/assets/sprites/game/pacman-left.png").getImage();
+                return new ImageIcon("lib/assets/sprites/game/pacman-left.png").getImage();
             case R:
-                return new ImageIcon("data/assets/sprites/game/pacman-right.png").getImage();
+                return new ImageIcon("lib/assets/sprites/game/pacman-right.png").getImage();
             case D:
-                return new ImageIcon("data/assets/sprites/game/pacman-down.png").getImage();
+                return new ImageIcon("lib/assets/sprites/game/pacman-down.png").getImage();
         }
 
         return sprite;

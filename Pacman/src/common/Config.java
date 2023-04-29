@@ -21,7 +21,7 @@ import java.util.stream.Stream;
  * @version %I%, %G%
  */
 public class Config {
-    private int width;  // horizontal resolution (px)
+    private int width; // horizontal resolution (px)
     private int height; // vertical resolution (px)
 
     /**
@@ -62,7 +62,7 @@ public class Config {
     }
 
     /**
-     * Imports font, that are pre-installed for the project 
+     * Imports font, that are pre-installed for the project
      * 
      * @param font font's name
      * @param size font's size
@@ -70,7 +70,7 @@ public class Config {
      */
     public Font getFont(String font, float size) {
         try {
-            return Font.createFont(Font.TRUETYPE_FONT, new File("data/assets/fonts/" + font)).deriveFont(size);
+            return Font.createFont(Font.TRUETYPE_FONT, new File("lib/assets/fonts/" + font)).deriveFont(size);
         } catch (IOException | FontFormatException e) {
             e.printStackTrace();
             return null;
@@ -93,13 +93,13 @@ public class Config {
             return null;
         }
     }
-    
+
     /**
      * Returns all map files that exist in the game
      * 
      * @return list of files
      */
     public List<File> getMaps() {
-        return getFiles("data/maps");
+        return getFiles("lib/maps");
     }
 }

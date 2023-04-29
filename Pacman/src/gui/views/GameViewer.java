@@ -121,7 +121,7 @@ public class GameViewer extends View {
         footerContainer.add(smoothMode);
         footerContainer.add(gradualMode);
 
-        selectButton(activeButton);
+        selectButton(buttons.indexOf(nextInstruction));
 
         add(top, BorderLayout.NORTH);
 

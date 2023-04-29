@@ -45,7 +45,6 @@ public class Maze implements CommonMaze {
 
     private File mazeFile;
 
-
     public Maze(int cols, int rows, File mazeFile) {
         this.cols = cols;
         this.rows = rows;
@@ -66,7 +65,7 @@ public class Maze implements CommonMaze {
     public boolean getReview() {
         return this.isReview;
     }
-    
+
     /**
      * Returns pause state. In pause state player unable to control anything
      * 
@@ -302,7 +301,7 @@ public class Maze implements CommonMaze {
      * takes instruction string in, parses and interprets it.
      * 
      * @param instruction given instruction
-     * @param isInverted applies 'backward' instruction if true
+     * @param isInverted  applies 'backward' instruction if true
      */
     public void processInstruction(String instruction, boolean isInverted) {
         Pattern pattern = Pattern.compile("^(HIT|(GHOST|PACMAN)(\\d*)?\\s(R|U|L|D))$");
@@ -344,10 +343,11 @@ public class Maze implements CommonMaze {
         }
 
     }
-    
+
     /**
      * Nested class that works specifically with GUI.
-     * It creates special Labels and panels that are being updated right away and can
+     * It creates special Labels and panels that are being updated right away and
+     * can
      * be used at user interface.
      * 
      * @autor Oleksandr Turytsia (xturyt00)
@@ -379,8 +379,8 @@ public class Maze implements CommonMaze {
             if (pacman.getKey() == null) {
                 keyContainer.setIcon(null);
             } else {
-                Image icon = new ImageIcon("data/assets/sprites/game/key.png").getImage();
-                keyContainer.setIcon(new ImageIcon(icon.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));  
+                Image icon = new ImageIcon("lib/assets/sprites/game/key.png").getImage();
+                keyContainer.setIcon(new ImageIcon(icon.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
             }
         }
 
@@ -388,7 +388,7 @@ public class Maze implements CommonMaze {
          * Updates health container
          */
         public void updateHealth() {
-            Image heartImage = new ImageIcon("data/assets/sprites/game/heart.png").getImage();
+            Image heartImage = new ImageIcon("lib/assets/sprites/game/heart.png").getImage();
             JLabel heart = new JLabel(new ImageIcon(heartImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
 
             for (int i = healthContainer.getComponentCount(); i > getPacman().getLives() && i > 0; i--) {
@@ -405,7 +405,7 @@ public class Maze implements CommonMaze {
          */
         private void createHealthContainer() {
             for (int i = 0; i < getPacman().getLives(); i++) {
-                Image heartImage = new ImageIcon("data/assets/sprites/game/heart.png").getImage();
+                Image heartImage = new ImageIcon("lib/assets/sprites/game/heart.png").getImage();
                 JLabel heart = new JLabel(new ImageIcon(heartImage.getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
                 healthContainer.add(heart);
             }

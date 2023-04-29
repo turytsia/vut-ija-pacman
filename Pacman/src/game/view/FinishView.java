@@ -17,7 +17,7 @@ public class FinishView implements ComponentView {
 
     public FinishView(FieldView field) {
         this.field = field;
-        sprite = new ImageIcon("data/assets/sprites/game/finish.png").getImage();
+        sprite = new ImageIcon("lib/assets/sprites/game/finish.png").getImage();
     }
 
     @Override

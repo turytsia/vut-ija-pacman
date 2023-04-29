@@ -28,12 +28,12 @@ public class Game extends JFrame {
      */
     public Game() {
         super("Pacman");
-        setVisible(true);                                 //make window visible
-        setSize(config.getWidth(), config.getHeight());     //set window size
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);     //close behaviour for window
-        setResizable(false);                      //resizable
+        setVisible(true); // make window visible
+        setSize(config.getWidth(), config.getHeight()); // set window size
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close behaviour for window
+        setResizable(false); // resizable
         setLayout(null);
-        setIconImage(new ImageIcon("data/assets/sprites/icon.png").getImage());
+        setIconImage(new ImageIcon("lib/assets/sprites/icon.png").getImage());
     }
 
     /**
@@ -48,11 +48,11 @@ public class Game extends JFrame {
 
         update();
     }
-    
+
     /**
      * Interface updating method for better user interactions
      */
-    public void update(){
+    public void update() {
         repaint();
         revalidate();
     }
@@ -63,14 +63,14 @@ public class Game extends JFrame {
      * @return latest active view
      */
     private View getCurrentView() {
-        try{
+        try {
             return views.peek();
         } catch (EmptyStackException e) {
             e.printStackTrace();
             return null;
         }
     }
-    
+
     /**
      * Checks whether last view in a list is a default one
      * 
@@ -79,7 +79,7 @@ public class Game extends JFrame {
     private boolean isEmpty() {
         return getCurrentView().getClass() == defaultView.getClass();
     }
-    
+
     /**
      * Swaps last you with a given one
      * 
@@ -105,7 +105,7 @@ public class Game extends JFrame {
         View current = getCurrentView();
         views.push(view);
         current.cleanup();
-        remove(current);    
+        remove(current);
         add(getCurrentView());
 
         update();

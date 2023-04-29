@@ -167,7 +167,7 @@ public class StartGameView extends View {
         MazeConfigure mazeConfig = new MazeConfigure(mapFile, false);
         maze = mazeConfig.getMaze();
         JPanel mazePanel = new MazeView(maze, game);
-        
+
         mapInfoStats.removeAll();
 
         JPanel difficultyContainer = new JPanel(new GridLayout(1, 3));
@@ -177,12 +177,12 @@ public class StartGameView extends View {
         Iterator<GhostObject> ghostIterator = maze.ghosts().iterator();
 
         while (ghostIterator.hasNext()) {
-            Image ghostImage = new ImageIcon("data/assets/sprites/game/ghost.png").getImage();
+            Image ghostImage = new ImageIcon("lib/assets/sprites/game/ghost.png").getImage();
             JLabel ghostLabel = new JLabel(new ImageIcon(ghostImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
             difficultyContainer.add(ghostLabel);
             ghostIterator.next();
         }
-        
+
         mapInfoStats.add(new Label("Difficulty:"));
         mapInfoStats.add(difficultyContainer);
         mapInfoStats.add(new JLabel());
@@ -209,7 +209,7 @@ public class StartGameView extends View {
 
         mapContent.add(mapInfo);
         mapContent.add(mazePanel);
-        
+
     }
 
     @Override

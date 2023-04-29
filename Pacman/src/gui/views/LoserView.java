@@ -38,11 +38,11 @@ public class LoserView extends View {
     private final Button buttonReplay = new Button("Watch replay");
     private final Button buttonOkay = new Button("Okay");
 
-    private final List<File> replayFiles = config.getFiles("data/replays");
+    private final List<File> replayFiles = config.getFiles("lib/replays");
 
     public LoserView(Game game, Maze maze) {
         super(game, maze, "YOU LOSE!!!");
-        
+
         setBackground(Color.BLACK);
 
         container.setLayout(new BorderLayout());
@@ -56,11 +56,10 @@ public class LoserView extends View {
 
         container.add(leftMargin, BorderLayout.WEST);
         container.add(rightMargin, BorderLayout.EAST);
-        
 
         Label titleText = new Label("Next time you got it!", 15);
         Label scoreText = maze.getMazeComponent().getScoreText();
-        Label mapText = new Label("Map: "+maze.getMazeName());
+        Label mapText = new Label("Map: " + maze.getMazeName());
 
         titleText.setHorizontalAlignment(SwingConstants.CENTER);
         scoreText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -75,11 +74,11 @@ public class LoserView extends View {
         center.add(new JLabel());
         center.add(new JLabel());
         center.add(new JLabel());
-        
+
         buttonContainer.setOpaque(false);
 
         center.add(buttonContainer);
-        
+
         footer.setPreferredSize(new Dimension(10, 100));
         footer.setOpaque(false);
 

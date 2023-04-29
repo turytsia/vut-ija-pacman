@@ -5,7 +5,6 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-
 /**
  * A class representing the graphic form of a ghost
  * 
@@ -18,7 +17,7 @@ public class GhostView implements ComponentView {
 
     public GhostView(FieldView field) {
         this.field = field;
-        sprite = new ImageIcon("data/assets/sprites/game/ghost.png").getImage();
+        sprite = new ImageIcon("lib/assets/sprites/game/ghost.png").getImage();
     }
 
     @Override

@@ -5,7 +5,6 @@ import java.awt.Image;
 
 import javax.swing.ImageIcon;
 
-
 /**
  * A class representing the graphic form of a key
  * 
@@ -18,7 +17,7 @@ public class KeyView implements ComponentView {
 
     public KeyView(FieldView field) {
         this.field = field;
-        sprite = new ImageIcon("data/assets/sprites/game/key.png").getImage();
+        sprite = new ImageIcon("lib/assets/sprites/game/key.png").getImage();
     }
 
     @Override
