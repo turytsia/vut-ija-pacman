@@ -8,8 +8,8 @@ import java.util.Set;
  * allows inserting and canceling observers and notifying registered observers
  * about changes.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public abstract class AbstractObservableField implements CommonField {

@@ -30,7 +30,7 @@ import gui.components.Label;
  * choose map from the list of all available maps
  * in the game.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class StartGameView extends View {

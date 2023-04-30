@@ -17,7 +17,7 @@ import java.util.stream.Stream;
  * 
  * It can also import fonts and files.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class Config {

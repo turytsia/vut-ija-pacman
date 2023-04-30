@@ -5,7 +5,7 @@ import java.awt.Graphics;
 /**
  * Object interfaces that can be nested under FieldView.
  * 
- * @autor Turtysia Oleksandr (xturyt00)
+ * @author Turtysia Oleksandr (xturyt00)
  * @version %I%, %G%
  */
 public interface ComponentView {

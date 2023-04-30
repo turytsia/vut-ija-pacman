@@ -23,7 +23,7 @@ import gui.components.Label;
  * Here user can observe his results of the game, exit
  * back or watch replay of this game.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class LoserView extends View {

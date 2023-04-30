@@ -7,8 +7,8 @@ import game.common.CommonMazeObject;
  * Class representing field that can be used as a container for
  * maze objects. It represents path in maze.
  * 
- * @autor Turtysia Oleksandr (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Turtysia Oleksandr (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class PathField extends Field {
@@ -51,5 +51,5 @@ public class PathField extends Field {
     public void put(CommonMazeObject obj) {
         objects.add(obj);
     }
-    
+
 }

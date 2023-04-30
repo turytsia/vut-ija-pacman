@@ -4,7 +4,6 @@ import game.objects.GhostObject;
 
 import java.util.List;
 
-
 /**
  * An interface representing a game (maze) that works with CommonMazeObject and
  * CommonField fields. Fields are placed in a grid whose dimensions are fixed.
@@ -12,8 +11,8 @@ import java.util.List;
  * corresponding class is instantiated. The creation of the game (instance) is
  * controlled through an object of the MazeConfigure class,
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public interface CommonMaze {

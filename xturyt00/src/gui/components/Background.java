@@ -11,7 +11,7 @@ import common.Config;
  * This class is configured JLabel that is used
  * as background with an image.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class Background extends JLabel {

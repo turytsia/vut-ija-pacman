@@ -7,8 +7,8 @@ package game.common;
  * the specified direction (Field.Direction) and by one step (one field) at a
  * time.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public interface CommonMazeObject {
@@ -48,7 +48,7 @@ public interface CommonMazeObject {
      * @return true if the object is a pacman
      */
     public boolean isPacman();
-    
+
     /**
      * Returns the object's current health count.
      * 

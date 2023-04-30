@@ -4,8 +4,8 @@ package game.common;
  * Observable interface representing objects that can notify dependent objects
  * (observers) of changes. MazeObjects can be inserted.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public interface Observable {

@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 /**
  * A class representing the graphic form of a wall
  * 
- * @autor Turtysia Oleksandr (xturyt00)
+ * @author Turtysia Oleksandr (xturyt00)
  * @version %I%, %G%
  */
 public class WallView extends JPanel {

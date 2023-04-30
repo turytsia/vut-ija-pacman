@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  * Class that keeps track of general data of the project
  * which has to be visible in many places
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class Game extends JFrame {

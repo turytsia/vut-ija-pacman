@@ -26,7 +26,7 @@ import gui.components.Label;
  * Here player can review his last games using buttons to
  * forward or roll back the frames.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class GameViewer extends View {
@@ -50,10 +50,10 @@ public class GameViewer extends View {
         super(game);
 
         setBackground(Color.BLACK);
-        
+
         footerContainer.setOpaque(false);
         footerContainer.setBorder(BorderFactory.createEmptyBorder(0, 0, 40, 0));
-        
+
         top.setOpaque(false);
         topLeft.setOpaque(false);
         topRight.setOpaque(false);
@@ -114,7 +114,6 @@ public class GameViewer extends View {
         buttons.add(smoothMode);
         buttons.add(gradualMode);
 
-
         footerContainer.add(prevInstruction);
         footerContainer.add(nextInstruction);
         footerContainer.add(reviewerThread.getIndexLabel());
@@ -165,5 +164,5 @@ public class GameViewer extends View {
     @Override
     protected void AnyKey() {
     }
-    
+
 }

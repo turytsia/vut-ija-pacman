@@ -6,8 +6,8 @@ import game.common.CommonField.Direction;
 /**
  * Class representing key object
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class KeyObject extends MazeObject {
@@ -30,6 +30,5 @@ public class KeyObject extends MazeObject {
     public boolean move(Direction dir) {
         throw new UnsupportedOperationException("Unimplemented method 'move'");
     }
-    
-    
+
 }

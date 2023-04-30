@@ -25,8 +25,8 @@ import gui.components.Label;
  * Class representing maze object itself.
  * It contains methods to work with GUI and abstract part of the maze.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class Maze implements CommonMaze {
@@ -361,7 +361,7 @@ public class Maze implements CommonMaze {
      * can
      * be used at user interface.
      * 
-     * @autor Oleksandr Turytsia (xturyt00)
+     * @author Oleksandr Turytsia (xturyt00)
      * @version %I%, %G%
      */
     public class MazeComponent {

@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * Abstract class representing every field in the maze
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public abstract class Field extends AbstractObservableField {

@@ -7,8 +7,8 @@ import game.common.CommonMazeObject;
 /**
  * Abstract class representing all maze objects (their general behaviour)
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public abstract class MazeObject implements CommonMazeObject {
@@ -18,7 +18,6 @@ public abstract class MazeObject implements CommonMazeObject {
     private int id;
     private int x;
     private int y;
-
 
     public MazeObject(CommonField field) {
         this.field = field;
@@ -56,5 +55,5 @@ public abstract class MazeObject implements CommonMazeObject {
     public int getId() {
         return this.id;
     }
-    
+
 }

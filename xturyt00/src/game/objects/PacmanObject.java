@@ -11,7 +11,7 @@ import game.common.CommonMazeObject;
  * Class representing Pacman object. It also logs the
  * entire game here.
  * 
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class PacmanObject extends MazeObject {
@@ -44,7 +44,7 @@ public class PacmanObject extends MazeObject {
     }
 
     /**
-     * Eats the point from the field where 
+     * Eats the point from the field where
      * pacman stands on
      * 
      * @param field given field
@@ -62,7 +62,7 @@ public class PacmanObject extends MazeObject {
         }
 
     }
-    
+
     /**
      * Returns the point to the field where pacman
      * stands on
@@ -127,7 +127,7 @@ public class PacmanObject extends MazeObject {
             field.getMaze().getMazeComponent().updateKey();
         }
     }
-    
+
     /**
      * Returns the key at the field where pacman is
      */
@@ -186,8 +186,6 @@ public class PacmanObject extends MazeObject {
         if (this.lives > 1 && field.getMaze().getReview() || !field.getMaze().getReview()) {
             this.lives -= 1;
         }
-
-            
 
         if (lives == 0) {
             logger.print_logs(field.getMaze().getMazeFile().getName());

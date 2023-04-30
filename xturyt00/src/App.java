@@ -3,7 +3,7 @@ import gui.Game;
 /**
  * Starting point of the game
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class App {
@@ -15,6 +15,6 @@ public class App {
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
-        new Game().launch();  //creates object of game and launches it
+        new Game().launch(); // creates object of game and launches it
     }
 }

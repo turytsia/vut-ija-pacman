@@ -22,7 +22,7 @@ import gui.components.Label;
  * He is provided with various handlers and modes in order
  * to control entire flow of his game.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class LoadGameView extends View {

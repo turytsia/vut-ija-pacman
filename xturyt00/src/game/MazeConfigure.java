@@ -13,7 +13,7 @@ import game.objects.Maze;
  * A class that can build up a maze out of the file.
  * It contains method in order to parse map file.
  * 
- * @autor Turtysia Oleksandr (xturyt00)
+ * @author Turtysia Oleksandr (xturyt00)
  * @version %I%, %G%
  */
 public class MazeConfigure {
@@ -47,7 +47,7 @@ public class MazeConfigure {
      * 
      * @return maze
      */
-    public Maze getMaze(){
+    public Maze getMaze() {
         return this.maze;
     }
 
@@ -67,7 +67,7 @@ public class MazeConfigure {
         }
 
     }
-    
+
     /**
      * Processes very first line of the maze file
      * 
@@ -84,7 +84,6 @@ public class MazeConfigure {
         }
 
         String[] lineArray = line.split("\s");
-
 
         rows = Integer.parseInt(lineArray[0]);
         cols = Integer.parseInt(lineArray[1]);

@@ -13,7 +13,7 @@ import gui.components.Button;
  * This class represents default view for the
  * game when it first launched (menu interface)
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class MainView extends View {

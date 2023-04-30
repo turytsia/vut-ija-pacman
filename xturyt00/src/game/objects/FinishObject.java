@@ -6,8 +6,8 @@ import game.common.CommonField.Direction;
 /**
  * Class representing finish object
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class FinishObject extends MazeObject {
@@ -30,5 +30,5 @@ public class FinishObject extends MazeObject {
     public boolean move(Direction dir) {
         throw new UnsupportedOperationException("Unimplemented method 'move'");
     }
-    
+
 }

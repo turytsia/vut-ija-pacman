@@ -15,7 +15,7 @@ import gui.components.Label;
 /**
  * Class that creates thread in order to properly review last player's games.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class ReviewThread extends Thread {
@@ -66,13 +66,12 @@ public class ReviewThread extends Thread {
                 } else {
                     pause();
                 }
-        
 
                 // System.out.println(maze.getPacman().getDir());
 
-                if(isForward){
+                if (isForward) {
                     next();
-                } else{
+                } else {
                     prev();
                 }
             }
@@ -108,7 +107,7 @@ public class ReviewThread extends Thread {
                 lock.wait();
             }
         } catch (InterruptedException | IllegalArgumentException e) {
-  
+
         }
     }
 
@@ -151,7 +150,7 @@ public class ReviewThread extends Thread {
             updateText();
 
             PacmanObject pacman = maze.getPacman();
-                
+
             if (prevLives > pacman.getLives()) {
                 prevLives = pacman.getLives();
                 liveChanges.add(index - 1);
@@ -173,21 +172,18 @@ public class ReviewThread extends Thread {
             PacmanObject pacman = maze.getPacman();
 
             maze.processInstruction(instructions.get(--index), true);
-            
+
             updateText();
 
             if (prevLives > pacman.getLives()) {
                 pacman.undoHit();
                 prevLives = pacman.getLives();
-            }
-            else if (liveChanges.contains(Integer.valueOf(index))) {
+            } else if (liveChanges.contains(Integer.valueOf(index))) {
                 pacman.undoHit();
                 prevLives = pacman.getLives();
                 liveChanges.remove(Integer.valueOf(index));
             }
-            
 
-            
         }
     }
 }

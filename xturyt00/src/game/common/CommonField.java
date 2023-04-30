@@ -10,8 +10,8 @@ import game.objects.Maze;
  * extends the Observable interface - it allows dependent objects
  * (Observable.Observer) to be notified of changes made to the field
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public interface CommonField extends Observable {
@@ -70,7 +70,7 @@ public interface CommonField extends Observable {
      * @return
      */
     public int getX();
-    
+
     /**
      * Returns row index where the object is located
      * 

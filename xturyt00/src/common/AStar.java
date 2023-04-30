@@ -10,7 +10,7 @@ import java.util.*;
  * A class that calculates algorithm A*.
  * Each function here is used to properly calculate path to a destination point
  * 
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class AStar {

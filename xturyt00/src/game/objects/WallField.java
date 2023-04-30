@@ -6,8 +6,8 @@ import game.common.CommonMazeObject;
 /**
  * Class representing wall in maze.
  * 
- * @autor Turtysia Oleksandr (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Turtysia Oleksandr (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class WallField extends Field {
@@ -40,5 +40,5 @@ public class WallField extends Field {
     public void put(CommonMazeObject obj) {
         throw new UnsupportedOperationException("Unimplemented method 'put'");
     }
-    
+
 }

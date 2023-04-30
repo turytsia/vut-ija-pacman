@@ -28,7 +28,7 @@ import java.awt.event.MouseEvent;
  * A class representing the graphical form of a field. Implements
  * Observable.Observer, can be notified of a field's state change.
  * 
- * @autor Turtysia Oleksandr (xturyt00)
+ * @author Turtysia Oleksandr (xturyt00)
  * @version %I%, %G%
  */
 public class FieldView extends JPanel implements Observable.Observer {
@@ -47,8 +47,6 @@ public class FieldView extends JPanel implements Observable.Observer {
 
         updateView();
 
-       
-
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -61,8 +59,6 @@ public class FieldView extends JPanel implements Observable.Observer {
                     thread.start();
                 }
 
-                
-                
             }
 
             @Override

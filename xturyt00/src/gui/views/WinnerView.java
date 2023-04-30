@@ -21,7 +21,7 @@ import gui.components.Label;
  * Here player can see his game results, name of the map.
  * He can also toggle replay of this game right away or just exit the view.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class WinnerView extends View {

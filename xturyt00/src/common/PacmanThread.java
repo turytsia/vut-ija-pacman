@@ -5,7 +5,7 @@ import game.common.CommonField;
 /**
  * Class that creates new thread for a pacman (When A* algorithm is used).
  * 
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class PacmanThread extends Thread {
@@ -20,7 +20,7 @@ public class PacmanThread extends Thread {
             AStar algorithm = new AStar(targetField);
             algorithm.startAStar();
         } catch (InterruptedException | IllegalArgumentException e) {
-            
+
         }
     }
 }

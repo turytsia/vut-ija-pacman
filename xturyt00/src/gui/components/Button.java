@@ -15,7 +15,7 @@ import common.Config;
 /**
  * Component that represents button in the game
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class Button extends JButton {

@@ -12,8 +12,8 @@ import common.Logger;
 /**
  * Class representing ghost object
  * 
- * @autor Oleksandr Turytsia (xturyt00)
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Oleksandr Turytsia (xturyt00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class GhostObject extends MazeObject {
@@ -53,26 +53,24 @@ public class GhostObject extends MazeObject {
         Random random = new Random();
         PacmanObject pacman = this.field.getMaze().getPacman();
 
-        try{
+        try {
             while (true) {
                 CommonField.Direction dir = directions.get(random.nextInt(directions.size()));
 
-                if (pacman.getFinished() || pacman.getLives() <= 0 || field.getMaze().getPause()) 
+                if (pacman.getFinished() || pacman.getLives() <= 0 || field.getMaze().getPause())
                     break;
-                
 
-                if (!this.canMove(dir)) 
+                if (!this.canMove(dir))
                     continue;
-                
 
                 this.move(dir);
 
                 Thread.sleep(250);
             }
         } catch (InterruptedException e) {
-            
+
         }
-        
+
     }
 
     @Override
@@ -84,7 +82,7 @@ public class GhostObject extends MazeObject {
         Logger.log(dir, this);
 
         PathField nextField = (PathField) this.field.nextField(dir);
-        
+
         this.field.remove(this);
 
         this.meetPacman(nextField);
@@ -92,7 +90,7 @@ public class GhostObject extends MazeObject {
         this.setField(nextField);
 
         nextField.put(this);
-        
+
         this.field.getMaze().getMazeComponent().updateHealth();
 
         this.field.notifyObservers();
@@ -102,7 +100,7 @@ public class GhostObject extends MazeObject {
 
     @Override
     public int getLives() {
-        
+
         throw new UnsupportedOperationException("Unimplemented method 'getLives'");
     }
 

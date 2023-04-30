@@ -21,7 +21,7 @@ import gui.components.Label;
  * Here user can play the game itself. In this view
  * you can see pacman, maze, ghosts, keys, finish and score.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class GameView extends View {
@@ -55,7 +55,6 @@ public class GameView extends View {
 
         topLeft.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
         topRight.setPreferredSize(new Dimension((config.getWidth() - 600) / 2, 40));
-
 
         Label scoreText = maze.getMazeComponent().getScoreText();
         scoreText.setHorizontalAlignment(SwingConstants.CENTER);

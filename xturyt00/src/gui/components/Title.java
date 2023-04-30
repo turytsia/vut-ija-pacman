@@ -13,7 +13,7 @@ import common.Config;
  * This class is configured JLabel that is used
  * as Title on each page.
  * 
- * @autor Oleksandr Turytsia (xturyt00)
+ * @author Oleksandr Turytsia (xturyt00)
  * @version %I%, %G%
  */
 public class Title extends JLabel {

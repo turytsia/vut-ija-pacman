@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Class that implements logger in the game.
  * 
- * @autor Kambulat Alakaev (xalaka00)
+ * @author Kambulat Alakaev (xalaka00)
  * @version %I%, %G%
  */
 public class Logger {
