@@ -27,7 +27,7 @@ If you are using Windows, run:
 
 make -f Makefile
 
-For linux-based systems (We used Ubuntu) run:
+For unix-based systems (We used Ubuntu) run:
 
 make
 
