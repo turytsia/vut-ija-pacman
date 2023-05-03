@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
  * A class representing the graphic form of a ghost
  * 
  * @author Turtysia Oleksandr (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class GhostView implements ComponentView {
     private FieldView field;

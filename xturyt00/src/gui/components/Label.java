@@ -11,7 +11,7 @@ import common.Config;
  * as simple text in the game.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class Label extends JLabel {
     private static Config config = new Config();

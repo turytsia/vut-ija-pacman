@@ -15,7 +15,7 @@ import javax.swing.JFrame;
  * which has to be visible in many places
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class Game extends JFrame {
     private final Config config = new Config();
@@ -38,8 +38,6 @@ public class Game extends JFrame {
 
     /**
      * Launches main window with default page in it
-     * 
-     * @param defaultView default page that will be launched
      */
     public void launch() {
         views.push(defaultView);

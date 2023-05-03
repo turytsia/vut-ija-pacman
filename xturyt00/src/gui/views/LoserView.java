@@ -18,13 +18,13 @@ import gui.components.Label;
 
 /**
  * This class represents view when player loses
- * the game. (Lives <= 0).
+ * the game. If Pacman has no lives.
  * 
  * Here user can observe his results of the game, exit
  * back or watch replay of this game.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class LoserView extends View {
     /* PANELS */

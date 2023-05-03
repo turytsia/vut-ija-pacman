@@ -6,7 +6,7 @@ import game.common.CommonField;
  * Class that creates new thread for a pacman (When A* algorithm is used).
  * 
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class PacmanThread extends Thread {
     private CommonField targetField;

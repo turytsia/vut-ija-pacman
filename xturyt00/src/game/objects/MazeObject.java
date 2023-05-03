@@ -9,7 +9,7 @@ import game.common.CommonMazeObject;
  * 
  * @author Oleksandr Turytsia (xturyt00)
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public abstract class MazeObject implements CommonMazeObject {
 

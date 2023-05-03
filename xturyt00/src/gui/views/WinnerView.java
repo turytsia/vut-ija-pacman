@@ -22,7 +22,7 @@ import gui.components.Label;
  * He can also toggle replay of this game right away or just exit the view.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class WinnerView extends View {
     /* PANELS */

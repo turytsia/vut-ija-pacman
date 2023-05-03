@@ -6,7 +6,7 @@ import game.objects.GhostObject;
  * Class that creates another thread for the ghost.
  * 
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class GhostThread extends Thread {
     private GhostObject ghost;

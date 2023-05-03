@@ -9,7 +9,7 @@ package game.common;
  * 
  * @author Oleksandr Turytsia (xturyt00)
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public interface CommonMazeObject {
     /**

@@ -8,10 +8,13 @@ import game.common.CommonField.Direction;
  * 
  * @author Oleksandr Turytsia (xturyt00)
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class FinishObject extends MazeObject {
-
+    /**
+     * Initialize the finish objects(gates)
+     * @param field represents a field of the maze
+     */
     public FinishObject(CommonField field) {
         super(field);
     }

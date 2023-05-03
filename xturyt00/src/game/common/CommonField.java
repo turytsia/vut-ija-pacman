@@ -12,17 +12,30 @@ import game.objects.Maze;
  * 
  * @author Oleksandr Turytsia (xturyt00)
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public interface CommonField extends Observable {
 
     /**
      * Enum of directions for the movement of maze objects
+     *
      */
     public static enum Direction {
+        /**
+         * Left direction
+         */
         L,
+        /**
+         * Up direction
+         */
         U,
+        /**
+         * Right direction
+         */
         R,
+        /**
+         * Down direction
+         */
         D
     }
 
@@ -46,7 +59,7 @@ public interface CommonField extends Observable {
     /**
      * Removes specific object if it exists
      * 
-     * @param obj
+     * @param obj represents an object on the field
      */
     public void remove(CommonMazeObject obj);
 
@@ -67,14 +80,14 @@ public interface CommonField extends Observable {
     /**
      * Returns column index where the object is located
      * 
-     * @return
+     * @return column index (integer)
      */
     public int getX();
 
     /**
      * Returns row index where the object is located
      * 
-     * @return
+     * @return  raw index (integer)
      */
     public int getY();
 
