@@ -26,7 +26,7 @@ import gui.components.Title;
  * @see Game
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public abstract class View extends JPanel implements KeyListener {
 

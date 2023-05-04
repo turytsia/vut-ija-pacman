@@ -6,7 +6,7 @@ package exceptions;
  * differs from specification)
  * 
  * @author Oleksandr Turytsia (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class InvalidRowException extends Exception {
     public InvalidRowException() {

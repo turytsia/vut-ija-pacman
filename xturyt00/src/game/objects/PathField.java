@@ -9,7 +9,7 @@ import game.common.CommonMazeObject;
  * 
  * @author Turtysia Oleksandr (xturyt00)
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class PathField extends Field {
 

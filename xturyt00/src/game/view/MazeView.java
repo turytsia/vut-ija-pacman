@@ -12,7 +12,7 @@ import gui.Game;
  * A class representing the graphic form of a maze
  * 
  * @author Turtysia Oleksandr (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class MazeView extends JPanel {
     public MazeView(Maze maze, Game game) {

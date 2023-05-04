@@ -20,7 +20,7 @@ import java.util.List;
  * Class that implements logger in the game.
  * 
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class Logger {
     private Maze maze;

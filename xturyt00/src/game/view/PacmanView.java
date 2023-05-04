@@ -12,7 +12,7 @@ import game.common.CommonMazeObject;
  * A class representing the graphic form of a pacman
  * 
  * @author Turtysia Oleksandr (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class PacmanView implements ComponentView {
 

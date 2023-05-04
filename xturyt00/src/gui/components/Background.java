@@ -12,7 +12,7 @@ import common.Config;
  * as background with an image.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class Background extends JLabel {
 
@@ -26,6 +26,10 @@ public class Background extends JLabel {
         setBounds(0, 0, config.getWidth(), config.getHeight());
     }
 
+    /**
+     * Sets the background image for the specified area
+     * @param path path to the image
+     */
     public Background(String path) {
         this(new ImageIcon(path)
                 .getImage()

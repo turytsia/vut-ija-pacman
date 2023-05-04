@@ -5,7 +5,7 @@ package exceptions;
  * Game throws this type of error when maze file has invalid header
  * 
  * @author Oleksandr Turytsia (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class HeaderNotFoundException extends Exception {
     public HeaderNotFoundException() {

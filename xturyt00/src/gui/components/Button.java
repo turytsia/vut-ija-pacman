@@ -16,13 +16,17 @@ import common.Config;
  * Component that represents button in the game
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class Button extends JButton {
     private final static Config config = new Config();
     private boolean hasSelect;
     private boolean isActive;
 
+    /**
+     * Initialize a button object
+     * @param text text for the button
+     */
     public Button(String text) {
         super(text);
         setFont(config.getFont("emulogic.ttf", 10f));
@@ -56,6 +60,10 @@ public class Button extends JButton {
         });
     }
 
+    /**
+     * Setter for the isActive attribute
+     * @param active boolean value to be set to the isActive attribute
+     */
     public void setActive(boolean active) {
         this.isActive = active;
 
@@ -67,10 +75,18 @@ public class Button extends JButton {
                 innerBorder)));
     }
 
+    /**
+     * Getter that for the isActive attribute
+     * @return isActive attribute
+     */
     public boolean getActive() {
         return this.isActive;
     }
 
+    /**
+     * Creates a broken line around the button if it was selected
+     * @param hasSelect boolean value specifies if the button was selected
+     */
     public void setSelect(boolean hasSelect) {
         if (isActive)
             return;

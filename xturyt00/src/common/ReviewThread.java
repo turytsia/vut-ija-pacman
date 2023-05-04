@@ -16,7 +16,7 @@ import gui.components.Label;
  * Class that creates thread in order to properly review last player's games.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class ReviewThread extends Thread {
 

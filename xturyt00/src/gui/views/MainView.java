@@ -14,7 +14,7 @@ import gui.components.Button;
  * game when it first launched (menu interface)
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class MainView extends View {
 

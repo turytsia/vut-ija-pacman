@@ -27,7 +27,7 @@ import gui.components.Label;
  * 
  * @author Oleksandr Turytsia (xturyt00)
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class Maze implements CommonMaze {
 
@@ -362,7 +362,7 @@ public class Maze implements CommonMaze {
      * be used at user interface.
      * 
      * @author Oleksandr Turytsia (xturyt00)
-     * @version %I%, %G%
+     * @version 1.0
      */
     public class MazeComponent {
         private final Label scoreText = new Label("Score: 0");

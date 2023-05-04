@@ -11,7 +11,7 @@ import javax.swing.JPanel;
  * A class representing the graphic form of a wall
  * 
  * @author Turtysia Oleksandr (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class WallView extends JPanel {
     private Image sprite;

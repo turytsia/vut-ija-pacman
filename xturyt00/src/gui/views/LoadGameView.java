@@ -23,7 +23,7 @@ import gui.components.Label;
  * to control entire flow of his game.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class LoadGameView extends View {
 

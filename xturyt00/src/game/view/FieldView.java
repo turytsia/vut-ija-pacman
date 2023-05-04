@@ -29,7 +29,7 @@ import java.awt.event.MouseEvent;
  * Observable.Observer, can be notified of a field's state change.
  * 
  * @author Turtysia Oleksandr (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class FieldView extends JPanel implements Observable.Observer {
     private final List<ComponentView> objects = new ArrayList<>();
@@ -38,6 +38,11 @@ public class FieldView extends JPanel implements Observable.Observer {
 
     private static PacmanThread thread;
 
+    /**
+     * Initialize the view of the field
+     * @param field represents a field of the maze
+     * @param game Game object
+     */
     public FieldView(CommonField field, Game game) {
         this.field = field;
         this.game = game;

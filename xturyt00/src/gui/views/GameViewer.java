@@ -27,7 +27,7 @@ import gui.components.Label;
  * forward or roll back the frames.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class GameViewer extends View {
     /* PANELS */
@@ -46,6 +46,11 @@ public class GameViewer extends View {
     private Maze maze;
     private ReviewThread reviewerThread;
 
+    /**
+     *
+     * @param game
+     * @param file
+     */
     public GameViewer(Game game, File file) {
         super(game);
 

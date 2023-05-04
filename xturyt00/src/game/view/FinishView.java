@@ -9,12 +9,16 @@ import javax.swing.ImageIcon;
  * A class representing the graphic form of a finish
  * 
  * @author Turtysia Oleksandr (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class FinishView implements ComponentView {
     private FieldView field;
     private Image sprite;
 
+    /**
+     * Sets view to the finish field
+     * @param field FieldView object
+     */
     public FinishView(FieldView field) {
         this.field = field;
         sprite = new ImageIcon("lib/sprites/game/finish.png").getImage();

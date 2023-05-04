@@ -14,7 +14,7 @@ import game.objects.Maze;
  * It contains method in order to parse map file.
  * 
  * @author Turtysia Oleksandr (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class MazeConfigure {
     private int cols;

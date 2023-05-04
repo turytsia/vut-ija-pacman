@@ -22,7 +22,7 @@ import gui.components.Label;
  * you can see pacman, maze, ghosts, keys, finish and score.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class GameView extends View {
 
@@ -37,6 +37,11 @@ public class GameView extends View {
     private final JPanel topLeft = new JPanel();
     private final JPanel topRight = new JPanel();
 
+    /**
+     * Constructs an interface for the game, i.e. visualization of the lives, score,borders, etc.
+     * @param maze represents the whole maze of the game
+     * @param game Game object
+     */
     public GameView(Maze maze, Game game) {
         super(game, maze);
 

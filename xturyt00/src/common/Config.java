@@ -18,7 +18,7 @@ import java.util.stream.Stream;
  * It can also import fonts and files.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class Config {
     private int width; // horizontal resolution (px)

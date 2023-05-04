@@ -31,7 +31,7 @@ import gui.components.Label;
  * in the game.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class StartGameView extends View {
     /* PANELS */

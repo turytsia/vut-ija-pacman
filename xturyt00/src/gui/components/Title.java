@@ -14,7 +14,7 @@ import common.Config;
  * as Title on each page.
  * 
  * @author Oleksandr Turytsia (xturyt00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class Title extends JLabel {
     private static final Config config = new Config();

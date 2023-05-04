@@ -12,7 +12,7 @@ import game.common.CommonMazeObject;
  * entire game here.
  * 
  * @author Kambulat Alakaev (xalaka00)
- * @version %I%, %G%
+ * @version 1.0
  */
 public class PacmanObject extends MazeObject {
 
