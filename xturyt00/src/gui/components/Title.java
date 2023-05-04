@@ -17,8 +17,14 @@ import common.Config;
  * @version 1.0
  */
 public class Title extends JLabel {
+    /** config of the game */
     private static final Config config = new Config();
 
+    /**
+     * Creates custom title component
+     * 
+     * @param text title text
+     */
     public Title(String text) {
         super(text);
         setFont(config.getFont("CrackMan.TTF", 54));

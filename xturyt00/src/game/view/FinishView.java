@@ -12,7 +12,9 @@ import javax.swing.ImageIcon;
  * @version 1.0
  */
 public class FinishView implements ComponentView {
+    /** Field where finish is */
     private FieldView field;
+    /** Sprite for the finish */
     private Image sprite;
 
     /**

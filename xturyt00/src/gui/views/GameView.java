@@ -28,13 +28,21 @@ public class GameView extends View {
 
     /* PANELS */
     private final MazeView mazePanel = new MazeView(maze, game);
+    /** Content panel */
     private final JPanel center = new JPanel();
+    /** Top margin */
     private final JPanel top = new JPanel(new BorderLayout());
+    /** Bottom margin */
     private final JPanel bottom = new JPanel();
+    /** left margin */
     private final JPanel left = new JPanel();
+    /** right margin */
     private final JPanel right = new JPanel();
+    /** header */
     private final JPanel infoContainerTop = new JPanel(new GridLayout(1, 5));
+    /** header margin left */
     private final JPanel topLeft = new JPanel();
+    /** header margin right */
     private final JPanel topRight = new JPanel();
 
     /**

@@ -19,8 +19,11 @@ import common.Config;
  * @version 1.0
  */
 public class Button extends JButton {
+    /** config of the game */
     private final static Config config = new Config();
+    /** True if button is focused */
     private boolean hasSelect;
+    /** True if button is hovered */
     private boolean isActive;
 
     /**

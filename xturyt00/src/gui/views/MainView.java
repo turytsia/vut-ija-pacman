@@ -19,14 +19,24 @@ import gui.components.Button;
 public class MainView extends View {
 
     /* PANELS */
+    /** grid layout */
     private final LayoutManager gridLayout = new GridLayout(3, 1);
+    /** button container */
     private final JPanel buttonContainer = new JPanel(gridLayout);
 
     /* BUTTONS */
+    /** button for the start game */
     private final Button buttonStart = new Button("Start game");
+    /** button load */
     private final Button buttonLoad = new Button("Load replay");
+    /** button exit */
     private final Button buttonExit = new Button("Exit");
 
+    /**
+     * Creates starting game
+     * 
+     * @param game game
+     */
     public MainView(Game game) {
         super(game);
 

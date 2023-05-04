@@ -31,25 +31,42 @@ import gui.components.Title;
 public abstract class View extends JPanel implements KeyListener {
 
     // KEY CONSTANTS
+    /** constant for left key */
     private final int ArrowLeft = 37;
+    /** constant for up key */
     private final int ArrowUp = 38;
+    /** constant for right key */
     private final int ArrowRight = 39;
+    /** constant for down key */
     private final int ArrowDown = 40;
+    /** constant for enter key */
     private final int KeyEnter = 10;
+    /** constant for esc key */
     private final int KeyEsc = 27;
+    /** constant for key char up */
     private final int KeyUp = (int) 'W';
+    /** constant for key char left */
     private final int KeyLeft = (int) 'A';
+    /** constant for key char down */
     private final int KeyDown = (int) 'S';
+    /** constant for key char right */
     private final int KeyRight = (int) 'D';
 
+    /** buttons */
     protected final List<Button> buttons = new ArrayList<>();
+    /** config for the game */
     protected final Config config = new Config();
+    /** container for the content */
     protected final JPanel container = new JPanel();
 
+    /** maze for the game */
     protected Maze maze;
+    /** game */
     protected Game game;
+    /** title in header */
     private Title title;
 
+    /** active button index */
     protected int activeButton = 0;
 
     /**

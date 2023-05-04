@@ -16,8 +16,14 @@ import common.Config;
  */
 public class Background extends JLabel {
 
+    /**config of the game */
     private final static Config config = new Config();
 
+    /**
+     * Creates background image
+     * 
+     * @param background image for the background
+     */
     private Background(Image background) {
         super(new ImageIcon(background));
 

@@ -27,11 +27,18 @@ import gui.components.Label;
  */
 public class LoadGameView extends View {
 
+    /** list footer */
     private final JPanel listFooter = new JPanel();
+    /** replay files */
     private final List<File> replayFiles = config.getFiles("data/replays");
-
+    /** map's list */
     private final JPanel gameList = new JPanel(new GridLayout(8, 1));
 
+    /**
+     * Create loader for the game
+     * 
+     * @param game current game
+     */
     public LoadGameView(Game game) {
         super(game, "Load game");
 

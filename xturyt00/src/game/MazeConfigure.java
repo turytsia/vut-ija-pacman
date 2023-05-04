@@ -17,10 +17,19 @@ import game.objects.Maze;
  * @version 1.0
  */
 public class MazeConfigure {
+    /** Max cols */
     private int cols;
+    /** Max rows */
     private int rows;
+    /** Creates and assigns maze to this attribute */
     private Maze maze;
 
+    /**
+     * Reads file and parses it into abstract representation of a maze
+     * 
+     * @param file map file
+     * @param isReview if true then the game is not playable
+     */
     public MazeConfigure(File file, boolean isReview) {
         try {
             Scanner reader = new Scanner(file);

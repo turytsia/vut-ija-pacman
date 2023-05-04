@@ -16,10 +16,16 @@ import game.common.CommonMazeObject;
  */
 public class PacmanView implements ComponentView {
 
+    /** pacman object */
     private CommonMazeObject obj;
+    /** Field view where pacman view is bound to */
     private FieldView field;
+    /** Pacman's sprite */
     private Image sprite;
 
+    /**
+     * Constructor for the Pacman view
+     */
     public PacmanView(FieldView field, CommonMazeObject obj) {
         this.obj = obj;
         this.field = field;

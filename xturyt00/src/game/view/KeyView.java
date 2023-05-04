@@ -12,9 +12,14 @@ import javax.swing.ImageIcon;
  * @version 1.0
  */
 public class KeyView implements ComponentView {
+    /** field where key is */
     private FieldView field;
+    /** sprite for the key */
     private Image sprite;
 
+    /**
+     * Constructor for the key
+     */
     public KeyView(FieldView field) {
         this.field = field;
         sprite = new ImageIcon("lib/sprites/game/key.png").getImage();

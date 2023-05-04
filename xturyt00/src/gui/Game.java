@@ -18,8 +18,11 @@ import javax.swing.JFrame;
  * @version 1.0
  */
 public class Game extends JFrame {
+    /** Config of the game */
     private final Config config = new Config();
+    /** GUI pages */
     private final Stack<View> views = new Stack<>();
+    /** default view that should be launched */
     private final View defaultView = new MainView(this);
 
     /**

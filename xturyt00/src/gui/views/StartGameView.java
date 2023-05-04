@@ -35,24 +35,43 @@ import gui.components.Label;
  */
 public class StartGameView extends View {
     /* PANELS */
+    /** map content */
     private final JPanel mapContent = new JPanel();
+    /** map breadcrumbs */
     private final JLabel mapBreadcrumbs = new JLabel();
+    /** button container */
     private final JPanel buttonContainer = new JPanel(new GridLayout(1, 6, 5, 5));
+    /** left margin */
     private final JLabel leftBorder = new JLabel();
+    /** right margin */
     private final JLabel rightBorder = new JLabel();
+    /** bottom footer */
     private final JLabel bottomPanel = new JLabel();
+    /** map panel */
     private final JPanel map = new JPanel();
+    /** map info */
     private final JPanel mapInfo = new JPanel(new GridLayout(3, 1));
+    /** map info stats */
     private final JPanel mapInfoStats = new JPanel(new GridLayout(1, 5));
 
     /* BUTTONS */
+    /** button next */
     private final Button buttonNext = new Button("Next");
+    /** button prev */
     private final Button buttonPrev = new Button("Previous");
+    /** button play */
     private final Button buttonPlay = new Button("Play");
-
+    /** map index */
     private int mapIndex = 0;
+    /** maze */
     private Maze maze;
 
+    /**
+     * View where user can pick the game
+     * 
+     * @param game game
+     * @param mapIndex map index
+     */
     public StartGameView(Game game, int mapIndex) {
         super(game, "Start game");
 

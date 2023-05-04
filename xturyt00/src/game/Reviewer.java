@@ -13,11 +13,19 @@ import game.objects.Maze;
 import gui.Game;
 
 public class Reviewer {
+    /** list of instructions to review */
     private final List<String> instructions = new ArrayList<>();
+    /** config of the game */
     private final Config config = new Config();
-
+    /** maze that is being reviewed */
     private Maze maze;
 
+    /**
+     * Creates reviewer for the maze to be able to review it
+     * 
+     * @param game game to which this review is bound to
+     * @param reviewFile map file for the review
+     */
     public Reviewer(Game game, File reviewFile) {
         try {
             Scanner scanner = new Scanner(reviewFile);
@@ -47,10 +55,20 @@ public class Reviewer {
         
     }
 
+    /**
+     * getter for instructions
+     * 
+     * @return list of instructions
+     */
     public List<String> getInstructions() {
         return new ArrayList<>(this.instructions);
     }
 
+    /**
+     * getter for the maze
+     * 
+     * @return maze
+     */
     public Maze getMaze() {
         return this.maze;
     }

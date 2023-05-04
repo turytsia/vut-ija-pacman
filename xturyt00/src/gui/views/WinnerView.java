@@ -26,18 +26,32 @@ import gui.components.Label;
  */
 public class WinnerView extends View {
     /* PANELS */
+    /** centered grid */
     private final JPanel center = new JPanel(new GridLayout(10, 1));
+    /** left margin */
     private final JPanel leftMargin = new JPanel();
+    /** right margin */
     private final JPanel rightMargin = new JPanel();
+    /** button container */
     private final JPanel buttonContainer = new JPanel(new GridLayout(1, 2, 10, 10));
+    /** footer panel */
     private final JPanel footer = new JPanel();
 
     /* BUTTONS */
+    /** button replay */
     private final Button buttonReplay = new Button("Watch replay");
+    /** button okay */
     private final Button buttonOkay = new Button("Okay");
 
+    /** replay logging filer */
     private final List<File> replayFiles = config.getFiles("data/replays");
 
+    /**
+     * Creates winner view for the user when pacman wins the game
+     * 
+     * @param game game
+     * @param maze maze where player played
+     */
     public WinnerView(Game game, Maze maze) {
         super(game, maze, "CONGRATULATIONS!!!");
 

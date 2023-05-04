@@ -13,9 +13,14 @@ import javax.swing.ImageIcon;
  * @version 1.0
  */
 public class PointView implements ComponentView {
+    /** Field where score point is */
     private FieldView field;
+    /** Sprite for the score point */
     private Image sprite;
 
+    /**
+     * Constructor for the point view
+     */
     public PointView(FieldView field) {
         this.field = field;
         sprite = new ImageIcon("lib/sprites/game/points.png").getImage();

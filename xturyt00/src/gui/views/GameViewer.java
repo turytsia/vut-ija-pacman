@@ -31,25 +31,37 @@ import gui.components.Label;
  */
 public class GameViewer extends View {
     /* PANELS */
+    /** footer */
     private final JPanel footerContainer = new JPanel(new GridLayout(1, 5));
+    /** header */
     private final JPanel top = new JPanel(new BorderLayout());
+    /** header info panel */
     private final JPanel infoContainerTop = new JPanel(new GridLayout(1, 5));
+    /** header margin left */
     private final JPanel topLeft = new JPanel();
+    /** header margin right */
     private final JPanel topRight = new JPanel();
 
     /* BUTTONS */
+    /** button for the prev instruction */
     private final Button prevInstruction = new Button("Prev");
+    /** button for the next instruction */
     private final Button nextInstruction = new Button("Next");
+    /** button for the smooth mode */
     private final Button smoothMode = new Button("Smooth stepping");
+    /** button for the gradual mode */
     private final Button gradualMode = new Button("Gradual stepping");
 
+    /** maze to view */
     private Maze maze;
+    /** thread for reading instructions */
     private ReviewThread reviewerThread;
 
     /**
-     *
-     * @param game
-     * @param file
+     * Creates game GUI
+     * 
+     * @param game abstraction of the game
+     * @param file file of the map
      */
     public GameViewer(Game game, File file) {
         super(game);

@@ -12,9 +12,14 @@ import javax.swing.ImageIcon;
  * @version 1.0
  */
 public class GhostView implements ComponentView {
+    /** field where ghost is */
     private FieldView field;
+    /** sprite for the ghost */
     private Image sprite;
 
+    /**
+     * Constructor for the ghost
+     */
     public GhostView(FieldView field) {
         this.field = field;
         sprite = new ImageIcon("lib/sprites/game/ghost.png").getImage();

@@ -28,18 +28,32 @@ import gui.components.Label;
  */
 public class LoserView extends View {
     /* PANELS */
+
+    /** container for the health */
     private final JPanel center = new JPanel(new GridLayout(10, 1));
+    /** left margin */
     private final JPanel leftMargin = new JPanel();
+    /** right margin */
     private final JPanel rightMargin = new JPanel();
+    /** button container */
     private final JPanel buttonContainer = new JPanel(new GridLayout(1, 2, 10, 10));
+    /** footer */
     private final JPanel footer = new JPanel();
 
     /* BUTTONS */
+    /** button for the replay */
     private final Button buttonReplay = new Button("Watch replay");
+    /** button for okay */
     private final Button buttonOkay = new Button("Okay");
-
+    /** replay files */
     private final List<File> replayFiles = config.getFiles("data/replays");
 
+    /**
+     * View for the lose game
+     * 
+     * @param game game
+     * @param maze maze
+     */
     public LoserView(Game game, Maze maze) {
         super(game, maze, "YOU LOSE!!!");
 

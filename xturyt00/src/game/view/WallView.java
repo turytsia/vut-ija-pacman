@@ -14,8 +14,12 @@ import javax.swing.JPanel;
  * @version 1.0
  */
 public class WallView extends JPanel {
+    /** Sprite for the walls */
     private Image sprite;
 
+    /**
+     * Constructor for the wall view
+     */
     public WallView() {
         setOpaque(false);
         setPreferredSize(new Dimension(20, 20));

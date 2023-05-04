@@ -15,6 +15,12 @@ import gui.Game;
  * @version 1.0
  */
 public class MazeView extends JPanel {
+    /**
+     * constructs graphic representation of a maze
+     * 
+     * @param maze maze abstractions
+     * @param game game to which this graphic maze will be bound
+     */
     public MazeView(Maze maze, Game game) {
         setLayout(new GridLayout(maze.numRows(), maze.numCols()));
         setOpaque(false);

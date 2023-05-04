@@ -32,10 +32,13 @@ import java.awt.event.MouseEvent;
  * @version 1.0
  */
 public class FieldView extends JPanel implements Observable.Observer {
+    /** Objects that are in a field */
     private final List<ComponentView> objects = new ArrayList<>();
+    /** field to which this field view is bound */
     private CommonField field;
+    /** binds field view to the game */
     private Game game;
-
+    /** Pacman thread for A* walking */
     private static PacmanThread thread;
 
     /**
