@@ -27,7 +27,7 @@ public class PointObject extends MazeObject {
     }
 
     @Override
-    public boolean move(Direction dir) {
+    public boolean move(Direction dir, boolean isInverted) {
         throw new UnsupportedOperationException("Unimplemented method 'move'");
     }
 

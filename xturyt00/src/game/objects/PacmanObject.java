@@ -217,7 +217,7 @@ public class PacmanObject extends MazeObject {
     }
 
     @Override
-    public boolean move(CommonField.Direction dir) {
+    public boolean move(CommonField.Direction dir, boolean isInverted) {
         if (!this.canMove(dir)) {
             return false;
         }
@@ -234,8 +234,10 @@ public class PacmanObject extends MazeObject {
         this.meetGhost(nextField);
 
         this.setField(nextField);
-        this.setDir(dir);
 
+
+        this.setDir(isInverted ? this.field.getMaze().invertDirection(dir) : dir);
+        
         nextField.put(this);
 
         this.field.getMaze().getMazeComponent().updateHealth();

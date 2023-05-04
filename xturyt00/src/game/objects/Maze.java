@@ -293,7 +293,7 @@ public class Maze implements CommonMaze {
      * @param dir direction that needs to be inverted
      * @return Returns inverted direction
      */
-    private Direction invertDirection(Direction dir) {
+    public Direction invertDirection(Direction dir) {
         switch (dir) {
             case L:
                 return Direction.R;
@@ -315,23 +315,15 @@ public class Maze implements CommonMaze {
      * @param isInverted  applies 'backward' instruction if true
      */
     public void processInstruction(String instruction, boolean isInverted) {
-        Pattern pattern = Pattern.compile("^(HIT|(GHOST|PACMAN)(\\d*)?\\s(R|U|L|D))$");
+        Pattern pattern = Pattern.compile("^(GHOST|PACMAN)(\\d*)?\\s(R|U|L|D)$");
 
         Matcher matcher = pattern.matcher(instruction);
 
         matcher.find();
 
-        String action = matcher.group(1);
-
-        // System.out.println(action);
-
-        if (action.equals("HIT")) {
-            return;
-        }
-
-        String entity = matcher.group(2);
-        int id = Integer.valueOf(matcher.group(3).length() > 0 ? matcher.group(3) : "-1");
-        Direction dir = CommonField.Direction.valueOf(matcher.group(4));
+        String entity = matcher.group(1);
+        int id = Integer.valueOf(matcher.group(2).length() > 0 ? matcher.group(2) : "-1");
+        Direction dir = CommonField.Direction.valueOf(matcher.group(3));
 
         if (isInverted) {
             dir = invertDirection(dir);
@@ -342,11 +334,11 @@ public class Maze implements CommonMaze {
                 pacman.undoScore();
                 pacman.undoKey();
             }
-            pacman.move(dir);
+            pacman.move(dir, isInverted);
         } else if (entity.equals("GHOST")) {
             for (GhostObject ghost : ghosts) {
                 if (ghost.getId() == id) {
-                    ghost.move(dir);
+                    ghost.move(dir, false);
                 }
             }
         } else {

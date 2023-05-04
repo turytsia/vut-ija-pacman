@@ -31,7 +31,7 @@ public class Config {
         Properties props = new Properties();
 
         try {
-            props.load(new FileInputStream("config.properties"));
+            props.load(new FileInputStream("data/config.properties"));
 
             width = Integer.parseInt(props.getProperty("window.width"));
             height = Integer.parseInt(props.getProperty("window.height"));

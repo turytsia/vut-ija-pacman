@@ -18,6 +18,11 @@ import common.Logger;
  */
 public class GhostObject extends MazeObject {
 
+    /**
+     * Creates ghost object in a given field
+     * 
+     * @param field given field
+     */
     public GhostObject(CommonField field) {
         super(field);
     }
@@ -63,7 +68,7 @@ public class GhostObject extends MazeObject {
                 if (!this.canMove(dir))
                     continue;
 
-                this.move(dir);
+                this.move(dir, false);
 
                 Thread.sleep(250);
             }
@@ -74,7 +79,7 @@ public class GhostObject extends MazeObject {
     }
 
     @Override
-    public boolean move(Direction dir) {
+    public boolean move(Direction dir, boolean isInverted) {
         if (!this.canMove(dir)) {
             return false;
         }

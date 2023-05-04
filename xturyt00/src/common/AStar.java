@@ -188,7 +188,7 @@ public class AStar {
             return;
 
         for (CommonField.Direction dir : this.path) {
-            this.pacman.move(dir);
+            this.pacman.move(dir, false);
             Thread.sleep(250);
         }
 

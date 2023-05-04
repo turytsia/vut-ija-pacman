@@ -62,12 +62,10 @@ public class ReviewThread extends Thread {
         try {
             while (true) {
                 if (isAuto) {
-                    Thread.sleep(250);
+                    Thread.sleep(200);
                 } else {
                     pause();
                 }
-
-                // System.out.println(maze.getPacman().getDir());
 
                 if (isForward) {
                     next();

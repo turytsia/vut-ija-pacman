@@ -23,10 +23,11 @@ public interface CommonMazeObject {
     /**
      * Moves the object onto the array in the specified direction if possible.
      * 
-     * @param dir The direction to move the object to.
+     * @param dir        The direction to move the object to.
+     * @param isInverted Inverts pacman's direction
      * @return method success
      */
-    public boolean move(CommonField.Direction dir);
+    public boolean move(CommonField.Direction dir, boolean isInverted);
 
     /**
      * Binds object to a specific field in a maze
