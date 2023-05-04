@@ -11,10 +11,17 @@ import game.objects.GhostObject;
 public class GhostThread extends Thread {
     private GhostObject ghost;
 
+    /**
+     * Constructs a thread for a ghost
+     * @param ghost Ghost object
+     */
     public GhostThread(GhostObject ghost) {
         this.ghost = ghost;
     }
 
+    /**
+     * Runs Ghost moving in an infinite loop
+     */
     public void run() {
         try {
             this.ghost.startMoving();

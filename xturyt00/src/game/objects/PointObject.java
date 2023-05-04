@@ -12,6 +12,10 @@ import game.common.CommonField.Direction;
  */
 public class PointObject extends MazeObject {
 
+    /**
+     * Constructor of the Point object
+     * @param field field of the maze
+     */
     public PointObject(CommonField field) {
         super(field);
     }

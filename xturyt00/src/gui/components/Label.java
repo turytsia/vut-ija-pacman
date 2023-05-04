@@ -30,6 +30,7 @@ public class Label extends JLabel {
      * Creates configured label component with custom size
      * 
      * @param text label text
+     * @param size size of the label
      */
     public Label(String text, float size) {
         super(text);

@@ -28,6 +28,10 @@ public class PacmanObject extends MazeObject {
     private final Stack<PointObject> points = new Stack<>();
     private KeyObject key;
 
+    /**
+     * Constructor of the pacman object
+     * @param field field of the maze object
+     */
     public PacmanObject(CommonField field) {
         super(field);
         this.logger = new Logger(this);

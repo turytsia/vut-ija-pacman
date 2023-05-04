@@ -8,10 +8,17 @@ package exceptions;
  * @version 1.0
  */
 public class HeaderNotFoundException extends Exception {
+    /**
+     * Exception throws if a map file has its size
+     */
     public HeaderNotFoundException() {
         super();
     }
 
+    /**
+     * Exception throws if a map file has its size
+     * @param message message of the exception
+     */
     public HeaderNotFoundException(String message) {
         super(message);
     }

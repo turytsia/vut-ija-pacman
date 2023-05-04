@@ -34,6 +34,11 @@ public class ReviewThread extends Thread {
     private final List<String> instructions = new ArrayList<>();
     private final List<Integer> liveChanges = new ArrayList<>();
 
+    /**
+     * Constructor of the review thread
+     * @param maze maze
+     * @param scene file of the scene
+     */
     public ReviewThread(Maze maze, File scene) {
         this.maze = maze;
 

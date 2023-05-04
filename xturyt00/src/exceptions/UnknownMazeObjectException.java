@@ -8,10 +8,17 @@ package exceptions;
  * @version 1.0
  */
 public class UnknownMazeObjectException extends Exception {
+    /**
+     * Exception which is thrown when undefined maze object was found
+     */
     public UnknownMazeObjectException() {
         super();
     }
 
+    /**
+     * Exception which is thrown when undefined maze object was found
+     * @param message message of the exception
+     */
     public UnknownMazeObjectException(String message) {
         super(message);
     }

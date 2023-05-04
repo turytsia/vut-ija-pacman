@@ -11,10 +11,17 @@ import game.common.CommonField;
 public class PacmanThread extends Thread {
     private CommonField targetField;
 
+    /**
+     * Constructs thread for the Pacman object
+     * @param targetField field of the maze
+     */
     public PacmanThread(CommonField targetField) {
         this.targetField = targetField;
     }
 
+    /**
+     * run A* algorithm in a pacman thread to react on the mouse click
+     */
     public void run() {
         try {
             AStar algorithm = new AStar(targetField);

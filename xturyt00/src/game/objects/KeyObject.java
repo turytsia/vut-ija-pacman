@@ -12,20 +12,36 @@ import game.common.CommonField.Direction;
  */
 public class KeyObject extends MazeObject {
 
+    /**
+     * Constructor for the Key object
+     * @param field field of the maze
+     */
     public KeyObject(CommonField field) {
         super(field);
     }
 
+    /**
+     * Checks if object is the Pacman object
+     * @return boolean value of the checking
+     */
     @Override
     public boolean isPacman() {
         return false;
     }
 
+    /**
+     * throws an UnsupportedOperationException, because key object doesn't have lives
+     */
     @Override
     public int getLives() {
         throw new UnsupportedOperationException("Unimplemented method 'getLives'");
     }
 
+    /**
+     * throws an UnsupportedOperationException, because key object doesn't have move method
+     * @param dir        The direction to move the object to.
+     * @param isInverted Inverts pacman's direction
+     */
     @Override
     public boolean move(Direction dir, boolean isInverted) {
         throw new UnsupportedOperationException("Unimplemented method 'move'");

@@ -25,6 +25,8 @@ public class PacmanView implements ComponentView {
 
     /**
      * Constructor for the Pacman view
+     * @param field field of the maze
+     * @param obj object on the maze
      */
     public PacmanView(FieldView field, CommonMazeObject obj) {
         this.obj = obj;

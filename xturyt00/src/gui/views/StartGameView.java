@@ -151,7 +151,7 @@ public class StartGameView extends View {
     /**
      * Default constructor
      * 
-     * @param game
+     * @param game game
      */
     public StartGameView(Game game) {
         this(game, 0);

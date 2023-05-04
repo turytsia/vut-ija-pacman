@@ -20,6 +20,7 @@ public class PointView implements ComponentView {
 
     /**
      * Constructor for the point view
+     * @param field field of the maze
      */
     public PointView(FieldView field) {
         this.field = field;

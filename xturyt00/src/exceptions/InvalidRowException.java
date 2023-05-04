@@ -9,10 +9,17 @@ package exceptions;
  * @version 1.0
  */
 public class InvalidRowException extends Exception {
+    /**
+     * Exception is thrown when an invalid row from the map file was found
+     */
     public InvalidRowException() {
         super();
     }
 
+    /**
+     * Exception is thrown when an invalid row from the map file was found
+     * @param message message of the exception
+     */
     public InvalidRowException(String message) {
         super(message);
     }

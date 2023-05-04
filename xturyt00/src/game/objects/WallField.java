@@ -12,6 +12,12 @@ import game.common.CommonMazeObject;
  */
 public class WallField extends Field {
 
+    /**
+     * Constructor of the WallField object
+     * @param maze maze
+     * @param x x coordinate of the field
+     * @param y y coordinate of the field
+     */
     public WallField(Maze maze, int x, int y) {
         super(maze, x, y);
     }

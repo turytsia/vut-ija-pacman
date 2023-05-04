@@ -12,6 +12,12 @@ import common.Config;
 import game.objects.Maze;
 import gui.Game;
 
+/**
+ * A class representing view of the game
+ *
+ * @author Turtysia Oleksandr (xturyt00)
+ * @version 1.0
+ */
 public class Reviewer {
     /** list of instructions to review */
     private final List<String> instructions = new ArrayList<>();

@@ -46,12 +46,25 @@ public class Maze implements CommonMaze {
 
     private File mazeFile;
 
+    /**
+     * Contructor of the maze object
+     * @param cols number of columns in the maze
+     * @param rows number of rows in the maze
+     * @param mazeFile file with the maze
+     */
     public Maze(int cols, int rows, File mazeFile) {
         this.cols = cols;
         this.rows = rows;
         this.mazeFile = mazeFile;
     }
 
+    /**
+     * Contructor of the maze object
+     * @param cols number of columns in the maze
+     * @param rows number of rows in the maze
+     * @param mazeFile file with the maze
+     * @param isReview specifies review mode
+     */
     public Maze(int cols, int rows, File mazeFile, boolean isReview) {
         this(cols, rows, mazeFile);
         this.isReview = isReview;
@@ -79,7 +92,7 @@ public class Maze implements CommonMaze {
     /**
      * Pause handler
      * 
-     * @param pause
+     * @param pause boolean value if pause is enabled
      */
     public void setPause(boolean pause) {
         isPause = pause;
@@ -341,10 +354,7 @@ public class Maze implements CommonMaze {
                     ghost.move(dir, false);
                 }
             }
-        } else {
-            // System.out.println(entity);
         }
-
     }
 
     /**
@@ -361,6 +371,9 @@ public class Maze implements CommonMaze {
         private final JPanel healthContainer = new JPanel(new GridLayout(1, 3));
         private final JLabel keyContainer = new JLabel();
 
+        /**
+         * Constructor of the MazeComponent
+         */
         public MazeComponent() {
             healthContainer.setOpaque(false);
             keyContainer.setHorizontalAlignment(SwingConstants.CENTER);

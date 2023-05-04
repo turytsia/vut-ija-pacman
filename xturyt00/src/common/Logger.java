@@ -27,6 +27,10 @@ public class Logger {
     private static boolean isFileLogs = false;
     private static final List<String> logs = Collections.synchronizedList(new ArrayList<>());
 
+    /**
+     * Constructs Logger object
+     * @param obj Maze object
+     */
     public Logger(MazeObject obj) {
         this.maze = obj.getField().getMaze();
     }

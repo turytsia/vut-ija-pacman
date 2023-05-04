@@ -25,8 +25,7 @@ import gui.components.Label;
  * @version 1.0
  */
 public class GameView extends View {
-
-    /* PANELS */
+    /** mazeview object */
     private final MazeView mazePanel = new MazeView(maze, game);
     /** Content panel */
     private final JPanel center = new JPanel();

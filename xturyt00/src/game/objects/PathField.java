@@ -13,6 +13,12 @@ import game.common.CommonMazeObject;
  */
 public class PathField extends Field {
 
+    /**
+     * Constructor of the pathfield object
+     * @param maze maze
+     * @param x x coord of the field
+     * @param y y coord of the field
+     */
     public PathField(Maze maze, int x, int y) {
         super(maze, x, y);
     }

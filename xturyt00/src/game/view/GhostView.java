@@ -19,6 +19,7 @@ public class GhostView implements ComponentView {
 
     /**
      * Constructor for the ghost
+     * @param field View of the field
      */
     public GhostView(FieldView field) {
         this.field = field;

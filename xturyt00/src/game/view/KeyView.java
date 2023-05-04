@@ -19,6 +19,7 @@ public class KeyView implements ComponentView {
 
     /**
      * Constructor for the key
+     * @param field View of the field
      */
     public KeyView(FieldView field) {
         this.field = field;
