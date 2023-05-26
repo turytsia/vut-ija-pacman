@@ -65,3 +65,6 @@ Stavy: ✔️- splněno, ❌ - nesplněno
 |3|Přidat pom.xml aby fungoval Maven v projektu. Přidat základní komentáře pro programovou dokumentace|O. Turytsia|31.04.2023|✔️|
 |5|Aktualizovat pom.xml, upravit komentáře aby kompiloval programovou dokumentace|K. Alakaev|04.05.2023|✔️|
 |5|Testování a verifikace projektu. Odevzdání.|K. Alakaev, O. Turytsia|07.05.2023|✔️|
+
+## Results for the course
+**Result: 100/100**
